@@ -1,0 +1,40 @@
+/* RESET TOTAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FORZAR MODO CLARO SIEMPRE */
+html, body {
+  background-color: #f8fafc;
+  color: #0f172a; /* 🔥 texto SIEMPRE oscuro */
+  font-family: Arial, sans-serif;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5 {
+  color: #0f172a !important;
+}
+
+/* INPUT */
+input {
+  color: #0f172a;
+  background: white;
+}
+
+/* BUTTON */
+button {
+  color: white;
+}
+
+/* PREVENIR MODO DARK AUTOMÁTICO */
+:root {
+  color-scheme: light;
+}
+
+/* SKELETON ANIMATION */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}

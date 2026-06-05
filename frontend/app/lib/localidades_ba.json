@@ -1,0 +1,4477 @@
+[
+    {
+        "nombre": "11 de Septiembre",
+        "latitud": -34.5659942534011,
+        "longitud": -58.6185962577357
+    },
+    {
+        "nombre": "12 de Octubre",
+        "latitud": -35.6051664542091,
+        "longitud": -60.9191473234903
+    },
+    {
+        "nombre": "16 de Julio",
+        "latitud": -37.2005149676994,
+        "longitud": -60.1646533455059
+    },
+    {
+        "nombre": "17 de Agosto",
+        "latitud": -37.9097506905124,
+        "longitud": -62.935638980217
+    },
+    {
+        "nombre": "20 de Junio",
+        "latitud": -34.7761539422411,
+        "longitud": -58.7295673036974
+    },
+    {
+        "nombre": "25 de Mayo",
+        "latitud": -35.4324710829424,
+        "longitud": -60.1715593507727
+    },
+    {
+        "nombre": "30 de Agosto",
+        "latitud": -36.2786476447172,
+        "longitud": -62.5452240043378
+    },
+    {
+        "nombre": "9 de Abril",
+        "latitud": -34.7627878709863,
+        "longitud": -58.4875479930927
+    },
+    {
+        "nombre": "9 de Julio",
+        "latitud": -35.4439352795847,
+        "longitud": -60.8846274846021
+    },
+    {
+        "nombre": "Abasto",
+        "latitud": -34.9867591259577,
+        "longitud": -58.0908657138948
+    },
+    {
+        "nombre": "Abbott",
+        "latitud": -35.2813242498373,
+        "longitud": -58.8027833581267
+    },
+    {
+        "nombre": "Acasusso",
+        "latitud": -34.478228664034,
+        "longitud": -58.5026800107625
+    },
+    {
+        "nombre": "Acevedo",
+        "latitud": -33.7550385031659,
+        "longitud": -60.4399592941223
+    },
+    {
+        "nombre": "Adolfo Gonzales Chaves",
+        "latitud": -38.0323707294767,
+        "longitud": -60.0993919276647
+    },
+    {
+        "nombre": "Adrogué",
+        "latitud": -34.7973726678595,
+        "longitud": -58.3884529337359
+    },
+    {
+        "nombre": "Aeropuerto Internacional Ezeiza",
+        "latitud": -34.7925035356355,
+        "longitud": -58.5246396303008
+    },
+    {
+        "nombre": "Aguas Verdes",
+        "latitud": -36.6368892772513,
+        "longitud": -56.6900593491458
+    },
+    {
+        "nombre": "Agustina",
+        "latitud": -34.457840917544,
+        "longitud": -61.0664981031808
+    },
+    {
+        "nombre": "Agustín Mosconi",
+        "latitud": -35.7403170506186,
+        "longitud": -60.557071200522
+    },
+    {
+        "nombre": "Agustín Roca",
+        "latitud": -34.5072540354127,
+        "longitud": -60.86489881645
+    },
+    {
+        "nombre": "Alberdi Viejo",
+        "latitud": -34.439712753893,
+        "longitud": -61.8465741560368
+    },
+    {
+        "nombre": "Alberti",
+        "latitud": -35.0315746230118,
+        "longitud": -60.280286016609
+    },
+    {
+        "nombre": "Aldo Bonzi",
+        "latitud": -34.7069837345392,
+        "longitud": -58.5191686234805
+    },
+    {
+        "nombre": "Alejandro Korn",
+        "latitud": -34.981412227885,
+        "longitud": -58.3767263751922
+    },
+    {
+        "nombre": "Alejandro Petión",
+        "latitud": -34.9776113866355,
+        "longitud": -58.674550927133
+    },
+    {
+        "nombre": "Alfredo Demarchi",
+        "latitud": -35.2923551925373,
+        "longitud": -61.4058045162937
+    },
+    {
+        "nombre": "Almirante Brown",
+        "latitud": -34.7980138402282,
+        "longitud": -58.3843296272883
+    },
+    {
+        "nombre": "Altamirano",
+        "latitud": -35.3610018403182,
+        "longitud": -58.1511580633093
+    },
+    {
+        "nombre": "Alvarez Jonte",
+        "latitud": -35.321734804158,
+        "longitud": -57.4539642083357
+    },
+    {
+        "nombre": "América",
+        "latitud": -35.4891640479858,
+        "longitud": -62.9758916831348
+    },
+    {
+        "nombre": "Andant",
+        "latitud": -36.5600651584196,
+        "longitud": -62.1390192027148
+    },
+    {
+        "nombre": "Antonio Carboni",
+        "latitud": -35.2010459561701,
+        "longitud": -59.3453961078207
+    },
+    {
+        "nombre": "Aparicio",
+        "latitud": -38.6210723556348,
+        "longitud": -60.8828151033228
+    },
+    {
+        "nombre": "Arana",
+        "latitud": -34.9996034102201,
+        "longitud": -57.8924655082918
+    },
+    {
+        "nombre": "Arboledas",
+        "latitud": -36.8831523284642,
+        "longitud": -61.4877198813931
+    },
+    {
+        "nombre": "Arenas Verdes",
+        "latitud": -38.5450724677553,
+        "longitud": -58.5573544699775
+    },
+    {
+        "nombre": "Arenaza",
+        "latitud": -34.9850210216776,
+        "longitud": -61.7743212902483
+    },
+    {
+        "nombre": "Argerich",
+        "latitud": -38.7702355579356,
+        "longitud": -62.6029546301718
+    },
+    {
+        "nombre": "Ariel",
+        "latitud": -36.5314223000046,
+        "longitud": -59.921751903635
+    },
+    {
+        "nombre": "Arrecifes",
+        "latitud": -34.0675149078578,
+        "longitud": -60.1086915850167
+    },
+    {
+        "nombre": "Arribeños",
+        "latitud": -34.2083919072983,
+        "longitud": -61.3552420947011
+    },
+    {
+        "nombre": "Arroyo Corto",
+        "latitud": -37.51488223008,
+        "longitud": -62.3122486493154
+    },
+    {
+        "nombre": "Arroyo Dulce",
+        "latitud": -34.1013884863046,
+        "longitud": -60.4087773379244
+    },
+    {
+        "nombre": "Arroyo Venado",
+        "latitud": -37.0821572185976,
+        "longitud": -62.5403088035724
+    },
+    {
+        "nombre": "Arroyo de la Cruz",
+        "latitud": -34.3302149358773,
+        "longitud": -59.1139730882325
+    },
+    {
+        "nombre": "Arturo Seguí",
+        "latitud": -34.8913472133746,
+        "longitud": -58.1319357401525
+    },
+    {
+        "nombre": "Ascensión",
+        "latitud": -34.2309522616024,
+        "longitud": -61.1032209784133
+    },
+    {
+        "nombre": "Atalaya",
+        "latitud": -35.0242952172867,
+        "longitud": -57.5354895064576
+    },
+    {
+        "nombre": "Atlántida",
+        "latitud": -37.8477075092505,
+        "longitud": -57.513264752301
+    },
+    {
+        "nombre": "Avellaneda",
+        "latitud": -34.6638295089907,
+        "longitud": -58.3627373569237
+    },
+    {
+        "nombre": "Avellaneda",
+        "latitud": -34.6626945099355,
+        "longitud": -58.3651668560089
+    },
+    {
+        "nombre": "Ayacucho",
+        "latitud": -37.1527609912759,
+        "longitud": -58.4883791747028
+    },
+    {
+        "nombre": "Azcuénaga",
+        "latitud": -34.3665475995779,
+        "longitud": -59.375480677999
+    },
+    {
+        "nombre": "Azopardo",
+        "latitud": -37.7042147933042,
+        "longitud": -62.9012860076337
+    },
+    {
+        "nombre": "Azul",
+        "latitud": -36.777446999956,
+        "longitud": -59.8634430458016
+    },
+    {
+        "nombre": "Bahía Blanca",
+        "latitud": -38.7227702772442,
+        "longitud": -62.2727419998288
+    },
+    {
+        "nombre": "Bahía Blanca",
+        "latitud": -38.7176050908517,
+        "longitud": -62.2654469343276
+    },
+    {
+        "nombre": "Bahía San Blas",
+        "latitud": -40.5546481170889,
+        "longitud": -62.2367631095421
+    },
+    {
+        "nombre": "Baigorrita",
+        "latitud": -34.7478044778318,
+        "longitud": -60.9883860604869
+    },
+    {
+        "nombre": "Bajo Hondo",
+        "latitud": -38.7627964873508,
+        "longitud": -61.9205128744151
+    },
+    {
+        "nombre": "Balcarce",
+        "latitud": -37.8463826227702,
+        "longitud": -58.2554911688579
+    },
+    {
+        "nombre": "Balneario Laguna de Gómez",
+        "latitud": -34.6608964328808,
+        "longitud": -61.018683323305
+    },
+    {
+        "nombre": "Balneario Orense",
+        "latitud": -38.807442643306,
+        "longitud": -59.7374821959604
+    },
+    {
+        "nombre": "Balneario Pehuen Co",
+        "latitud": -38.999893566657,
+        "longitud": -61.5536640537776
+    },
+    {
+        "nombre": "Balneario San Cayetano",
+        "latitud": -38.7481082745121,
+        "longitud": -59.4304695947374
+    },
+    {
+        "nombre": "Balneario Sauce Grande",
+        "latitud": -38.9937618197022,
+        "longitud": -61.208011352374
+    },
+    {
+        "nombre": "Banderaló",
+        "latitud": -35.0148684045152,
+        "longitud": -63.3759618191184
+    },
+    {
+        "nombre": "Banfield",
+        "latitud": -34.7447138351125,
+        "longitud": -58.3929263130465
+    },
+    {
+        "nombre": "Baradero",
+        "latitud": -33.8070727746487,
+        "longitud": -59.5022278347215
+    },
+    {
+        "nombre": "Barker",
+        "latitud": -37.6396606486406,
+        "longitud": -59.3911291370342
+    },
+    {
+        "nombre": "Barrio América Unida",
+        "latitud": -34.8832340736186,
+        "longitud": -58.417777592315
+    },
+    {
+        "nombre": "Barrio Banco Provincia",
+        "latitud": -34.8742950475612,
+        "longitud": -57.8547261229371
+    },
+    {
+        "nombre": "Barrio Colinas Verdes",
+        "latitud": -37.8925252468278,
+        "longitud": -57.824524761927
+    },
+    {
+        "nombre": "Barrio El Carmen Este",
+        "latitud": -34.9302812245063,
+        "longitud": -57.8853110232107
+    },
+    {
+        "nombre": "Barrio El Carmen Oeste",
+        "latitud": -34.9389300458219,
+        "longitud": -57.8775985098977
+    },
+    {
+        "nombre": "Barrio El Casal",
+        "latitud": -37.8315957271005,
+        "longitud": -57.6221111182623
+    },
+    {
+        "nombre": "Barrio El Coyunco",
+        "latitud": -37.9105013275376,
+        "longitud": -57.7488101521018
+    },
+    {
+        "nombre": "Barrio El Taladro",
+        "latitud": -35.0714515385233,
+        "longitud": -58.8653096492075
+    },
+    {
+        "nombre": "Barrio Gambier",
+        "latitud": -34.9361065477829,
+        "longitud": -57.9849314095121
+    },
+    {
+        "nombre": "Barrio Kennedy",
+        "latitud": -37.0202869812865,
+        "longitud": -57.1033880422358
+    },
+    {
+        "nombre": "Barrio La Gloria",
+        "latitud": -37.9332671924047,
+        "longitud": -57.7755600822281
+    },
+    {
+        "nombre": "Barrio Las Casuarinas",
+        "latitud": -34.5624048813532,
+        "longitud": -59.1782599099431
+    },
+    {
+        "nombre": "Barrio Las Golondrinas",
+        "latitud": -35.0011083052829,
+        "longitud": -58.1305479447381
+    },
+    {
+        "nombre": "Barrio Las Malvinas",
+        "latitud": -34.9343317745387,
+        "longitud": -58.001724758917
+    },
+    {
+        "nombre": "Barrio Las Margaritas",
+        "latitud": -34.1847259520637,
+        "longitud": -60.6989875902975
+    },
+    {
+        "nombre": "Barrio Las Quintas",
+        "latitud": -34.9251183154547,
+        "longitud": -58.0164733151666
+    },
+    {
+        "nombre": "Barrio Lisandro de la Torre y Santa Marta",
+        "latitud": -34.9062918893911,
+        "longitud": -58.7065478303317
+    },
+    {
+        "nombre": "Barrio Los Bosquecitos",
+        "latitud": -35.1037753797213,
+        "longitud": -58.1848686650614
+    },
+    {
+        "nombre": "Barrio Los Pioneros (Barrio Tavella)",
+        "latitud": -34.2525242125627,
+        "longitud": -58.9597435392037
+    },
+    {
+        "nombre": "Barrio Morabo",
+        "latitud": -34.5566851720057,
+        "longitud": -58.9383850232165
+    },
+    {
+        "nombre": "Barrio Parque General San Martín",
+        "latitud": -34.5656365391558,
+        "longitud": -58.5861315584461
+    },
+    {
+        "nombre": "Barrio Parque Las Acacias",
+        "latitud": -35.0985808592273,
+        "longitud": -58.2772547735395
+    },
+    {
+        "nombre": "Barrio Ruta 24 Kilómetro 10",
+        "latitud": -34.6843060049161,
+        "longitud": -58.9582932640657
+    },
+    {
+        "nombre": "Barrio Río Salado",
+        "latitud": -35.6940389294991,
+        "longitud": -58.4486418217353
+    },
+    {
+        "nombre": "Barrio Saavedra",
+        "latitud": -34.138026855185,
+        "longitud": -59.0054028498658
+    },
+    {
+        "nombre": "Barrio San Cayetano",
+        "latitud": -35.5353900516083,
+        "longitud": -58.0139947303222
+    },
+    {
+        "nombre": "Barrio Santa Paula",
+        "latitud": -37.9305410654567,
+        "longitud": -57.6836403560068
+    },
+    {
+        "nombre": "Barrio Universitario",
+        "latitud": -34.9023475254739,
+        "longitud": -57.9248290975673
+    },
+    {
+        "nombre": "Batán",
+        "latitud": -38.0077620761547,
+        "longitud": -57.710503239508
+    },
+    {
+        "nombre": "Bayauca",
+        "latitud": -34.8674710803271,
+        "longitud": -61.2872903832123
+    },
+    {
+        "nombre": "Bella Vista",
+        "latitud": -34.5682733387092,
+        "longitud": -58.6820583867252
+    },
+    {
+        "nombre": "Bellocq",
+        "latitud": -35.9166167731588,
+        "longitud": -61.5341134960867
+    },
+    {
+        "nombre": "Belén de Escobar",
+        "latitud": -34.3454707314612,
+        "longitud": -58.7928104368433
+    },
+    {
+        "nombre": "Benavídez",
+        "latitud": -34.4115727076684,
+        "longitud": -58.689927948636
+    },
+    {
+        "nombre": "Benito Juárez",
+        "latitud": -37.6742849744259,
+        "longitud": -59.8048051840714
+    },
+    {
+        "nombre": "Berazategui",
+        "latitud": -34.7630163121184,
+        "longitud": -58.2121691523322
+    },
+    {
+        "nombre": "Berazategui",
+        "latitud": -34.7697910449849,
+        "longitud": -58.2261431860465
+    },
+    {
+        "nombre": "Berazategui Oeste",
+        "latitud": -34.7770033567074,
+        "longitud": -58.2388864838825
+    },
+    {
+        "nombre": "Berdier",
+        "latitud": -34.3979341962246,
+        "longitud": -60.2595705520168
+    },
+    {
+        "nombre": "Berisso",
+        "latitud": -34.8702937888262,
+        "longitud": -57.8833253506658
+    },
+    {
+        "nombre": "Berisso",
+        "latitud": -34.8674606087199,
+        "longitud": -57.8886479258613
+    },
+    {
+        "nombre": "Bermúdez",
+        "latitud": -34.6946237218582,
+        "longitud": -61.3286850690249
+    },
+    {
+        "nombre": "Bernal",
+        "latitud": -34.7109020476087,
+        "longitud": -58.2833921197232
+    },
+    {
+        "nombre": "Bernal Oeste",
+        "latitud": -34.7262969677185,
+        "longitud": -58.3179142977182
+    },
+    {
+        "nombre": "Berutti",
+        "latitud": -35.8526319389224,
+        "longitud": -62.5123780756247
+    },
+    {
+        "nombre": "Billinghurst",
+        "latitud": -34.5752076863993,
+        "longitud": -58.5747385273168
+    },
+    {
+        "nombre": "Blaquier",
+        "latitud": -34.6361633101714,
+        "longitud": -62.4777700486682
+    },
+    {
+        "nombre": "Bocayuva",
+        "latitud": -36.2060995361368,
+        "longitud": -63.077533215168
+    },
+    {
+        "nombre": "Bordenave",
+        "latitud": -37.8055147094651,
+        "longitud": -63.0433735782465
+    },
+    {
+        "nombre": "Bosques",
+        "latitud": -34.8166106308631,
+        "longitud": -58.2313139527388
+    },
+    {
+        "nombre": "Boulogne Sur Mer",
+        "latitud": -34.5094800482416,
+        "longitud": -58.5669108609788
+    },
+    {
+        "nombre": "Bragado",
+        "latitud": -35.115566278564,
+        "longitud": -60.4896499896216
+    },
+    {
+        "nombre": "Burzaco",
+        "latitud": -34.8281717078487,
+        "longitud": -58.391033876775
+    },
+    {
+        "nombre": "Béccar",
+        "latitud": -34.4601958059158,
+        "longitud": -58.5313611443379
+    },
+    {
+        "nombre": "Cabildo",
+        "latitud": -38.4851528833332,
+        "longitud": -61.8937521627044
+    },
+    {
+        "nombre": "Cacharí",
+        "latitud": -36.3766730053896,
+        "longitud": -59.5046042167331
+    },
+    {
+        "nombre": "Cadret",
+        "latitud": -35.7715500957092,
+        "longitud": -61.3357772405074
+    },
+    {
+        "nombre": "Camet",
+        "latitud": -37.9401411938582,
+        "longitud": -57.5499424869415
+    },
+    {
+        "nombre": "Camet Norte",
+        "latitud": -37.8244829233582,
+        "longitud": -57.4918495062702
+    },
+    {
+        "nombre": "Campo de Mayo",
+        "latitud": -34.5550627752485,
+        "longitud": -58.6522136037965
+    },
+    {
+        "nombre": "Campos Salles",
+        "latitud": -33.401672448024,
+        "longitud": -60.2374682244366
+    },
+    {
+        "nombre": "Canning",
+        "latitud": -34.8570183979281,
+        "longitud": -58.4979072193515
+    },
+    {
+        "nombre": "Canning",
+        "latitud": -34.8773939810943,
+        "longitud": -58.5075326703501
+    },
+    {
+        "nombre": "Capitán Castro",
+        "latitud": -35.9124084633725,
+        "longitud": -62.224227990124
+    },
+    {
+        "nombre": "Capitán Sarmiento",
+        "latitud": -34.1712798488744,
+        "longitud": -59.7935986802151
+    },
+    {
+        "nombre": "Carapachay",
+        "latitud": -34.5282051328805,
+        "longitud": -58.5346134493231
+    },
+    {
+        "nombre": "Cardenal Cagliero",
+        "latitud": -40.6501557795596,
+        "longitud": -62.755627171392
+    },
+    {
+        "nombre": "Carhué",
+        "latitud": -37.1794832647306,
+        "longitud": -62.7599903896298
+    },
+    {
+        "nombre": "Cariló",
+        "latitud": -37.1652201596011,
+        "longitud": -56.8988186926853
+    },
+    {
+        "nombre": "Carlos Beguerie",
+        "latitud": -35.4856392097213,
+        "longitud": -59.0997695658079
+    },
+    {
+        "nombre": "Carlos Casares",
+        "latitud": -35.6224737481197,
+        "longitud": -61.3654951307361
+    },
+    {
+        "nombre": "Carlos Keen",
+        "latitud": -34.4867518260105,
+        "longitud": -59.2195462147262
+    },
+    {
+        "nombre": "Carlos María Naón",
+        "latitud": -35.2371509729554,
+        "longitud": -60.8232787547967
+    },
+    {
+        "nombre": "Carlos Salas",
+        "latitud": -35.3923376387191,
+        "longitud": -61.9926284372325
+    },
+    {
+        "nombre": "Carlos Spegazzini",
+        "latitud": -34.9117467019627,
+        "longitud": -58.5921665202679
+    },
+    {
+        "nombre": "Carlos Tejedor",
+        "latitud": -35.3914863100084,
+        "longitud": -62.4199534605415
+    },
+    {
+        "nombre": "Carlos Tomás Sourigues",
+        "latitud": -34.8062523505149,
+        "longitud": -58.2153884798708
+    },
+    {
+        "nombre": "Carmen de Areco",
+        "latitud": -34.3766620785956,
+        "longitud": -59.8226965330084
+    },
+    {
+        "nombre": "Carmen de Patagones",
+        "latitud": -40.8025151532734,
+        "longitud": -62.983602185804
+    },
+    {
+        "nombre": "Casalins",
+        "latitud": -36.3163608052112,
+        "longitud": -58.5514293687728
+    },
+    {
+        "nombre": "Casbas",
+        "latitud": -36.7577003509485,
+        "longitud": -62.504382462784
+    },
+    {
+        "nombre": "Cascada",
+        "latitud": -37.292500093337,
+        "longitud": -62.2971962042407
+    },
+    {
+        "nombre": "Caseros",
+        "latitud": -34.6079360429362,
+        "longitud": -58.5639388527613
+    },
+    {
+        "nombre": "Castelar",
+        "latitud": -34.6518205338135,
+        "longitud": -58.6460475077958
+    },
+    {
+        "nombre": "Castelli",
+        "latitud": -36.0909178514273,
+        "longitud": -57.8074789990778
+    },
+    {
+        "nombre": "Castilla",
+        "latitud": -34.6133150947209,
+        "longitud": -59.9061282408254
+    },
+    {
+        "nombre": "Cazón",
+        "latitud": -35.5770988512804,
+        "longitud": -59.6619477131897
+    },
+    {
+        "nombre": "Cañada Seca",
+        "latitud": -34.4168172583702,
+        "longitud": -62.9608357613973
+    },
+    {
+        "nombre": "Cañuelas",
+        "latitud": -35.0538388296572,
+        "longitud": -58.7619911867149
+    },
+    {
+        "nombre": "Centro Guerrero",
+        "latitud": -36.055467874484,
+        "longitud": -57.8210962168972
+    },
+    {
+        "nombre": "Cerro de la Gloria",
+        "latitud": -35.9748604509867,
+        "longitud": -57.4495354380042
+    },
+    {
+        "nombre": "Chacabuco",
+        "latitud": -34.6420259859288,
+        "longitud": -60.4712365314463
+    },
+    {
+        "nombre": "Chapadmalal",
+        "latitud": -38.1709491592213,
+        "longitud": -57.6397712672908
+    },
+    {
+        "nombre": "Chascomús",
+        "latitud": -35.5742063770635,
+        "longitud": -58.011281450951
+    },
+    {
+        "nombre": "Chascomús",
+        "latitud": -35.5791426682401,
+        "longitud": -58.0136734791609
+    },
+    {
+        "nombre": "Chasicó",
+        "latitud": -38.3373320283001,
+        "longitud": -62.6445852070943
+    },
+    {
+        "nombre": "Chillar",
+        "latitud": -37.3128038441293,
+        "longitud": -59.985165666911
+    },
+    {
+        "nombre": "Chivilcoy",
+        "latitud": -34.8968958265909,
+        "longitud": -60.019091373661
+    },
+    {
+        "nombre": "Churruca",
+        "latitud": -34.5590894223482,
+        "longitud": -58.6210861683629
+    },
+    {
+        "nombre": "City Bell",
+        "latitud": -34.8674740179381,
+        "longitud": -58.0474227947356
+    },
+    {
+        "nombre": "Ciudad Evita",
+        "latitud": -34.7157731493272,
+        "longitud": -58.5349456166451
+    },
+    {
+        "nombre": "Ciudad Jardín El Libertador",
+        "latitud": -34.5419681326262,
+        "longitud": -58.5948396946441
+    },
+    {
+        "nombre": "Ciudad Jardín Lomas del Palomar",
+        "latitud": -34.6020571077223,
+        "longitud": -58.5918129323397
+    },
+    {
+        "nombre": "Ciudad del Libertador General San Martín",
+        "latitud": -34.5792515400387,
+        "longitud": -58.5391722889903
+    },
+    {
+        "nombre": "Ciudadela",
+        "latitud": -34.6379153169712,
+        "longitud": -58.5393433409443
+    },
+    {
+        "nombre": "Claraz",
+        "latitud": -37.8934304125645,
+        "longitud": -59.2910695639294
+    },
+    {
+        "nombre": "Claromecó",
+        "latitud": -38.8539586602418,
+        "longitud": -60.0728340167456
+    },
+    {
+        "nombre": "Claromecó",
+        "latitud": -38.8574751199377,
+        "longitud": -60.0727995979592
+    },
+    {
+        "nombre": "Claypole",
+        "latitud": -34.7975588663845,
+        "longitud": -58.3352044170245
+    },
+    {
+        "nombre": "Colonia Hinojo",
+        "latitud": -36.8799103261886,
+        "longitud": -60.1774961047109
+    },
+    {
+        "nombre": "Colonia Mauricio",
+        "latitud": -35.5244413278434,
+        "longitud": -61.437092533341
+    },
+    {
+        "nombre": "Colonia San Martín",
+        "latitud": -37.9768634201524,
+        "longitud": -62.33248362465
+    },
+    {
+        "nombre": "Colonia San Miguel",
+        "latitud": -36.9487547831548,
+        "longitud": -60.1114443173938
+    },
+    {
+        "nombre": "Colonia San Miguel Arcángel",
+        "latitud": -37.4490178803234,
+        "longitud": -63.1171563604927
+    },
+    {
+        "nombre": "Colonia San Ricardo",
+        "latitud": -34.416282596243,
+        "longitud": -61.929234590371
+    },
+    {
+        "nombre": "Colonia Seré",
+        "latitud": -35.4364703945579,
+        "longitud": -62.7279291284189
+    },
+    {
+        "nombre": "Colón",
+        "latitud": -33.897126396729,
+        "longitud": -61.0994163618167
+    },
+    {
+        "nombre": "Comandante Nicanor Otamendi",
+        "latitud": -38.1105497829762,
+        "longitud": -57.8412456081091
+    },
+    {
+        "nombre": "Comodoro Py",
+        "latitud": -35.3225569754525,
+        "longitud": -60.5213798412284
+    },
+    {
+        "nombre": "Conesa",
+        "latitud": -33.5958037996128,
+        "longitud": -60.3557411992853
+    },
+    {
+        "nombre": "Copetonas",
+        "latitud": -38.7214408739283,
+        "longitud": -60.4517437207662
+    },
+    {
+        "nombre": "Coronel Boerr",
+        "latitud": -35.9404610890436,
+        "longitud": -59.0680868874242
+    },
+    {
+        "nombre": "Coronel Brandsen",
+        "latitud": -35.1679594138696,
+        "longitud": -58.2373302396352
+    },
+    {
+        "nombre": "Coronel Charlone",
+        "latitud": -34.6740160429651,
+        "longitud": -63.3694055384796
+    },
+    {
+        "nombre": "Coronel Dorrego",
+        "latitud": -38.7187998746166,
+        "longitud": -61.2883602472107
+    },
+    {
+        "nombre": "Coronel Martínez de Hoz",
+        "latitud": -35.330757064308,
+        "longitud": -61.6143052247512
+    },
+    {
+        "nombre": "Coronel Pringles",
+        "latitud": -37.9856677754422,
+        "longitud": -61.3503974314576
+    },
+    {
+        "nombre": "Coronel Seguí",
+        "latitud": -34.8674400521518,
+        "longitud": -60.3929714439828
+    },
+    {
+        "nombre": "Coronel Suárez",
+        "latitud": -37.4585289177802,
+        "longitud": -61.9328938312418
+    },
+    {
+        "nombre": "Coronel Vidal",
+        "latitud": -37.446516203999,
+        "longitud": -57.7293917658395
+    },
+    {
+        "nombre": "Cortines",
+        "latitud": -34.556551592138,
+        "longitud": -59.2039851566143
+    },
+    {
+        "nombre": "Costa Bonita",
+        "latitud": -38.5599736314668,
+        "longitud": -58.6284817778164
+    },
+    {
+        "nombre": "Country Club Bosque Real",
+        "latitud": -34.5898473179259,
+        "longitud": -58.9060067802104
+    },
+    {
+        "nombre": "Country Club Las Praderas",
+        "latitud": -34.5182228509915,
+        "longitud": -59.0925688618089
+    },
+    {
+        "nombre": "Crotto",
+        "latitud": -36.5763630801619,
+        "longitud": -60.1722007620684
+    },
+    {
+        "nombre": "Crucesita",
+        "latitud": -34.6679918825796,
+        "longitud": -58.3571256035498
+    },
+    {
+        "nombre": "Cuartel V",
+        "latitud": -34.5488244343934,
+        "longitud": -58.8098794651516
+    },
+    {
+        "nombre": "Cucullú",
+        "latitud": -34.4433580630376,
+        "longitud": -59.3602204172752
+    },
+    {
+        "nombre": "Curamalal",
+        "latitud": -37.4842469381512,
+        "longitud": -62.1045577159859
+    },
+    {
+        "nombre": "Curarú",
+        "latitud": -35.6409140591985,
+        "longitud": -62.1947037330345
+    },
+    {
+        "nombre": "D'Orbigny",
+        "latitud": -37.6765455742887,
+        "longitud": -61.707744337486
+    },
+    {
+        "nombre": "Daireaux",
+        "latitud": -36.5996329364507,
+        "longitud": -61.7475424056289
+    },
+    {
+        "nombre": "Darregueira",
+        "latitud": -37.6894529983703,
+        "longitud": -63.1610268101447
+    },
+    {
+        "nombre": "De Bary",
+        "latitud": -36.3405018944918,
+        "longitud": -63.2596740754861
+    },
+    {
+        "nombre": "De La Garma",
+        "latitud": -37.9665417279858,
+        "longitud": -60.4167854846589
+    },
+    {
+        "nombre": "De la Canal",
+        "latitud": -37.1272865838688,
+        "longitud": -59.1053808045858
+    },
+    {
+        "nombre": "Del Carril",
+        "latitud": -35.5080172172452,
+        "longitud": -59.5137164479448
+    },
+    {
+        "nombre": "Del Valle",
+        "latitud": -35.8998918047927,
+        "longitud": -60.7302753701018
+    },
+    {
+        "nombre": "Del Viso",
+        "latitud": -34.4760818203661,
+        "longitud": -58.799352148364
+    },
+    {
+        "nombre": "Del Viso",
+        "latitud": -34.4502158741149,
+        "longitud": -58.7986321054863
+    },
+    {
+        "nombre": "Delfín Huergo",
+        "latitud": -37.3211075196649,
+        "longitud": -63.2343847273828
+    },
+    {
+        "nombre": "Dique Luján",
+        "latitud": -34.3613050945309,
+        "longitud": -58.686560990698
+    },
+    {
+        "nombre": "Dique N° 1",
+        "latitud": -34.8947877637158,
+        "longitud": -57.934267255707
+    },
+    {
+        "nombre": "Dock Sud",
+        "latitud": -34.6501342165535,
+        "longitud": -58.3449022624786
+    },
+    {
+        "nombre": "Dolores",
+        "latitud": -36.3153891841286,
+        "longitud": -57.6754615550973
+    },
+    {
+        "nombre": "Domselaar",
+        "latitud": -35.0738937822194,
+        "longitud": -58.2904583823958
+    },
+    {
+        "nombre": "Don Bosco",
+        "latitud": -34.7044652823354,
+        "longitud": -58.297585163768
+    },
+    {
+        "nombre": "Don Orione",
+        "latitud": -34.8192915430555,
+        "longitud": -58.3418543079073
+    },
+    {
+        "nombre": "Don Torcuato Este",
+        "latitud": -34.487529336749,
+        "longitud": -58.615576288829
+    },
+    {
+        "nombre": "Don Torcuato Oeste",
+        "latitud": -34.5013115714354,
+        "longitud": -58.6266976169668
+    },
+    {
+        "nombre": "Dudignac",
+        "latitud": -35.6502676871895,
+        "longitud": -60.7095008306529
+    },
+    {
+        "nombre": "Dufaur",
+        "latitud": -37.9428114794239,
+        "longitud": -62.2830886448847
+    },
+    {
+        "nombre": "Duggan",
+        "latitud": -34.2073821857375,
+        "longitud": -59.6370221823994
+    },
+    {
+        "nombre": "Dunamar",
+        "latitud": -38.8585571626837,
+        "longitud": -60.0861874066163
+    },
+    {
+        "nombre": "El Cazador",
+        "latitud": -34.3115230240373,
+        "longitud": -58.7643460148419
+    },
+    {
+        "nombre": "El Divisorio",
+        "latitud": -38.3232806651225,
+        "longitud": -61.4442755598393
+    },
+    {
+        "nombre": "El Dorado",
+        "latitud": -34.6528615816264,
+        "longitud": -61.5829084882257
+    },
+    {
+        "nombre": "El Jagüel",
+        "latitud": -34.8308533167404,
+        "longitud": -58.4948836966085
+    },
+    {
+        "nombre": "El Libertador",
+        "latitud": -34.5554270234588,
+        "longitud": -58.6128107904756
+    },
+    {
+        "nombre": "El Marquesado",
+        "latitud": -38.2286115604581,
+        "longitud": -57.754407057278
+    },
+    {
+        "nombre": "El Palomar",
+        "latitud": -34.6108556165017,
+        "longitud": -58.5956810077115
+    },
+    {
+        "nombre": "El Paraíso",
+        "latitud": -33.5704240216028,
+        "longitud": -59.9780284218687
+    },
+    {
+        "nombre": "El Pato",
+        "latitud": -34.8848301020853,
+        "longitud": -58.1738517384337
+    },
+    {
+        "nombre": "El Pensamiento",
+        "latitud": -38.2164777887394,
+        "longitud": -61.3148888421413
+    },
+    {
+        "nombre": "El Perdido",
+        "latitud": -38.6772596586861,
+        "longitud": -61.0861791676287
+    },
+    {
+        "nombre": "El Remanso",
+        "latitud": -34.3897717062025,
+        "longitud": -59.0807782961489
+    },
+    {
+        "nombre": "El Retiro",
+        "latitud": -34.9483129769295,
+        "longitud": -57.9948819613567
+    },
+    {
+        "nombre": "El Talar",
+        "latitud": -34.4635807779742,
+        "longitud": -58.6613515343482
+    },
+    {
+        "nombre": "El Trigo",
+        "latitud": -35.8802756225975,
+        "longitud": -59.4060705269642
+    },
+    {
+        "nombre": "El Triunfo",
+        "latitud": -35.0898300381703,
+        "longitud": -61.5188238469414
+    },
+    {
+        "nombre": "El Tropezón",
+        "latitud": -34.9465243767608,
+        "longitud": -58.2672747979278
+    },
+    {
+        "nombre": "Elvira",
+        "latitud": -35.2427518619546,
+        "longitud": -59.4856520939805
+    },
+    {
+        "nombre": "Emilio Ayarza",
+        "latitud": -34.7437279405372,
+        "longitud": -60.0391004326896
+    },
+    {
+        "nombre": "Emilio V. Bunge",
+        "latitud": -34.7835139287208,
+        "longitud": -63.1956538141881
+    },
+    {
+        "nombre": "Ensenada",
+        "latitud": -34.8624180059336,
+        "longitud": -57.9089420661935
+    },
+    {
+        "nombre": "Ensenada",
+        "latitud": -34.8575070908626,
+        "longitud": -57.9076795213036
+    },
+    {
+        "nombre": "Erezcano",
+        "latitud": -33.52346278207,
+        "longitud": -60.3166280184361
+    },
+    {
+        "nombre": "Ernestina",
+        "latitud": -35.268920909582,
+        "longitud": -59.5571323199126
+    },
+    {
+        "nombre": "Escalada",
+        "latitud": -34.1581474333804,
+        "longitud": -59.113670695869
+    },
+    {
+        "nombre": "Escobar",
+        "latitud": -34.3460457336529,
+        "longitud": -58.7944154645154
+    },
+    {
+        "nombre": "Espartillar",
+        "latitud": -37.3574109987361,
+        "longitud": -62.4383797934634
+    },
+    {
+        "nombre": "Espartillar",
+        "latitud": -37.3611255964229,
+        "longitud": -62.4338504694523
+    },
+    {
+        "nombre": "Espigas",
+        "latitud": -36.4129582824455,
+        "longitud": -60.6731489571588
+    },
+    {
+        "nombre": "Estación Arenales",
+        "latitud": -34.2708851260597,
+        "longitud": -61.2936216739099
+    },
+    {
+        "nombre": "Estación Camet",
+        "latitud": -37.8884221513547,
+        "longitud": -57.6069464405144
+    },
+    {
+        "nombre": "Estación Chapadmalal",
+        "latitud": -38.0366535494497,
+        "longitud": -57.7135042951064
+    },
+    {
+        "nombre": "Estanislao Severo Zeballos",
+        "latitud": -34.8141798503006,
+        "longitud": -58.2412180629062
+    },
+    {
+        "nombre": "Esteban Agustín Gascón",
+        "latitud": -37.4558365111846,
+        "longitud": -63.254311550389
+    },
+    {
+        "nombre": "Esteban Echeverría",
+        "latitud": -34.8193895346083,
+        "longitud": -58.4659118964401
+    },
+    {
+        "nombre": "Estela",
+        "latitud": -38.1099152231,
+        "longitud": -62.9147830517742
+    },
+    {
+        "nombre": "Ezeiza",
+        "latitud": -34.8543939582115,
+        "longitud": -58.524757807358
+    },
+    {
+        "nombre": "Ezpeleta",
+        "latitud": -34.7459431286802,
+        "longitud": -58.2347948365317
+    },
+    {
+        "nombre": "Ezpeleta Oeste",
+        "latitud": -34.7572131736828,
+        "longitud": -58.2639566525405
+    },
+    {
+        "nombre": "Faro",
+        "latitud": -38.7965246047502,
+        "longitud": -61.0703877087327
+    },
+    {
+        "nombre": "Felipe Solá",
+        "latitud": -38.0092406586158,
+        "longitud": -62.8224206965566
+    },
+    {
+        "nombre": "Ferré",
+        "latitud": -34.1225764933129,
+        "longitud": -61.1333856353918
+    },
+    {
+        "nombre": "Florencio Varela",
+        "latitud": -34.8044367902128,
+        "longitud": -58.2792527723518
+    },
+    {
+        "nombre": "Florentino Ameghino",
+        "latitud": -34.8453724214234,
+        "longitud": -62.4671568420394
+    },
+    {
+        "nombre": "Florida",
+        "latitud": -34.5320107502339,
+        "longitud": -58.4928251811481
+    },
+    {
+        "nombre": "Florida Oeste",
+        "latitud": -34.5385072942887,
+        "longitud": -58.5154588836308
+    },
+    {
+        "nombre": "Fontezuela",
+        "latitud": -33.912063973022,
+        "longitud": -60.4600333437368
+    },
+    {
+        "nombre": "Fortín Acha",
+        "latitud": -34.3423483954941,
+        "longitud": -61.5151801698666
+    },
+    {
+        "nombre": "Fortín Olavarría",
+        "latitud": -35.7026243197771,
+        "longitud": -63.0240574481296
+    },
+    {
+        "nombre": "Fortín Tiburcio",
+        "latitud": -34.3445360596629,
+        "longitud": -61.1285011823446
+    },
+    {
+        "nombre": "Francisco Madero",
+        "latitud": -35.8493979220261,
+        "longitud": -62.0666472050596
+    },
+    {
+        "nombre": "Francisco Álvarez",
+        "latitud": -34.6331919907166,
+        "longitud": -58.8554657978739
+    },
+    {
+        "nombre": "Franklin",
+        "latitud": -34.6091166072699,
+        "longitud": -59.6299350338081
+    },
+    {
+        "nombre": "Frente Mar",
+        "latitud": -37.8588472563325,
+        "longitud": -57.5134774219646
+    },
+    {
+        "nombre": "Fátima",
+        "latitud": -34.4278831571111,
+        "longitud": -58.9936681977088
+    },
+    {
+        "nombre": "Gahan",
+        "latitud": -34.3382330038569,
+        "longitud": -60.1012149576705
+    },
+    {
+        "nombre": "Gardey",
+        "latitud": -37.2797250332818,
+        "longitud": -59.3628688181827
+    },
+    {
+        "nombre": "Garré",
+        "latitud": -36.5618972268973,
+        "longitud": -62.6044086067097
+    },
+    {
+        "nombre": "Garín",
+        "latitud": -34.4230339103436,
+        "longitud": -58.7394613036842
+    },
+    {
+        "nombre": "General Alvear",
+        "latitud": -36.0217418768588,
+        "longitud": -60.0145053844846
+    },
+    {
+        "nombre": "General Arenales",
+        "latitud": -34.3033240029118,
+        "longitud": -61.3070338888986
+    },
+    {
+        "nombre": "General Belgrano",
+        "latitud": -35.7656761988762,
+        "longitud": -58.4971632732759
+    },
+    {
+        "nombre": "General Conesa",
+        "latitud": -36.5208605076963,
+        "longitud": -57.324938712347
+    },
+    {
+        "nombre": "General Daniel Cerri",
+        "latitud": -38.7193655455279,
+        "longitud": -62.3953089757156
+    },
+    {
+        "nombre": "General Guido",
+        "latitud": -36.6431665880464,
+        "longitud": -57.7905023945179
+    },
+    {
+        "nombre": "General Hornos",
+        "latitud": -34.892315571683,
+        "longitud": -58.9184657429897
+    },
+    {
+        "nombre": "General Juan Madariaga",
+        "latitud": -37.0019581688764,
+        "longitud": -57.1358378165266
+    },
+    {
+        "nombre": "General Juan Madariaga",
+        "latitud": -36.9952919453552,
+        "longitud": -57.1368612559837
+    },
+    {
+        "nombre": "General La Madrid",
+        "latitud": -37.2496672843438,
+        "longitud": -61.2621992088509
+    },
+    {
+        "nombre": "General Las Heras",
+        "latitud": -34.9269092899569,
+        "longitud": -58.9467069527568
+    },
+    {
+        "nombre": "General Lavalle",
+        "latitud": -36.4080860934361,
+        "longitud": -56.9433578443012
+    },
+    {
+        "nombre": "General Mansilla",
+        "latitud": -35.0797217208605,
+        "longitud": -57.7468870241048
+    },
+    {
+        "nombre": "General O'Brien",
+        "latitud": -34.9056096603392,
+        "longitud": -60.7605000810587
+    },
+    {
+        "nombre": "General Pacheco",
+        "latitud": -34.454922848233,
+        "longitud": -58.6341494353431
+    },
+    {
+        "nombre": "General Pinto",
+        "latitud": -34.7643315774965,
+        "longitud": -61.8916280748092
+    },
+    {
+        "nombre": "General Pirán",
+        "latitud": -37.2759738583428,
+        "longitud": -57.7741966376361
+    },
+    {
+        "nombre": "General Rivas",
+        "latitud": -34.6084349698063,
+        "longitud": -59.7501662841433
+    },
+    {
+        "nombre": "General Rodríguez",
+        "latitud": -34.6082064832342,
+        "longitud": -58.9510798915332
+    },
+    {
+        "nombre": "General Rodríguez",
+        "latitud": -34.6064310688302,
+        "longitud": -58.9521606358841
+    },
+    {
+        "nombre": "General Rojo",
+        "latitud": -33.4747261090956,
+        "longitud": -60.2873220904722
+    },
+    {
+        "nombre": "General San Martín",
+        "latitud": -34.5779100956477,
+        "longitud": -58.5386564736863
+    },
+    {
+        "nombre": "General Villegas",
+        "latitud": -35.0326342651802,
+        "longitud": -63.0150256475539
+    },
+    {
+        "nombre": "Gerli",
+        "latitud": -34.6837730568077,
+        "longitud": -58.3744414837129
+    },
+    {
+        "nombre": "Gerli",
+        "latitud": -34.6908323695067,
+        "longitud": -58.3819322387066
+    },
+    {
+        "nombre": "Germania",
+        "latitud": -34.5770429359056,
+        "longitud": -62.0478372059771
+    },
+    {
+        "nombre": "Girodias",
+        "latitud": -36.3657483912208,
+        "longitud": -62.3580799980758
+    },
+    {
+        "nombre": "Glew",
+        "latitud": -34.8883362582313,
+        "longitud": -58.3827874554173
+    },
+    {
+        "nombre": "Gobernador Castro",
+        "latitud": -33.6590136302514,
+        "longitud": -59.8684776819622
+    },
+    {
+        "nombre": "Gobernador Julio A. Costa",
+        "latitud": -34.8075484180765,
+        "longitud": -58.3038510563683
+    },
+    {
+        "nombre": "Gobernador Udaondo",
+        "latitud": -35.3026726729038,
+        "longitud": -58.5959794169719
+    },
+    {
+        "nombre": "Gobernador Ugarte",
+        "latitud": -35.1638916110581,
+        "longitud": -60.0789192444737
+    },
+    {
+        "nombre": "González Catán",
+        "latitud": -34.773025312187,
+        "longitud": -58.6440393936429
+    },
+    {
+        "nombre": "González Moreno",
+        "latitud": -35.5552866415641,
+        "longitud": -63.3802912122609
+    },
+    {
+        "nombre": "Gorchs",
+        "latitud": -35.672069646017,
+        "longitud": -58.958410415197
+    },
+    {
+        "nombre": "Gorostiaga",
+        "latitud": -34.838800215557,
+        "longitud": -59.8660115870908
+    },
+    {
+        "nombre": "Gowland",
+        "latitud": -34.6541422585061,
+        "longitud": -59.3547599003132
+    },
+    {
+        "nombre": "Goyena",
+        "latitud": -37.7210187708495,
+        "longitud": -62.6064548472965
+    },
+    {
+        "nombre": "Grand Bourg",
+        "latitud": -34.489012469155,
+        "longitud": -58.7263870544297
+    },
+    {
+        "nombre": "Gregorio de Laferrere",
+        "latitud": -34.7469935775157,
+        "longitud": -58.5892567981998
+    },
+    {
+        "nombre": "Grünbein",
+        "latitud": -38.7492722104635,
+        "longitud": -62.1908892770901
+    },
+    {
+        "nombre": "Guaminí",
+        "latitud": -37.0109209431129,
+        "longitud": -62.4222497379496
+    },
+    {
+        "nombre": "Guernica",
+        "latitud": -34.9179865232138,
+        "longitud": -58.3821570439019
+    },
+    {
+        "nombre": "Guerrico",
+        "latitud": -33.6761292533535,
+        "longitud": -60.4001651448795
+    },
+    {
+        "nombre": "Guillermo Enrique Hudson",
+        "latitud": -34.7918465006493,
+        "longitud": -58.1516189728872
+    },
+    {
+        "nombre": "Gómez",
+        "latitud": -35.0675425417395,
+        "longitud": -58.1660395052276
+    },
+    {
+        "nombre": "Haedo",
+        "latitud": -34.6436075977527,
+        "longitud": -58.5945223728959
+    },
+    {
+        "nombre": "Hale",
+        "latitud": -36.0020643354201,
+        "longitud": -60.855489814834
+    },
+    {
+        "nombre": "Henderson",
+        "latitud": -36.2981771240063,
+        "longitud": -61.7185623851795
+    },
+    {
+        "nombre": "Herrera Vegas",
+        "latitud": -36.0875575438524,
+        "longitud": -61.4108983875355
+    },
+    {
+        "nombre": "Hilario Ascasubi",
+        "latitud": -39.3756504477901,
+        "longitud": -62.6473691572484
+    },
+    {
+        "nombre": "Hinojo",
+        "latitud": -36.8665431549573,
+        "longitud": -60.161834312253
+    },
+    {
+        "nombre": "Hinojo",
+        "latitud": -36.865843179941,
+        "longitud": -60.1602819975195
+    },
+    {
+        "nombre": "Hortensia",
+        "latitud": -35.9242331792084,
+        "longitud": -61.2628507762325
+    },
+    {
+        "nombre": "Huanguelén",
+        "latitud": -37.0588752626612,
+        "longitud": -61.9325411165077
+    },
+    {
+        "nombre": "Hurlingham",
+        "latitud": -34.5898383931687,
+        "longitud": -58.6374166101562
+    },
+    {
+        "nombre": "Hurlingham",
+        "latitud": -34.5898718839379,
+        "longitud": -58.637441025941
+    },
+    {
+        "nombre": "Indio Rico",
+        "latitud": -38.3304457035345,
+        "longitud": -60.8852418354866
+    },
+    {
+        "nombre": "Ingeniero Adolfo Sourdeaux",
+        "latitud": -34.5004713123991,
+        "longitud": -58.6620356056574
+    },
+    {
+        "nombre": "Ingeniero Juan Allan",
+        "latitud": -34.8666834881557,
+        "longitud": -58.1985573691944
+    },
+    {
+        "nombre": "Ingeniero Maschwitz",
+        "latitud": -34.3892350663582,
+        "longitud": -58.7378666055156
+    },
+    {
+        "nombre": "Ingeniero Pablo Nogués",
+        "latitud": -34.4894723154381,
+        "longitud": -58.7060917266721
+    },
+    {
+        "nombre": "Ingeniero Thompson",
+        "latitud": -36.6109231766528,
+        "longitud": -62.9129347766243
+    },
+    {
+        "nombre": "Ingeniero White",
+        "latitud": -38.7794923647948,
+        "longitud": -62.2655806941397
+    },
+    {
+        "nombre": "Inés Indart",
+        "latitud": -34.3962925470533,
+        "longitud": -60.5368496522854
+    },
+    {
+        "nombre": "Irala",
+        "latitud": -34.7702039328676,
+        "longitud": -60.6910217502228
+    },
+    {
+        "nombre": "Irene",
+        "latitud": -38.5545755327377,
+        "longitud": -60.6962982485661
+    },
+    {
+        "nombre": "Irineo Portela",
+        "latitud": -33.9798303828433,
+        "longitud": -59.6701217083133
+    },
+    {
+        "nombre": "Isidro Casanova",
+        "latitud": -34.7109702658698,
+        "longitud": -58.5858084188647
+    },
+    {
+        "nombre": "Isla Santiago",
+        "latitud": -34.845519765725,
+        "longitud": -57.8947826129536
+    },
+    {
+        "nombre": "Ituzaingó",
+        "latitud": -34.6603884942507,
+        "longitud": -58.6661675132925
+    },
+    {
+        "nombre": "Ituzaingó Centro",
+        "latitud": -34.6506041192994,
+        "longitud": -58.6717219575446
+    },
+    {
+        "nombre": "Ituzaingó Sur",
+        "latitud": -34.6637659933335,
+        "longitud": -58.6654781913185
+    },
+    {
+        "nombre": "Jeppener",
+        "latitud": -35.2777031071624,
+        "longitud": -58.1981445641191
+    },
+    {
+        "nombre": "Joaquín Gorina",
+        "latitud": -34.9054472269577,
+        "longitud": -58.0436367820879
+    },
+    {
+        "nombre": "Jorge Born",
+        "latitud": -34.6976769838622,
+        "longitud": -59.3185257826541
+    },
+    {
+        "nombre": "José B. Casas",
+        "latitud": -40.4353207016459,
+        "longitud": -62.5441230494014
+    },
+    {
+        "nombre": "José C. Paz",
+        "latitud": -34.5217463442325,
+        "longitud": -58.7553740815986
+    },
+    {
+        "nombre": "José C. Paz",
+        "latitud": -34.5231938431692,
+        "longitud": -58.7519435027779
+    },
+    {
+        "nombre": "José Hernández",
+        "latitud": -34.8988594896955,
+        "longitud": -58.0106354609076
+    },
+    {
+        "nombre": "José Ingenieros",
+        "latitud": -34.6171682617636,
+        "longitud": -58.5359477552874
+    },
+    {
+        "nombre": "José Juan Almeyra",
+        "latitud": -34.9215851673876,
+        "longitud": -59.542229637721
+    },
+    {
+        "nombre": "José María Ezeiza",
+        "latitud": -34.852762171254,
+        "longitud": -58.5232011263057
+    },
+    {
+        "nombre": "José Melchor Romero",
+        "latitud": -34.9456752062054,
+        "longitud": -58.0364808189891
+    },
+    {
+        "nombre": "José Mármol",
+        "latitud": -34.7863165982708,
+        "longitud": -58.3698423146283
+    },
+    {
+        "nombre": "Juan A. Pradere",
+        "latitud": -39.6024515767254,
+        "longitud": -62.6527946396309
+    },
+    {
+        "nombre": "Juan A. de la Peña",
+        "latitud": -33.8313815436909,
+        "longitud": -60.4879689960145
+    },
+    {
+        "nombre": "Juan Anchorena",
+        "latitud": -33.9243095039946,
+        "longitud": -60.3828396641755
+    },
+    {
+        "nombre": "Juan Bautista Alberdi",
+        "latitud": -34.4385163313831,
+        "longitud": -61.8120901544653
+    },
+    {
+        "nombre": "Juan Cousté",
+        "latitud": -38.8944422347495,
+        "longitud": -63.1407347636352
+    },
+    {
+        "nombre": "Juan E. Barra",
+        "latitud": -37.8200386069869,
+        "longitud": -60.48205544899
+    },
+    {
+        "nombre": "Juan F. Ibarra",
+        "latitud": -36.3471482703942,
+        "longitud": -61.2540350435255
+    },
+    {
+        "nombre": "Juan F. Salaberry",
+        "latitud": -35.0616154828316,
+        "longitud": -60.7047540548361
+    },
+    {
+        "nombre": "Juan José Paso",
+        "latitud": -35.849370285201,
+        "longitud": -62.2947176314047
+    },
+    {
+        "nombre": "Juan María Gutiérrez",
+        "latitud": -34.8339094499703,
+        "longitud": -58.1838076894883
+    },
+    {
+        "nombre": "Juan N. Fernández",
+        "latitud": -38.0055227969301,
+        "longitud": -59.2639234559796
+    },
+    {
+        "nombre": "Junín",
+        "latitud": -34.5939417428353,
+        "longitud": -60.9464309692372
+    },
+    {
+        "nombre": "La Angelita",
+        "latitud": -34.2617939398441,
+        "longitud": -60.9661080082445
+    },
+    {
+        "nombre": "La Armonía",
+        "latitud": -37.7739863352594,
+        "longitud": -57.634189525923
+    },
+    {
+        "nombre": "La Aurora",
+        "latitud": -35.4087074583601,
+        "longitud": -61.2078054655041
+    },
+    {
+        "nombre": "La Baliza",
+        "latitud": -37.7716100804643,
+        "longitud": -57.4473118294385
+    },
+    {
+        "nombre": "La Beba",
+        "latitud": -34.1541391001149,
+        "longitud": -61.011284299162
+    },
+    {
+        "nombre": "La Caleta",
+        "latitud": -37.7826448217598,
+        "longitud": -57.4598549284262
+    },
+    {
+        "nombre": "La Capilla",
+        "latitud": -34.925691977811,
+        "longitud": -58.2646975204026
+    },
+    {
+        "nombre": "La Carreta",
+        "latitud": -36.2037313602021,
+        "longitud": -62.2354636261776
+    },
+    {
+        "nombre": "La Choza",
+        "latitud": -34.7828492176329,
+        "longitud": -59.1096523555174
+    },
+    {
+        "nombre": "La Colina",
+        "latitud": -37.3593869063237,
+        "longitud": -61.5357449066946
+    },
+    {
+        "nombre": "La Constancia",
+        "latitud": -37.2263465989733,
+        "longitud": -58.7601044130598
+    },
+    {
+        "nombre": "La Cumbre",
+        "latitud": -34.9233041542336,
+        "longitud": -58.0033796785846
+    },
+    {
+        "nombre": "La Delfina",
+        "latitud": -34.9432556421346,
+        "longitud": -61.1586608696719
+    },
+    {
+        "nombre": "La Emilia",
+        "latitud": -33.3490410442337,
+        "longitud": -60.3156761852842
+    },
+    {
+        "nombre": "La Emilia",
+        "latitud": -33.3511365748959,
+        "longitud": -60.3138057533936
+    },
+    {
+        "nombre": "La Gruta",
+        "latitud": -38.0597276619179,
+        "longitud": -62.0776250250117
+    },
+    {
+        "nombre": "La Invencible",
+        "latitud": -34.2670181288751,
+        "longitud": -60.3858028206226
+    },
+    {
+        "nombre": "La Larga",
+        "latitud": -36.675500343025,
+        "longitud": -61.9283363521451
+    },
+    {
+        "nombre": "La Limpia",
+        "latitud": -35.0800960334474,
+        "longitud": -60.5911917698263
+    },
+    {
+        "nombre": "La Lonja",
+        "latitud": -34.4484860405622,
+        "longitud": -58.846095707197
+    },
+    {
+        "nombre": "La Lucila",
+        "latitud": -34.4986954031124,
+        "longitud": -58.4886021924852
+    },
+    {
+        "nombre": "La Luisa",
+        "latitud": -34.1295652785123,
+        "longitud": -59.9264182117769
+    },
+    {
+        "nombre": "La Matanza",
+        "latitud": -34.6776067204493,
+        "longitud": -58.5610082406866
+    },
+    {
+        "nombre": "La Pala",
+        "latitud": -36.6639203566646,
+        "longitud": -63.3664656038284
+    },
+    {
+        "nombre": "La Plata",
+        "latitud": -34.9154959630273,
+        "longitud": -57.9479884807815
+    },
+    {
+        "nombre": "La Plata",
+        "latitud": -34.9213519183204,
+        "longitud": -57.9545026451864
+    },
+    {
+        "nombre": "La Reja",
+        "latitud": -34.6390127276427,
+        "longitud": -58.8266931262593
+    },
+    {
+        "nombre": "La Rica",
+        "latitud": -34.9730896262373,
+        "longitud": -59.8614129802492
+    },
+    {
+        "nombre": "La Sofía",
+        "latitud": -35.6993607609288,
+        "longitud": -61.1694384949499
+    },
+    {
+        "nombre": "La Tablada",
+        "latitud": -34.686462325254,
+        "longitud": -58.5256461385691
+    },
+    {
+        "nombre": "La Trinidad",
+        "latitud": -34.1070008226694,
+        "longitud": -61.1327498008198
+    },
+    {
+        "nombre": "La Unión",
+        "latitud": -34.8755663651384,
+        "longitud": -58.5419814148017
+    },
+    {
+        "nombre": "La Violeta",
+        "latitud": -33.733064625315,
+        "longitud": -60.1685122078304
+    },
+    {
+        "nombre": "Labardén",
+        "latitud": -36.9489663646248,
+        "longitud": -58.10356763494
+    },
+    {
+        "nombre": "Laguna Alsina",
+        "latitud": -36.8075635644925,
+        "longitud": -62.2479661210824
+    },
+    {
+        "nombre": "Laguna de Lobos",
+        "latitud": -35.2737826395219,
+        "longitud": -59.1350643318774
+    },
+    {
+        "nombre": "Lanús",
+        "latitud": -34.7075553436926,
+        "longitud": -58.3911277281302
+    },
+    {
+        "nombre": "Lanús Este",
+        "latitud": -34.7141603772546,
+        "longitud": -58.3743055982995
+    },
+    {
+        "nombre": "Lanús Oeste",
+        "latitud": -34.7037709376997,
+        "longitud": -58.4005603089343
+    },
+    {
+        "nombre": "Laplacette",
+        "latitud": -34.7231287380653,
+        "longitud": -61.1582663957053
+    },
+    {
+        "nombre": "Laprida",
+        "latitud": -37.5442260049415,
+        "longitud": -60.8010273264532
+    },
+    {
+        "nombre": "Lartigau",
+        "latitud": -38.4472093172749,
+        "longitud": -61.5668870057787
+    },
+    {
+        "nombre": "Las Armas",
+        "latitud": -37.086333288103,
+        "longitud": -57.8294200706759
+    },
+    {
+        "nombre": "Las Bahamas",
+        "latitud": -33.6376750106,
+        "longitud": -59.9888547756034
+    },
+    {
+        "nombre": "Las Carabelas",
+        "latitud": -34.0368745251476,
+        "longitud": -60.8676211940846
+    },
+    {
+        "nombre": "Las Flores",
+        "latitud": -36.0142687533086,
+        "longitud": -59.0998639774757
+    },
+    {
+        "nombre": "Las Marianas",
+        "latitud": -35.0529402662696,
+        "longitud": -59.5127026169849
+    },
+    {
+        "nombre": "Las Martinetas",
+        "latitud": -37.1991985887987,
+        "longitud": -61.1225497444096
+    },
+    {
+        "nombre": "Las Toninas",
+        "latitud": -36.4883405821009,
+        "longitud": -56.7049719429497
+    },
+    {
+        "nombre": "Las Toscas",
+        "latitud": -35.3645809214186,
+        "longitud": -61.80555020293
+    },
+    {
+        "nombre": "Leandro N. Alem",
+        "latitud": -34.5195737450834,
+        "longitud": -61.3912224232084
+    },
+    {
+        "nombre": "Lezica y Torrezuri",
+        "latitud": -34.585483315075,
+        "longitud": -59.0582810577968
+    },
+    {
+        "nombre": "Libertad",
+        "latitud": -34.6986375194331,
+        "longitud": -58.6902324564792
+    },
+    {
+        "nombre": "Licenciado Matienzo",
+        "latitud": -37.9085106220076,
+        "longitud": -58.9125542109716
+    },
+    {
+        "nombre": "Lima",
+        "latitud": -34.0447948866739,
+        "longitud": -59.1961491544738
+    },
+    {
+        "nombre": "Lin Calel",
+        "latitud": -38.7056214269641,
+        "longitud": -60.2450213199209
+    },
+    {
+        "nombre": "Lincoln",
+        "latitud": -34.868176906451,
+        "longitud": -61.5294113017458
+    },
+    {
+        "nombre": "Lisandro Olmos",
+        "latitud": -34.999057389434,
+        "longitud": -58.0486158300406
+    },
+    {
+        "nombre": "Llavallol",
+        "latitud": -34.7930707191435,
+        "longitud": -58.4262793211745
+    },
+    {
+        "nombre": "Lobería",
+        "latitud": -38.1633849286114,
+        "longitud": -58.7818467987101
+    },
+    {
+        "nombre": "Lobos",
+        "latitud": -35.1854255468713,
+        "longitud": -59.0978341614036
+    },
+    {
+        "nombre": "Loma Hermosa",
+        "latitud": -34.5686752520983,
+        "longitud": -58.6021422654243
+    },
+    {
+        "nombre": "Loma Verde",
+        "latitud": -34.3307009506977,
+        "longitud": -58.8458079535386
+    },
+    {
+        "nombre": "Loma Verde",
+        "latitud": -35.2740091575246,
+        "longitud": -58.403828253423
+    },
+    {
+        "nombre": "Lomas de Zamora",
+        "latitud": -34.7596127748886,
+        "longitud": -58.3994691356768
+    },
+    {
+        "nombre": "Lomas de Zamora",
+        "latitud": -34.7572838174373,
+        "longitud": -58.4027167976743
+    },
+    {
+        "nombre": "Lomas del Mirador",
+        "latitud": -34.6652765210767,
+        "longitud": -58.5317739283029
+    },
+    {
+        "nombre": "Longchamps",
+        "latitud": -34.8607298436239,
+        "longitud": -58.3891848898302
+    },
+    {
+        "nombre": "Los Angeles",
+        "latitud": -34.4571453075658,
+        "longitud": -60.1802920837556
+    },
+    {
+        "nombre": "Los Cachorros",
+        "latitud": -34.4230504480055,
+        "longitud": -58.7927540749802
+    },
+    {
+        "nombre": "Los Cardales",
+        "latitud": -34.3137795522174,
+        "longitud": -58.9847899100606
+    },
+    {
+        "nombre": "Los Hornos",
+        "latitud": -34.9593559474995,
+        "longitud": -57.9807340188431
+    },
+    {
+        "nombre": "Los Indios",
+        "latitud": -34.3718154854636,
+        "longitud": -60.6540749236981
+    },
+    {
+        "nombre": "Los Naranjos",
+        "latitud": -34.9950990540733,
+        "longitud": -57.7028446401551
+    },
+    {
+        "nombre": "Los Pinos",
+        "latitud": -37.9427097517635,
+        "longitud": -58.3242767397677
+    },
+    {
+        "nombre": "Los Polvorines",
+        "latitud": -34.5020886294655,
+        "longitud": -58.6949943511423
+    },
+    {
+        "nombre": "Los Talas",
+        "latitud": -34.9110238385634,
+        "longitud": -57.7842688411965
+    },
+    {
+        "nombre": "Los Toldos",
+        "latitud": -34.9999708295541,
+        "longitud": -61.0387400078081
+    },
+    {
+        "nombre": "Lucas Monteverde",
+        "latitud": -35.4823627488065,
+        "longitud": -59.985834587543
+    },
+    {
+        "nombre": "Lucila del Mar",
+        "latitud": -36.6601549623962,
+        "longitud": -56.6824598231567
+    },
+    {
+        "nombre": "Luis Guillón",
+        "latitud": -34.802641552529,
+        "longitud": -58.4506754302196
+    },
+    {
+        "nombre": "Luján",
+        "latitud": -34.5668483579023,
+        "longitud": -59.1145118021941
+    },
+    {
+        "nombre": "Luján",
+        "latitud": -34.5633574099768,
+        "longitud": -59.1211183187438
+    },
+    {
+        "nombre": "Líbano",
+        "latitud": -37.532154726257,
+        "longitud": -61.2852666208524
+    },
+    {
+        "nombre": "López",
+        "latitud": -37.5522803374568,
+        "longitud": -59.6277666192398
+    },
+    {
+        "nombre": "López Lecube",
+        "latitud": -38.1194939806378,
+        "longitud": -62.7262061182875
+    },
+    {
+        "nombre": "Magdala",
+        "latitud": -36.084476688221,
+        "longitud": -61.7223293921874
+    },
+    {
+        "nombre": "Magdalena",
+        "latitud": -35.0807393559898,
+        "longitud": -57.5176018944185
+    },
+    {
+        "nombre": "Maipú",
+        "latitud": -36.8629587024659,
+        "longitud": -57.8831233218316
+    },
+    {
+        "nombre": "Malvinas Argentinas",
+        "latitud": -34.818755035018,
+        "longitud": -58.4233878258472
+    },
+    {
+        "nombre": "Malvinas Argentinas",
+        "latitud": -34.4947444924354,
+        "longitud": -58.6996332398151
+    },
+    {
+        "nombre": "Malvinas Argentinas",
+        "latitud": -34.4987952014085,
+        "longitud": -58.7010876038761
+    },
+    {
+        "nombre": "Manuel B. Gonnet",
+        "latitud": -34.8818546802863,
+        "longitud": -58.0103208206183
+    },
+    {
+        "nombre": "Manuel B. Gonnet",
+        "latitud": -35.5179958813353,
+        "longitud": -61.0012935115833
+    },
+    {
+        "nombre": "Manuel J. Cobo",
+        "latitud": -35.8728655657998,
+        "longitud": -57.89698433938
+    },
+    {
+        "nombre": "Manuel Ocampo",
+        "latitud": -33.7649964204955,
+        "longitud": -60.6510366023021
+    },
+    {
+        "nombre": "Manzanares",
+        "latitud": -34.4503831705186,
+        "longitud": -59.0070416860588
+    },
+    {
+        "nombre": "Manzone",
+        "latitud": -34.508617703129,
+        "longitud": -58.8613535584736
+    },
+    {
+        "nombre": "Maquinista F. Savio Este",
+        "latitud": -34.4006498402276,
+        "longitud": -58.7762915155144
+    },
+    {
+        "nombre": "Maquinista F. Savio Oeste",
+        "latitud": -34.4073856736919,
+        "longitud": -58.7801774138414
+    },
+    {
+        "nombre": "Mar Azul",
+        "latitud": -37.3368119149466,
+        "longitud": -57.0295357510231
+    },
+    {
+        "nombre": "Mar Azul",
+        "latitud": -37.3385187203624,
+        "longitud": -57.0333166634527
+    },
+    {
+        "nombre": "Mar Chiquita",
+        "latitud": -37.7455394778204,
+        "longitud": -57.4254102752995
+    },
+    {
+        "nombre": "Mar de Ajó",
+        "latitud": -36.7295552936745,
+        "longitud": -56.6772956263397
+    },
+    {
+        "nombre": "Mar de Ajó - San Bernardo",
+        "latitud": -36.6971329328637,
+        "longitud": -56.6811192522763
+    },
+    {
+        "nombre": "Mar de Ajó Norte",
+        "latitud": -36.717111900525,
+        "longitud": -56.6770670772511
+    },
+    {
+        "nombre": "Mar de Cobo",
+        "latitud": -37.7762894782296,
+        "longitud": -57.4511483919747
+    },
+    {
+        "nombre": "Mar de Cobo",
+        "latitud": -37.7737005412934,
+        "longitud": -57.4543912474451
+    },
+    {
+        "nombre": "Mar de las Pampas",
+        "latitud": -37.3265635278993,
+        "longitud": -57.0225364322731
+    },
+    {
+        "nombre": "Mar del Plata",
+        "latitud": -38.0064494189987,
+        "longitud": -57.5438377776641
+    },
+    {
+        "nombre": "Mar del Plata",
+        "latitud": -37.9976105753936,
+        "longitud": -57.5481622151141
+    },
+    {
+        "nombre": "Mar del Sur",
+        "latitud": -38.3436564818437,
+        "longitud": -57.9922085405886
+    },
+    {
+        "nombre": "Mar del Tuyú",
+        "latitud": -36.5738769791921,
+        "longitud": -56.6908899030479
+    },
+    {
+        "nombre": "Marcelino Ugarte",
+        "latitud": -35.3516198354707,
+        "longitud": -60.745070287461
+    },
+    {
+        "nombre": "Marcos Paz",
+        "latitud": -34.7843157222504,
+        "longitud": -58.8353369572326
+    },
+    {
+        "nombre": "Marcos Paz",
+        "latitud": -34.782495897943,
+        "longitud": -58.8378890904427
+    },
+    {
+        "nombre": "Mariano Acosta",
+        "latitud": -34.7229209217964,
+        "longitud": -58.7954060298585
+    },
+    {
+        "nombre": "Mariano Benítez",
+        "latitud": -33.7078470960533,
+        "longitud": -60.5834220063022
+    },
+    {
+        "nombre": "Mariano H. Alfonzo",
+        "latitud": -33.9135085343931,
+        "longitud": -60.8371254638542
+    },
+    {
+        "nombre": "Marisol",
+        "latitud": -38.9205119659931,
+        "longitud": -60.5349933151085
+    },
+    {
+        "nombre": "Martín Coronado",
+        "latitud": -34.5837676634747,
+        "longitud": -58.5967036958912
+    },
+    {
+        "nombre": "Martínez",
+        "latitud": -34.4890104372004,
+        "longitud": -58.499380135853
+    },
+    {
+        "nombre": "María Ignacia",
+        "latitud": -37.4013842440147,
+        "longitud": -59.5059287942189
+    },
+    {
+        "nombre": "Massey",
+        "latitud": -35.0489665819641,
+        "longitud": -63.1222119649592
+    },
+    {
+        "nombre": "Matheu",
+        "latitud": -34.3852450911802,
+        "longitud": -58.8278056477923
+    },
+    {
+        "nombre": "Mauricio Hirsch",
+        "latitud": -35.5815738030148,
+        "longitud": -61.5268355548562
+    },
+    {
+        "nombre": "Mayor Buratovich",
+        "latitud": -39.2608696441589,
+        "longitud": -62.6152474688671
+    },
+    {
+        "nombre": "Maza",
+        "latitud": -36.8003160533886,
+        "longitud": -63.3392811717819
+    },
+    {
+        "nombre": "Mechita",
+        "latitud": -35.0673861094949,
+        "longitud": -60.4034270101324
+    },
+    {
+        "nombre": "Mechita",
+        "latitud": -35.0733790333491,
+        "longitud": -60.4118165706567
+    },
+    {
+        "nombre": "Mechongué",
+        "latitud": -38.1462221837222,
+        "longitud": -58.2292434320568
+    },
+    {
+        "nombre": "Mercedes",
+        "latitud": -34.6507332109012,
+        "longitud": -59.43138744045
+    },
+    {
+        "nombre": "Merlo",
+        "latitud": -34.6669700024931,
+        "longitud": -58.7279503131722
+    },
+    {
+        "nombre": "Merlo",
+        "latitud": -34.6649832276464,
+        "longitud": -58.7279481143737
+    },
+    {
+        "nombre": "Micaela Cascallares",
+        "latitud": -38.4941143424147,
+        "longitud": -60.4683512141006
+    },
+    {
+        "nombre": "Ministro Rivadavia",
+        "latitud": -34.844020734727,
+        "longitud": -58.3627535292892
+    },
+    {
+        "nombre": "Mira Pampa",
+        "latitud": -35.8701943036054,
+        "longitud": -63.3736716297124
+    },
+    {
+        "nombre": "Miramar",
+        "latitud": -38.2704610177891,
+        "longitud": -57.8398544548104
+    },
+    {
+        "nombre": "Moctezuma",
+        "latitud": -35.4779465108435,
+        "longitud": -61.4957649156919
+    },
+    {
+        "nombre": "Mones Cazón",
+        "latitud": -36.2277491251375,
+        "longitud": -62.0067386213215
+    },
+    {
+        "nombre": "Monte Chingolo",
+        "latitud": -34.7295854826249,
+        "longitud": -58.3542214969464
+    },
+    {
+        "nombre": "Monte Grande",
+        "latitud": -34.8163557987773,
+        "longitud": -58.4682642320418
+    },
+    {
+        "nombre": "Monte Hermoso",
+        "latitud": -38.9866632490426,
+        "longitud": -61.2909287456711
+    },
+    {
+        "nombre": "Moquehuá",
+        "latitud": -35.092209149403,
+        "longitud": -59.7757105008045
+    },
+    {
+        "nombre": "Morea",
+        "latitud": -35.554541699943,
+        "longitud": -60.5620254403177
+    },
+    {
+        "nombre": "Moreno",
+        "latitud": -34.6469059433022,
+        "longitud": -58.7889292381186
+    },
+    {
+        "nombre": "Moreno",
+        "latitud": -34.6512923275022,
+        "longitud": -58.7900019154825
+    },
+    {
+        "nombre": "Morón",
+        "latitud": -34.6474573245916,
+        "longitud": -58.6218615494078
+    },
+    {
+        "nombre": "Morón",
+        "latitud": -34.6510579231814,
+        "longitud": -58.6218540984498
+    },
+    {
+        "nombre": "Munro",
+        "latitud": -34.5298047274022,
+        "longitud": -58.525182801606
+    },
+    {
+        "nombre": "Muñiz",
+        "latitud": -34.5524946303365,
+        "longitud": -58.704793707995
+    },
+    {
+        "nombre": "Médanos",
+        "latitud": -38.8292649440891,
+        "longitud": -62.693309603918
+    },
+    {
+        "nombre": "Napaleofú",
+        "latitud": -37.6230706699026,
+        "longitud": -58.7463685072656
+    },
+    {
+        "nombre": "Navarro",
+        "latitud": -35.0059067153277,
+        "longitud": -59.2782839828002
+    },
+    {
+        "nombre": "Necochea",
+        "latitud": -38.5712233301397,
+        "longitud": -58.7262420207665
+    },
+    {
+        "nombre": "Necochea - Quequén",
+        "latitud": -38.5544601626934,
+        "longitud": -58.7392368204408
+    },
+    {
+        "nombre": "Nicanor Olivera",
+        "latitud": -38.2830519080038,
+        "longitud": -59.2027437728131
+    },
+    {
+        "nombre": "Norberto de la Riestra",
+        "latitud": -35.2733314174213,
+        "longitud": -59.7755530665071
+    },
+    {
+        "nombre": "Norumbega",
+        "latitud": -35.5351190598706,
+        "longitud": -60.7943911921044
+    },
+    {
+        "nombre": "Nueva Plata",
+        "latitud": -35.9186496444174,
+        "longitud": -61.8135475100609
+    },
+    {
+        "nombre": "O'Higgins",
+        "latitud": -34.5855495645367,
+        "longitud": -60.6998875515446
+    },
+    {
+        "nombre": "Obligado",
+        "latitud": -33.5968120004883,
+        "longitud": -59.8176936406853
+    },
+    {
+        "nombre": "Ochandío",
+        "latitud": -38.3592119302894,
+        "longitud": -59.7932721394937
+    },
+    {
+        "nombre": "Olascoaga",
+        "latitud": -35.2373944024438,
+        "longitud": -60.6110729787317
+    },
+    {
+        "nombre": "Olavarría",
+        "latitud": -36.8938423224315,
+        "longitud": -60.3231937143701
+    },
+    {
+        "nombre": "Oliden",
+        "latitud": -35.1844808273675,
+        "longitud": -57.9490753520326
+    },
+    {
+        "nombre": "Olivera",
+        "latitud": -34.6278935952547,
+        "longitud": -59.2551997261069
+    },
+    {
+        "nombre": "Olivos",
+        "latitud": -34.5093203722724,
+        "longitud": -58.4813961688058
+    },
+    {
+        "nombre": "Open Door",
+        "latitud": -34.4914919706787,
+        "longitud": -59.0775054640689
+    },
+    {
+        "nombre": "Ordoqui",
+        "latitud": -35.8805704780124,
+        "longitud": -61.1601648968635
+    },
+    {
+        "nombre": "Orense",
+        "latitud": -38.6882731254542,
+        "longitud": -59.7806914448039
+    },
+    {
+        "nombre": "Oriente",
+        "latitud": -38.7443987891097,
+        "longitud": -60.6093625770066
+    },
+    {
+        "nombre": "Ostende",
+        "latitud": -37.1296810995623,
+        "longitud": -56.8712019478631
+    },
+    {
+        "nombre": "Pablo Podestá",
+        "latitud": -34.5849488101072,
+        "longitud": -58.6116379762528
+    },
+    {
+        "nombre": "Parada Orlando",
+        "latitud": -34.3265099562553,
+        "longitud": -59.0767486441091
+    },
+    {
+        "nombre": "Parada Robles",
+        "latitud": -34.3718922819947,
+        "longitud": -59.1246837768692
+    },
+    {
+        "nombre": "Parada Robles - Pavón",
+        "latitud": -34.3750874893638,
+        "longitud": -59.1232039224888
+    },
+    {
+        "nombre": "Pardo",
+        "latitud": -36.2450411112589,
+        "longitud": -59.3650350514132
+    },
+    {
+        "nombre": "Pasman",
+        "latitud": -37.2236398494077,
+        "longitud": -62.1647546339893
+    },
+    {
+        "nombre": "Paso del Rey",
+        "latitud": -34.6531326691341,
+        "longitud": -58.7612422196769
+    },
+    {
+        "nombre": "Pasteur",
+        "latitud": -35.1413585077426,
+        "longitud": -62.2441588014858
+    },
+    {
+        "nombre": "Patricios",
+        "latitud": -35.4412193660893,
+        "longitud": -60.7165496192443
+    },
+    {
+        "nombre": "Paula",
+        "latitud": -36.5035708180565,
+        "longitud": -61.0248313843972
+    },
+    {
+        "nombre": "Pavón",
+        "latitud": -34.3931798584401,
+        "longitud": -59.034704046908
+    },
+    {
+        "nombre": "Pearson",
+        "latitud": -33.6532883192242,
+        "longitud": -60.8930583876828
+    },
+    {
+        "nombre": "Pedernales",
+        "latitud": -35.2623626567541,
+        "longitud": -59.6306762449241
+    },
+    {
+        "nombre": "Pedro Luro",
+        "latitud": -39.5014968706772,
+        "longitud": -62.6798287686143
+    },
+    {
+        "nombre": "Pehuajó",
+        "latitud": -35.8108053325158,
+        "longitud": -61.8989682130088
+    },
+    {
+        "nombre": "Pellegrini",
+        "latitud": -36.2679141882286,
+        "longitud": -63.164721899616
+    },
+    {
+        "nombre": "Pereyra",
+        "latitud": -34.8361790912767,
+        "longitud": -58.0942893323644
+    },
+    {
+        "nombre": "Pergamino",
+        "latitud": -33.8911091446081,
+        "longitud": -60.5745861929678
+    },
+    {
+        "nombre": "Pichincha",
+        "latitud": -34.5791984775085,
+        "longitud": -62.3516306573346
+    },
+    {
+        "nombre": "Piedritas",
+        "latitud": -34.7672163204812,
+        "longitud": -62.9859202104131
+    },
+    {
+        "nombre": "Pieres",
+        "latitud": -38.3941169343993,
+        "longitud": -58.6723766249153
+    },
+    {
+        "nombre": "Pigüé",
+        "latitud": -37.6025487129648,
+        "longitud": -62.4083614847022
+    },
+    {
+        "nombre": "Pila",
+        "latitud": -36.0041852414953,
+        "longitud": -58.141067696489
+    },
+    {
+        "nombre": "Pilar",
+        "latitud": -34.4569822956164,
+        "longitud": -58.9139117853571
+    },
+    {
+        "nombre": "Pilar",
+        "latitud": -34.4586965255936,
+        "longitud": -58.913967911731
+    },
+    {
+        "nombre": "Pinamar",
+        "latitud": -37.1138217498107,
+        "longitud": -56.8580776153146
+    },
+    {
+        "nombre": "Pinamar",
+        "latitud": -37.1110811163979,
+        "longitud": -56.8652336891716
+    },
+    {
+        "nombre": "Pinzón",
+        "latitud": -33.9932846578948,
+        "longitud": -60.7306613975388
+    },
+    {
+        "nombre": "Pipinas",
+        "latitud": -35.5301976285515,
+        "longitud": -57.3283242927271
+    },
+    {
+        "nombre": "Pirovano",
+        "latitud": -36.5101574870878,
+        "longitud": -61.5555189951424
+    },
+    {
+        "nombre": "Piñeyro",
+        "latitud": -34.6680837299877,
+        "longitud": -58.3877465009579
+    },
+    {
+        "nombre": "Pla",
+        "latitud": -35.1228959868708,
+        "longitud": -60.2219161413029
+    },
+    {
+        "nombre": "Playa Dorada",
+        "latitud": -37.8734909293914,
+        "longitud": -57.519182373008
+    },
+    {
+        "nombre": "Plomer",
+        "latitud": -34.7945715031134,
+        "longitud": -59.0311609495442
+    },
+    {
+        "nombre": "Plátanos",
+        "latitud": -34.7818075686994,
+        "longitud": -58.1701856172611
+    },
+    {
+        "nombre": "Polvaredas",
+        "latitud": -35.5945542362794,
+        "longitud": -59.5069645738994
+    },
+    {
+        "nombre": "Pontaut",
+        "latitud": -37.7317498535758,
+        "longitud": -61.3236071513497
+    },
+    {
+        "nombre": "Pontevedra",
+        "latitud": -34.7502592618593,
+        "longitud": -58.7012570872713
+    },
+    {
+        "nombre": "Porvenir",
+        "latitud": -34.9504133610755,
+        "longitud": -62.2237376442526
+    },
+    {
+        "nombre": "Presidente Derqui",
+        "latitud": -34.4922671765476,
+        "longitud": -58.8390198925922
+    },
+    {
+        "nombre": "Presidente Perón",
+        "latitud": -34.9177719255835,
+        "longitud": -58.3792995365501
+    },
+    {
+        "nombre": "Pueblo Doyle",
+        "latitud": -33.9018137920889,
+        "longitud": -59.8190040146191
+    },
+    {
+        "nombre": "Pueblo Gouin",
+        "latitud": -34.4935583552398,
+        "longitud": -59.8013546655888
+    },
+    {
+        "nombre": "Pueblo Nuevo",
+        "latitud": -37.5237012125811,
+        "longitud": -60.7740826042178
+    },
+    {
+        "nombre": "Pueblo San Jorge",
+        "latitud": -37.2288613554394,
+        "longitud": -60.9610423415769
+    },
+    {
+        "nombre": "Punta Alta",
+        "latitud": -38.8781733532983,
+        "longitud": -62.0794804613607
+    },
+    {
+        "nombre": "Punta Alta",
+        "latitud": -38.8804582193504,
+        "longitud": -62.0749966355857
+    },
+    {
+        "nombre": "Punta Indio",
+        "latitud": -35.2685627801267,
+        "longitud": -57.2474704888542
+    },
+    {
+        "nombre": "Punta Lara",
+        "latitud": -34.8098160029732,
+        "longitud": -57.9837987384422
+    },
+    {
+        "nombre": "Punta Mogotes",
+        "latitud": -38.0669527856915,
+        "longitud": -57.5510392309588
+    },
+    {
+        "nombre": "Puán",
+        "latitud": -37.5480950158685,
+        "longitud": -62.7683364676841
+    },
+    {
+        "nombre": "Pérez Millán",
+        "latitud": -33.7701939258864,
+        "longitud": -60.0937410521656
+    },
+    {
+        "nombre": "Quenumá",
+        "latitud": -36.5693430120432,
+        "longitud": -63.0881107599791
+    },
+    {
+        "nombre": "Quequén",
+        "latitud": -38.5661133487233,
+        "longitud": -58.7061807944671
+    },
+    {
+        "nombre": "Quilmes",
+        "latitud": -34.7200676236621,
+        "longitud": -58.254346982141
+    },
+    {
+        "nombre": "Quilmes",
+        "latitud": -34.7188582530574,
+        "longitud": -58.2603653095576
+    },
+    {
+        "nombre": "Quilmes Oeste",
+        "latitud": -34.7460539876027,
+        "longitud": -58.2991252702126
+    },
+    {
+        "nombre": "Rafael Calzada",
+        "latitud": -34.7973596083698,
+        "longitud": -58.3616711607296
+    },
+    {
+        "nombre": "Rafael Castillo",
+        "latitud": -34.7090985315633,
+        "longitud": -58.6256335195148
+    },
+    {
+        "nombre": "Rafael Obligado",
+        "latitud": -34.3596457098675,
+        "longitud": -60.7837899544284
+    },
+    {
+        "nombre": "Ramallo",
+        "latitud": -33.4852021182933,
+        "longitud": -60.0044384241728
+    },
+    {
+        "nombre": "Ramos Mejía",
+        "latitud": -34.6454993387505,
+        "longitud": -58.5596657431949
+    },
+    {
+        "nombre": "Ramos Otero",
+        "latitud": -37.5408949196846,
+        "longitud": -58.3406051189223
+    },
+    {
+        "nombre": "Ramón Biaus",
+        "latitud": -35.0872056184083,
+        "longitud": -59.9243732016552
+    },
+    {
+        "nombre": "Ramón Santamarina",
+        "latitud": -38.449126631872,
+        "longitud": -59.3305079863938
+    },
+    {
+        "nombre": "Rancagua",
+        "latitud": -34.0297933472989,
+        "longitud": -60.5028154647208
+    },
+    {
+        "nombre": "Ranchos",
+        "latitud": -35.5164055720187,
+        "longitud": -58.3188155184514
+    },
+    {
+        "nombre": "Ranelagh",
+        "latitud": -34.7877872381146,
+        "longitud": -58.203185368401
+    },
+    {
+        "nombre": "Rauch",
+        "latitud": -36.7744147068395,
+        "longitud": -59.0882891429717
+    },
+    {
+        "nombre": "Rawson",
+        "latitud": -34.6050847201737,
+        "longitud": -60.0668250412382
+    },
+    {
+        "nombre": "Recalde",
+        "latitud": -36.6517884485627,
+        "longitud": -61.0859063265243
+    },
+    {
+        "nombre": "Remedios de Escalada",
+        "latitud": -34.5709732076088,
+        "longitud": -58.6198034273086
+    },
+    {
+        "nombre": "Remedios de Escalada de San Martín",
+        "latitud": -34.7259102843799,
+        "longitud": -58.3967018532792
+    },
+    {
+        "nombre": "Reta",
+        "latitud": -38.8948939829726,
+        "longitud": -60.3448580643218
+    },
+    {
+        "nombre": "Ricardo Rojas",
+        "latitud": -34.458452696066,
+        "longitud": -58.6830425981974
+    },
+    {
+        "nombre": "Rincón de Milberg",
+        "latitud": -34.4104604155702,
+        "longitud": -58.6019963050247
+    },
+    {
+        "nombre": "Ringuelet",
+        "latitud": -34.8848037325506,
+        "longitud": -57.9915077360675
+    },
+    {
+        "nombre": "Rivera",
+        "latitud": -37.1605967438711,
+        "longitud": -63.2417897238929
+    },
+    {
+        "nombre": "Roberto Cano",
+        "latitud": -34.087718856831,
+        "longitud": -60.6676797814963
+    },
+    {
+        "nombre": "Roberto J. Payró",
+        "latitud": -35.1810553376453,
+        "longitud": -57.6535442867835
+    },
+    {
+        "nombre": "Roberto de Vicenzo",
+        "latitud": -34.432379801221,
+        "longitud": -58.7724236466929
+    },
+    {
+        "nombre": "Roberts",
+        "latitud": -35.1429124620256,
+        "longitud": -61.9704389327608
+    },
+    {
+        "nombre": "Rojas",
+        "latitud": -34.2002062759896,
+        "longitud": -60.72947907762
+    },
+    {
+        "nombre": "Rojas",
+        "latitud": -34.197742429077,
+        "longitud": -60.7337006950429
+    },
+    {
+        "nombre": "Roosevelt",
+        "latitud": -35.8468999842255,
+        "longitud": -63.2909563505954
+    },
+    {
+        "nombre": "Roque Pérez",
+        "latitud": -35.4005763060432,
+        "longitud": -59.3348321510909
+    },
+    {
+        "nombre": "Rufino de Elizalde",
+        "latitud": -34.9612545572956,
+        "longitud": -57.9503822406101
+    },
+    {
+        "nombre": "Río Tala",
+        "latitud": -33.7692927806971,
+        "longitud": -59.6394845323378
+    },
+    {
+        "nombre": "Saavedra",
+        "latitud": -37.7613769091951,
+        "longitud": -62.3486388910383
+    },
+    {
+        "nombre": "Saforcada",
+        "latitud": -34.5728278659011,
+        "longitud": -61.074208603857
+    },
+    {
+        "nombre": "Salazar",
+        "latitud": -36.3071820120069,
+        "longitud": -62.2029985679908
+    },
+    {
+        "nombre": "Salliqueló",
+        "latitud": -36.7515133840938,
+        "longitud": -62.9591311423931
+    },
+    {
+        "nombre": "Salto",
+        "latitud": -34.2917463137732,
+        "longitud": -60.254502487545
+    },
+    {
+        "nombre": "Salvador María",
+        "latitud": -35.3006709969199,
+        "longitud": -59.170135916078
+    },
+    {
+        "nombre": "Samborombón",
+        "latitud": -35.2194021738484,
+        "longitud": -58.2809920373285
+    },
+    {
+        "nombre": "San Agustín",
+        "latitud": -38.014111278487,
+        "longitud": -58.3559342499123
+    },
+    {
+        "nombre": "San Andrés de Giles",
+        "latitud": -34.4423774190107,
+        "longitud": -59.4475191783366
+    },
+    {
+        "nombre": "San Antonio de Areco",
+        "latitud": -34.2436381342556,
+        "longitud": -59.4736523437539
+    },
+    {
+        "nombre": "San Antonio de Padua",
+        "latitud": -34.6626656411117,
+        "longitud": -58.6981263626469
+    },
+    {
+        "nombre": "San Bernardo",
+        "latitud": -36.6867920285586,
+        "longitud": -56.6790608712811
+    },
+    {
+        "nombre": "San Bernardo",
+        "latitud": -35.7149184194011,
+        "longitud": -61.6499689641487
+    },
+    {
+        "nombre": "San Carlos de Bolívar",
+        "latitud": -36.2298792668243,
+        "longitud": -61.1139170844785
+    },
+    {
+        "nombre": "San Cayetano",
+        "latitud": -38.345789246959,
+        "longitud": -59.6067598785519
+    },
+    {
+        "nombre": "San Clemente del Tuyú",
+        "latitud": -36.3541931252553,
+        "longitud": -56.7256793076295
+    },
+    {
+        "nombre": "San Emilio",
+        "latitud": -35.0304075257497,
+        "longitud": -60.8660730503346
+    },
+    {
+        "nombre": "San Enrique",
+        "latitud": -35.7698421793855,
+        "longitud": -60.350450153264
+    },
+    {
+        "nombre": "San Esteban",
+        "latitud": -35.7315143138008,
+        "longitud": -61.7422421588753
+    },
+    {
+        "nombre": "San Fernando",
+        "latitud": -34.4436592867769,
+        "longitud": -58.5586455411774
+    },
+    {
+        "nombre": "San Fernando",
+        "latitud": -34.4406044811916,
+        "longitud": -58.5581489424613
+    },
+    {
+        "nombre": "San Francisco Solano",
+        "latitud": -34.7856525531101,
+        "longitud": -58.3195680327004
+    },
+    {
+        "nombre": "San Francisco Solano",
+        "latitud": -34.779761074641,
+        "longitud": -58.3111614659955
+    },
+    {
+        "nombre": "San Francisco de Bellocq",
+        "latitud": -38.6895363914284,
+        "longitud": -60.0139361893588
+    },
+    {
+        "nombre": "San Germán",
+        "latitud": -38.3017590568014,
+        "longitud": -62.9812849309099
+    },
+    {
+        "nombre": "San Isidro",
+        "latitud": -34.469882653323,
+        "longitud": -58.5112940171937
+    },
+    {
+        "nombre": "San Isidro",
+        "latitud": -34.4664285221917,
+        "longitud": -58.5096898131462
+    },
+    {
+        "nombre": "San José",
+        "latitud": -34.7636323626806,
+        "longitud": -58.3433914665336
+    },
+    {
+        "nombre": "San José",
+        "latitud": -37.5083317146316,
+        "longitud": -61.9175485050706
+    },
+    {
+        "nombre": "San Juan Bautista",
+        "latitud": -34.8089857687717,
+        "longitud": -58.2761500162399
+    },
+    {
+        "nombre": "San Justo",
+        "latitud": -34.6811417496029,
+        "longitud": -58.563738604389
+    },
+    {
+        "nombre": "San Manuel",
+        "latitud": -37.7864858749992,
+        "longitud": -58.8484867159827
+    },
+    {
+        "nombre": "San Mauricio",
+        "latitud": -35.5107731942751,
+        "longitud": -63.1882852945036
+    },
+    {
+        "nombre": "San Mayol",
+        "latitud": -38.3180136176114,
+        "longitud": -60.0276209243932
+    },
+    {
+        "nombre": "San Miguel",
+        "latitud": -34.5431343361878,
+        "longitud": -58.7092007082159
+    },
+    {
+        "nombre": "San Miguel",
+        "latitud": -34.5430416024272,
+        "longitud": -58.7119689876992
+    },
+    {
+        "nombre": "San Miguel del Monte",
+        "latitud": -35.4410438810578,
+        "longitud": -58.8034514480508
+    },
+    {
+        "nombre": "San Nicolás de los Arroyos",
+        "latitud": -33.3384039563383,
+        "longitud": -60.2214955044967
+    },
+    {
+        "nombre": "San Nicolás de los Arroyos",
+        "latitud": -33.327581039333,
+        "longitud": -60.2170580452517
+    },
+    {
+        "nombre": "San Pedro",
+        "latitud": -33.6759480318045,
+        "longitud": -59.6630158141548
+    },
+    {
+        "nombre": "San Román",
+        "latitud": -38.7418099171263,
+        "longitud": -61.5382786434217
+    },
+    {
+        "nombre": "San Sebastián",
+        "latitud": -34.942976618687,
+        "longitud": -59.702161747242
+    },
+    {
+        "nombre": "San Vicente",
+        "latitud": -35.0259018058616,
+        "longitud": -58.4224036148088
+    },
+    {
+        "nombre": "San Vicente",
+        "latitud": -35.0249088741064,
+        "longitud": -58.4240579101395
+    },
+    {
+        "nombre": "Sansinena",
+        "latitud": -35.2743908183915,
+        "longitud": -63.2143255753942
+    },
+    {
+        "nombre": "Santa Clara del Mar",
+        "latitud": -37.8374444618433,
+        "longitud": -57.5019980900645
+    },
+    {
+        "nombre": "Santa Clara del Mar",
+        "latitud": -37.8343801735405,
+        "longitud": -57.5074902645676
+    },
+    {
+        "nombre": "Santa Coloma",
+        "latitud": -34.0608712353202,
+        "longitud": -59.5602159639334
+    },
+    {
+        "nombre": "Santa Elena",
+        "latitud": -37.8636154583608,
+        "longitud": -57.5171498429115
+    },
+    {
+        "nombre": "Santa Eleodora",
+        "latitud": -34.6945082719613,
+        "longitud": -62.6955805417506
+    },
+    {
+        "nombre": "Santa Lucía",
+        "latitud": -33.8809441102835,
+        "longitud": -59.8742021436945
+    },
+    {
+        "nombre": "Santa Luisa",
+        "latitud": -37.1256598041934,
+        "longitud": -60.4164510128605
+    },
+    {
+        "nombre": "Santa María",
+        "latitud": -37.5584052464645,
+        "longitud": -61.8744494107033
+    },
+    {
+        "nombre": "Santa Regina",
+        "latitud": -34.5495606455266,
+        "longitud": -63.1733404556288
+    },
+    {
+        "nombre": "Santa Rosa",
+        "latitud": -34.9608453849923,
+        "longitud": -58.7287624590067
+    },
+    {
+        "nombre": "Santa Teresa",
+        "latitud": -34.4385138636954,
+        "longitud": -58.7536660461848
+    },
+    {
+        "nombre": "Santa Teresita",
+        "latitud": -36.5405925007164,
+        "longitud": -56.6929407422398
+    },
+    {
+        "nombre": "Santa Teresita - Mar del Tuyú",
+        "latitud": -36.5814213165689,
+        "longitud": -56.6898984493421
+    },
+    {
+        "nombre": "Santa Trinidad",
+        "latitud": -37.4876926359872,
+        "longitud": -61.9258558367656
+    },
+    {
+        "nombre": "Santo Domingo",
+        "latitud": -36.7115597782752,
+        "longitud": -57.5861674511156
+    },
+    {
+        "nombre": "Santos Lugares",
+        "latitud": -34.6030070341394,
+        "longitud": -58.5408249597318
+    },
+    {
+        "nombre": "Sarandí",
+        "latitud": -34.6817960638597,
+        "longitud": -58.3463107872911
+    },
+    {
+        "nombre": "Sarasa",
+        "latitud": -34.0480939107829,
+        "longitud": -61.2017243473526
+    },
+    {
+        "nombre": "Sevigne",
+        "latitud": -36.20692525136,
+        "longitud": -57.7426997674509
+    },
+    {
+        "nombre": "Sierra Chica",
+        "latitud": -36.8448834486469,
+        "longitud": -60.2267518257223
+    },
+    {
+        "nombre": "Sierra de los Padres",
+        "latitud": -37.9476275878402,
+        "longitud": -57.77786713584
+    },
+    {
+        "nombre": "Sierra de los Padres",
+        "latitud": -37.9412879456698,
+        "longitud": -57.7753644407113
+    },
+    {
+        "nombre": "Sierras Bayas",
+        "latitud": -36.9327185415247,
+        "longitud": -60.1613850642696
+    },
+    {
+        "nombre": "Sierras Bayas",
+        "latitud": -36.9366119076407,
+        "longitud": -60.1560578773282
+    },
+    {
+        "nombre": "Smith",
+        "latitud": -35.4953675166723,
+        "longitud": -61.5925224282857
+    },
+    {
+        "nombre": "Sol de Mayo",
+        "latitud": -34.2689702155468,
+        "longitud": -60.8722564717847
+    },
+    {
+        "nombre": "Solanet",
+        "latitud": -36.8428748553363,
+        "longitud": -58.5081675690146
+    },
+    {
+        "nombre": "Solís",
+        "latitud": -34.2980408829155,
+        "longitud": -59.3236816172608
+    },
+    {
+        "nombre": "Stroeder",
+        "latitud": -40.1858292011627,
+        "longitud": -62.6202476591912
+    },
+    {
+        "nombre": "Suipacha",
+        "latitud": -34.7688145882031,
+        "longitud": -59.6868293545249
+    },
+    {
+        "nombre": "Sundblad",
+        "latitud": -35.7645483584805,
+        "longitud": -63.1402093438199
+    },
+    {
+        "nombre": "Sáenz Peña",
+        "latitud": -34.6001485700585,
+        "longitud": -58.5276332441297
+    },
+    {
+        "nombre": "Tamangueyú",
+        "latitud": -38.2019905359123,
+        "longitud": -58.739146939682
+    },
+    {
+        "nombre": "Tandil",
+        "latitud": -37.3286954825526,
+        "longitud": -59.1368975569569
+    },
+    {
+        "nombre": "Tapalqué",
+        "latitud": -36.3562359765733,
+        "longitud": -60.0251124032041
+    },
+    {
+        "nombre": "Tapiales",
+        "latitud": -34.6990522094808,
+        "longitud": -58.5078575449595
+    },
+    {
+        "nombre": "Tedín Uriburu",
+        "latitud": -37.3642718551926,
+        "longitud": -59.7602029255285
+    },
+    {
+        "nombre": "Temperley",
+        "latitud": -34.7726021631685,
+        "longitud": -58.3895955235586
+    },
+    {
+        "nombre": "Teniente Origone",
+        "latitud": -39.0578094179787,
+        "longitud": -62.5704145591734
+    },
+    {
+        "nombre": "Tigre",
+        "latitud": -34.4248130997973,
+        "longitud": -58.5755281971763
+    },
+    {
+        "nombre": "Tigre",
+        "latitud": -34.4226492600212,
+        "longitud": -58.5808752887605
+    },
+    {
+        "nombre": "Timote",
+        "latitud": -35.3475472201356,
+        "longitud": -62.222942582609
+    },
+    {
+        "nombre": "Todd",
+        "latitud": -34.0335541163485,
+        "longitud": -60.1552705427843
+    },
+    {
+        "nombre": "Tolosa",
+        "latitud": -34.89176451333,
+        "longitud": -57.9741732381676
+    },
+    {
+        "nombre": "Tornquist",
+        "latitud": -38.1012814183258,
+        "longitud": -62.2229543263369
+    },
+    {
+        "nombre": "Torres",
+        "latitud": -34.4309916604575,
+        "longitud": -59.1278642374609
+    },
+    {
+        "nombre": "Tortuguitas",
+        "latitud": -34.4882149333314,
+        "longitud": -58.7782682636295
+    },
+    {
+        "nombre": "Tortuguitas",
+        "latitud": -34.4745167101605,
+        "longitud": -58.7549456664352
+    },
+    {
+        "nombre": "Tortuguitas",
+        "latitud": -34.4607720798694,
+        "longitud": -58.7631813315473
+    },
+    {
+        "nombre": "Transradio",
+        "latitud": -34.8766725098732,
+        "longitud": -58.0839931356978
+    },
+    {
+        "nombre": "Trenque Lauquen",
+        "latitud": -35.9733358976997,
+        "longitud": -62.7327450532285
+    },
+    {
+        "nombre": "Tres Algarrobos",
+        "latitud": -35.1955958207681,
+        "longitud": -62.7744093028291
+    },
+    {
+        "nombre": "Tres Arroyos",
+        "latitud": -38.3771966957834,
+        "longitud": -60.2752150703536
+    },
+    {
+        "nombre": "Tres Lomas",
+        "latitud": -36.4591893277392,
+        "longitud": -62.8625761708921
+    },
+    {
+        "nombre": "Tres Picos",
+        "latitud": -38.2896055604839,
+        "longitud": -62.2080555809382
+    },
+    {
+        "nombre": "Tres Sargentos",
+        "latitud": -34.4665633184272,
+        "longitud": -59.9994503481915
+    },
+    {
+        "nombre": "Tres de Febrero",
+        "latitud": -34.6035291733835,
+        "longitud": -58.5631922662462
+    },
+    {
+        "nombre": "Tristán Suárez",
+        "latitud": -34.8909591657384,
+        "longitud": -58.5665543633085
+    },
+    {
+        "nombre": "Triunvirato",
+        "latitud": -34.6757737227205,
+        "longitud": -61.4649918106555
+    },
+    {
+        "nombre": "Troncos del Talar",
+        "latitud": -34.4548097726973,
+        "longitud": -58.6133409368885
+    },
+    {
+        "nombre": "Trongé",
+        "latitud": -36.4631732121695,
+        "longitud": -62.4847272635948
+    },
+    {
+        "nombre": "Trujui",
+        "latitud": -34.5907374661606,
+        "longitud": -58.7556254923224
+    },
+    {
+        "nombre": "Turdera",
+        "latitud": -34.7909861826968,
+        "longitud": -58.4051947065789
+    },
+    {
+        "nombre": "Udaquiola",
+        "latitud": -36.5623679036851,
+        "longitud": -58.5346963188253
+    },
+    {
+        "nombre": "Urdampilleta",
+        "latitud": -36.4316190704842,
+        "longitud": -61.420100225322
+    },
+    {
+        "nombre": "Uribelarrea",
+        "latitud": -35.123830510974,
+        "longitud": -58.8920364419093
+    },
+    {
+        "nombre": "Va.Marqués Alejandro María de Aguado",
+        "latitud": -34.5563623053306,
+        "longitud": -58.5388248449526
+    },
+    {
+        "nombre": "Va.María Irene de los Remedios Escalada",
+        "latitud": -34.5649112926281,
+        "longitud": -58.5926190011622
+    },
+    {
+        "nombre": "Valdés",
+        "latitud": -35.6480414274632,
+        "longitud": -60.4656761416649
+    },
+    {
+        "nombre": "Valentín Alsina",
+        "latitud": -34.6714140127777,
+        "longitud": -58.4090486458359
+    },
+    {
+        "nombre": "Valeria del Mar",
+        "latitud": -37.1456506182212,
+        "longitud": -56.8819737180736
+    },
+    {
+        "nombre": "Vedia",
+        "latitud": -34.4979071777374,
+        "longitud": -61.5423105969941
+    },
+    {
+        "nombre": "Velloso",
+        "latitud": -36.120569720248,
+        "longitud": -59.6518688348755
+    },
+    {
+        "nombre": "Verónica",
+        "latitud": -35.3874096593697,
+        "longitud": -57.3381716096861
+    },
+    {
+        "nombre": "Vicente Casares",
+        "latitud": -34.9655362562693,
+        "longitud": -58.6518407731212
+    },
+    {
+        "nombre": "Vicente López",
+        "latitud": -34.5257404584867,
+        "longitud": -58.4741498273926
+    },
+    {
+        "nombre": "Vicente López",
+        "latitud": -34.5089441626737,
+        "longitud": -58.4861548647957
+    },
+    {
+        "nombre": "Victoria",
+        "latitud": -34.4530475393768,
+        "longitud": -58.5421912513957
+    },
+    {
+        "nombre": "Vieytes",
+        "latitud": -35.2674644876688,
+        "longitud": -57.5749197797454
+    },
+    {
+        "nombre": "Villa Adelina",
+        "latitud": -34.5188556851314,
+        "longitud": -58.5473555040385
+    },
+    {
+        "nombre": "Villa Adelina",
+        "latitud": -34.5265053176719,
+        "longitud": -58.5454675353282
+    },
+    {
+        "nombre": "Villa Alfredo Fortabat",
+        "latitud": -36.9810049379081,
+        "longitud": -60.2786017240524
+    },
+    {
+        "nombre": "Villa Alsina",
+        "latitud": -33.9076609182152,
+        "longitud": -59.3906490653271
+    },
+    {
+        "nombre": "Villa Angélica",
+        "latitud": -33.6637017696942,
+        "longitud": -60.7085799617903
+    },
+    {
+        "nombre": "Villa Argüello",
+        "latitud": -34.9069331564209,
+        "longitud": -57.9163481974945
+    },
+    {
+        "nombre": "Villa Arrieta",
+        "latitud": -36.9438085052348,
+        "longitud": -60.1583509841298
+    },
+    {
+        "nombre": "Villa Astolfi",
+        "latitud": -34.4880046105565,
+        "longitud": -58.8758544354884
+    },
+    {
+        "nombre": "Villa Ayacucho",
+        "latitud": -34.5895518422474,
+        "longitud": -58.5533940644005
+    },
+    {
+        "nombre": "Villa Ballester",
+        "latitud": -34.5480834920372,
+        "longitud": -58.5570844833764
+    },
+    {
+        "nombre": "Villa Bernardo Monteagudo",
+        "latitud": -34.589532906584,
+        "longitud": -58.5408713062038
+    },
+    {
+        "nombre": "Villa Bordeau",
+        "latitud": -38.693558630756,
+        "longitud": -62.3350174250385
+    },
+    {
+        "nombre": "Villa Bosch",
+        "latitud": -34.5868156329333,
+        "longitud": -58.5738062079452
+    },
+    {
+        "nombre": "Villa Brown",
+        "latitud": -34.8712963131667,
+        "longitud": -58.275494514116
+    },
+    {
+        "nombre": "Villa Cacique",
+        "latitud": -37.6762254442231,
+        "longitud": -59.396186471269
+    },
+    {
+        "nombre": "Villa Campi",
+        "latitud": -33.360724726341,
+        "longitud": -60.300046996968
+    },
+    {
+        "nombre": "Villa Canto",
+        "latitud": -33.3697926155654,
+        "longitud": -60.2952727229451
+    },
+    {
+        "nombre": "Villa Castelar",
+        "latitud": -37.3949214240607,
+        "longitud": -62.8034443473684
+    },
+    {
+        "nombre": "Villa Catela",
+        "latitud": -34.8871864189301,
+        "longitud": -57.9484238171254
+    },
+    {
+        "nombre": "Villa Centenario",
+        "latitud": -34.7273607491723,
+        "longitud": -58.4305869359055
+    },
+    {
+        "nombre": "Villa Chacabuco",
+        "latitud": -34.5820147085382,
+        "longitud": -58.5271718625982
+    },
+    {
+        "nombre": "Villa Coronel José M. Zapiola",
+        "latitud": -34.5588681651042,
+        "longitud": -58.5766495984483
+    },
+    {
+        "nombre": "Villa Dolores",
+        "latitud": -34.8787305631142,
+        "longitud": -57.8673760512396
+    },
+    {
+        "nombre": "Villa Domínico",
+        "latitud": -34.6945766428955,
+        "longitud": -58.3304564528104
+    },
+    {
+        "nombre": "Villa Eduardo Madero",
+        "latitud": -34.6881322748108,
+        "longitud": -58.4931738114066
+    },
+    {
+        "nombre": "Villa Elisa",
+        "latitud": -34.8514668822838,
+        "longitud": -58.085432935183
+    },
+    {
+        "nombre": "Villa Elvira",
+        "latitud": -34.939443760817,
+        "longitud": -57.9208330967288
+    },
+    {
+        "nombre": "Villa España",
+        "latitud": -34.7754718758991,
+        "longitud": -58.1994415833972
+    },
+    {
+        "nombre": "Villa Esperanza",
+        "latitud": -33.4213834087717,
+        "longitud": -60.2603632967081
+    },
+    {
+        "nombre": "Villa Espil",
+        "latitud": -34.5053553124901,
+        "longitud": -59.3383393878777
+    },
+    {
+        "nombre": "Villa Espora",
+        "latitud": -38.7414156242007,
+        "longitud": -62.1713754950049
+    },
+    {
+        "nombre": "Villa Fiorito",
+        "latitud": -34.7056984765634,
+        "longitud": -58.4444661837853
+    },
+    {
+        "nombre": "Villa Flandria Norte",
+        "latitud": -34.5749128692338,
+        "longitud": -59.1795153909267
+    },
+    {
+        "nombre": "Villa Flandria Sur",
+        "latitud": -34.5988546032712,
+        "longitud": -59.1772915460468
+    },
+    {
+        "nombre": "Villa Fournier",
+        "latitud": -35.4989206034073,
+        "longitud": -60.8749637021148
+    },
+    {
+        "nombre": "Villa Francia",
+        "latitud": -34.790121517586,
+        "longitud": -62.2010232032348
+    },
+    {
+        "nombre": "Villa Garibaldi",
+        "latitud": -34.9989648281153,
+        "longitud": -57.8583627572539
+    },
+    {
+        "nombre": "Villa General Antonio J. de Sucre",
+        "latitud": -34.545938618761,
+        "longitud": -58.5687084653978
+    },
+    {
+        "nombre": "Villa General Arias",
+        "latitud": -38.8095202261785,
+        "longitud": -62.1010009856671
+    },
+    {
+        "nombre": "Villa General Eugenio Necochea",
+        "latitud": -34.512498375132,
+        "longitud": -58.5798325518484
+    },
+    {
+        "nombre": "Villa General José Tomás Guido",
+        "latitud": -34.5526569079266,
+        "longitud": -58.5671531806294
+    },
+    {
+        "nombre": "Villa General Juan G. Las Heras",
+        "latitud": -34.5605404416031,
+        "longitud": -58.5585407880374
+    },
+    {
+        "nombre": "Villa General Savio",
+        "latitud": -33.4359779795503,
+        "longitud": -60.1464497657147
+    },
+    {
+        "nombre": "Villa Gesell",
+        "latitud": -37.2632305079153,
+        "longitud": -56.9745586090481
+    },
+    {
+        "nombre": "Villa Gobernador Udadondo",
+        "latitud": -34.6183464048832,
+        "longitud": -58.6967237126462
+    },
+    {
+        "nombre": "Villa Godoy Cruz",
+        "latitud": -34.5427485614002,
+        "longitud": -58.5765230308112
+    },
+    {
+        "nombre": "Villa Granaderos de San Martín",
+        "latitud": -34.5510717509051,
+        "longitud": -58.5288645042689
+    },
+    {
+        "nombre": "Villa Gregoria Matorras",
+        "latitud": -34.5380682355113,
+        "longitud": -58.5490906736237
+    },
+    {
+        "nombre": "Villa Grisolía",
+        "latitud": -35.1099999752396,
+        "longitud": -60.0702181834916
+    },
+    {
+        "nombre": "Villa Independencia",
+        "latitud": -34.8821680150728,
+        "longitud": -57.8595091999308
+    },
+    {
+        "nombre": "Villa Iris",
+        "latitud": -38.1717529535533,
+        "longitud": -63.2353429054024
+    },
+    {
+        "nombre": "Villa José León Suárez",
+        "latitud": -34.5309953187917,
+        "longitud": -58.5763110837131
+    },
+    {
+        "nombre": "Villa Juan Martín de Pueyrredón",
+        "latitud": -34.5720673319943,
+        "longitud": -58.5623374835945
+    },
+    {
+        "nombre": "Villa La Arcadia",
+        "latitud": -38.1370301308605,
+        "longitud": -61.787362810254
+    },
+    {
+        "nombre": "Villa La Florida",
+        "latitud": -34.7722703998346,
+        "longitud": -58.292930614461
+    },
+    {
+        "nombre": "Villa La Serranía",
+        "latitud": -36.9892812502774,
+        "longitud": -60.311291456649
+    },
+    {
+        "nombre": "Villa Laguna La Brava",
+        "latitud": -37.8612230791642,
+        "longitud": -57.9810120239183
+    },
+    {
+        "nombre": "Villa Libertad",
+        "latitud": -34.5842784114665,
+        "longitud": -58.5626117832714
+    },
+    {
+        "nombre": "Villa Luzuriaga",
+        "latitud": -34.6635308896038,
+        "longitud": -58.582392278561
+    },
+    {
+        "nombre": "Villa Lynch",
+        "latitud": -34.5921434513227,
+        "longitud": -58.5240586094847
+    },
+    {
+        "nombre": "Villa Lynch Pueyrredón",
+        "latitud": -36.6015315731939,
+        "longitud": -61.3636659844575
+    },
+    {
+        "nombre": "Villa Lía",
+        "latitud": -34.1232002564582,
+        "longitud": -59.4304824481459
+    },
+    {
+        "nombre": "Villa Maipú",
+        "latitud": -34.568894989108,
+        "longitud": -58.5244410540779
+    },
+    {
+        "nombre": "Villa Manuel Pomar",
+        "latitud": -33.9133660735741,
+        "longitud": -60.9423275118825
+    },
+    {
+        "nombre": "Villa Manuel Pomar",
+        "latitud": -33.915451901214,
+        "longitud": -60.9383442419377
+    },
+    {
+        "nombre": "Villa Margarita",
+        "latitud": -37.4613536392238,
+        "longitud": -63.2421735240119
+    },
+    {
+        "nombre": "Villa Martelli",
+        "latitud": -34.5513042797618,
+        "longitud": -58.5066267194854
+    },
+    {
+        "nombre": "Villa María",
+        "latitud": -34.8882250272161,
+        "longitud": -60.3474804806501
+    },
+    {
+        "nombre": "Villa Moll",
+        "latitud": -35.0779501871778,
+        "longitud": -59.6518705433013
+    },
+    {
+        "nombre": "Villa Montoro",
+        "latitud": -34.9614360980661,
+        "longitud": -57.9005707784341
+    },
+    {
+        "nombre": "Villa Nueva",
+        "latitud": -34.8952719649896,
+        "longitud": -57.9074962230535
+    },
+    {
+        "nombre": "Villa Ortiz",
+        "latitud": -34.8445367882073,
+        "longitud": -60.3063011463663
+    },
+    {
+        "nombre": "Villa Parque Cecir",
+        "latitud": -34.1749470374961,
+        "longitud": -60.6944299346838
+    },
+    {
+        "nombre": "Villa Parque Girado",
+        "latitud": -35.6268500726765,
+        "longitud": -58.0146293485063
+    },
+    {
+        "nombre": "Villa Parque Presidente Figueroa Alcorta",
+        "latitud": -34.5945206825307,
+        "longitud": -58.5325295991156
+    },
+    {
+        "nombre": "Villa Parque San Lorenzo",
+        "latitud": -34.5635914058489,
+        "longitud": -58.5331782429352
+    },
+    {
+        "nombre": "Villa Parque Sicardi",
+        "latitud": -34.9874908734581,
+        "longitud": -57.8597523447218
+    },
+    {
+        "nombre": "Villa Porteña",
+        "latitud": -34.887154968699,
+        "longitud": -57.8980863322648
+    },
+    {
+        "nombre": "Villa Progreso",
+        "latitud": -34.9240533019987,
+        "longitud": -57.8998852278413
+    },
+    {
+        "nombre": "Villa Raffo",
+        "latitud": -34.6084004658573,
+        "longitud": -58.5309147566475
+    },
+    {
+        "nombre": "Villa Ramallo",
+        "latitud": -33.49803273822,
+        "longitud": -60.0655531078037
+    },
+    {
+        "nombre": "Villa Riccio",
+        "latitud": -33.3643570702242,
+        "longitud": -60.2947075669285
+    },
+    {
+        "nombre": "Villa Rodríguez",
+        "latitud": -38.312396365424,
+        "longitud": -60.231646702531
+    },
+    {
+        "nombre": "Villa Rosa",
+        "latitud": -34.4152919195327,
+        "longitud": -58.8695488420707
+    },
+    {
+        "nombre": "Villa Roth",
+        "latitud": -34.5795848193084,
+        "longitud": -62.1713374178959
+    },
+    {
+        "nombre": "Villa Ruiz",
+        "latitud": -34.4316782101746,
+        "longitud": -59.2615521388936
+    },
+    {
+        "nombre": "Villa Saboya",
+        "latitud": -34.4599722130718,
+        "longitud": -62.6492744217077
+    },
+    {
+        "nombre": "Villa San Andrés",
+        "latitud": -34.5650741337217,
+        "longitud": -58.5418709454264
+    },
+    {
+        "nombre": "Villa San Carlos",
+        "latitud": -34.8769713556362,
+        "longitud": -57.8743971198173
+    },
+    {
+        "nombre": "Villa San José",
+        "latitud": -34.0916679309077,
+        "longitud": -60.4135037959232
+    },
+    {
+        "nombre": "Villa San Luis",
+        "latitud": -34.8573772072023,
+        "longitud": -58.2738131215556
+    },
+    {
+        "nombre": "Villa Santa Rosa",
+        "latitud": -34.8370639708137,
+        "longitud": -58.2821795695129
+    },
+    {
+        "nombre": "Villa Santos Tesei",
+        "latitud": -34.6199585078419,
+        "longitud": -58.6401617933723
+    },
+    {
+        "nombre": "Villa Sarmiento",
+        "latitud": -34.6333593873734,
+        "longitud": -58.5704071179586
+    },
+    {
+        "nombre": "Villa Sauze",
+        "latitud": -35.2858574209169,
+        "longitud": -63.3686521604681
+    },
+    {
+        "nombre": "Villa Vatteone",
+        "latitud": -34.8269738162855,
+        "longitud": -58.2714023284921
+    },
+    {
+        "nombre": "Villa Ventana",
+        "latitud": -38.0819443434639,
+        "longitud": -61.929805289519
+    },
+    {
+        "nombre": "Villa Yapeyú",
+        "latitud": -34.5715031294949,
+        "longitud": -58.54862547602
+    },
+    {
+        "nombre": "Villa Zula",
+        "latitud": -34.8829755565619,
+        "longitud": -57.8447163179186
+    },
+    {
+        "nombre": "Villa de Mayo",
+        "latitud": -34.5066088363881,
+        "longitud": -58.6789744017667
+    },
+    {
+        "nombre": "Villa del Mar",
+        "latitud": -38.8543891102131,
+        "longitud": -62.116520630945
+    },
+    {
+        "nombre": "Villalonga",
+        "latitud": -39.9175740352919,
+        "longitud": -62.6187706882177
+    },
+    {
+        "nombre": "Villanueva",
+        "latitud": -35.6753060984282,
+        "longitud": -58.4338790521827
+    },
+    {
+        "nombre": "Virrey del Pino",
+        "latitud": -34.837653604909,
+        "longitud": -58.6469682245822
+    },
+    {
+        "nombre": "Virreyes",
+        "latitud": -34.4537518251362,
+        "longitud": -58.5543400812344
+    },
+    {
+        "nombre": "Vivoratá",
+        "latitud": -37.6631550913681,
+        "longitud": -57.6681208064657
+    },
+    {
+        "nombre": "Viña",
+        "latitud": -33.9923791495617,
+        "longitud": -60.226418356914
+    },
+    {
+        "nombre": "Vásquez",
+        "latitud": -38.1758010070279,
+        "longitud": -60.1697910561822
+    },
+    {
+        "nombre": "Warnes",
+        "latitud": -34.9101336709228,
+        "longitud": -60.5389528273212
+    },
+    {
+        "nombre": "Wilde",
+        "latitud": -34.7040788191542,
+        "longitud": -58.3172095095929
+    },
+    {
+        "nombre": "William C. Morris",
+        "latitud": -34.5796982785245,
+        "longitud": -58.6570781965219
+    },
+    {
+        "nombre": "Zavalía",
+        "latitud": -34.8950855612262,
+        "longitud": -61.005615922588
+    },
+    {
+        "nombre": "Zelaya",
+        "latitud": -34.3715664829895,
+        "longitud": -58.8694503722801
+    },
+    {
+        "nombre": "Zenón Videla Dorna",
+        "latitud": -35.5420844897832,
+        "longitud": -58.8864507537748
+    },
+    {
+        "nombre": "Zárate",
+        "latitud": -34.0989165196293,
+        "longitud": -59.0296629320907
+    },
+    {
+        "nombre": "Zárate",
+        "latitud": -34.095805089842,
+        "longitud": -59.024323230709
+    },
+    {
+        "nombre": "Álvarez de Toledo",
+        "latitud": -35.6393730456478,
+        "longitud": -59.6311412076099
+    },
+    {
+        "nombre": "Ángel Etcheverry",
+        "latitud": -35.0244808823111,
+        "longitud": -58.0781379447636
+    },
+    {
+        "nombre": "Área Reserva Cinturón Ecológico",
+        "latitud": -34.6844598100355,
+        "longitud": -58.3077371090541
+    },
+    {
+        "nombre": "Área de Promoción El Triángulo",
+        "latitud": -34.4558324468983,
+        "longitud": -58.708597430815
+    }
+]
