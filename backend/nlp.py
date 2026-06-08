@@ -33,6 +33,7 @@ class NLPProcessor:
             "antibiotico", "antibiótico", "antibioticos", "antibióticos",
             "penicilina", "amoxicilina", "ibuprofeno", "pastilla", "medicamento",
             "medicacion", "medicación",
+            "levotiroxina", "aspirina", "enalapril"
         ],
         "anticoagulante": [
             "anticoagulante", "anticoagulantes", "warfarina", "acenocumarol",
@@ -63,7 +64,7 @@ class NLPProcessor:
         ],
         "dutasteride": ["dutasteride", "avodart"],
         "insulina": [
-            "insulina", "insulinodependiente",
+            "insulina", "insulinodependiente", "insulino dependiente",
             "diabetico", "diabético", "diabetica", "diabética",
             "diabetes tipo 1", "diabetes 1", "diabetico tipo 1",
             "diabetes tipo 2", "diabetes 2", "diabetico tipo 2",
@@ -86,6 +87,7 @@ class NLPProcessor:
             "gripe", "fiebre", "dengue", "covid", "hepatitis", "hiv", "sida",
             "diabetes", "anemia", "hipertension", "hipertensión", "cancer",
             "cáncer", "infeccion", "infección",
+            "presion alta", "presión alta"
         ],
         "herpes": [
             "herpes", "culebrilla", "herpes labial", "herpes zoster",
@@ -128,6 +130,7 @@ class NLPProcessor:
             "cirugia", "cirugía", "operacion", "operación", "operar",
             "operé", "opere", "intervención", "intervencion", "laparoscopia",
             "laparoscopía",
+            "operaron", "apendicitis"
         ],
         "cirugia_bariatrica": [
             "bariatrica", "bariátrica", "manga gastrica", "bypass gastrico",
@@ -161,7 +164,7 @@ class NLPProcessor:
         # ── vacunas ─────────────────────────────────────────────────────────
         "vacuna": [
             "vacuna", "vacunas", "vacunado", "vacunada", "vacunarse",
-            "dosis", "refuerzo",
+            "dosis", "refuerzo", "vacuné", "vacune",
         ],
     }
 
@@ -327,16 +330,16 @@ class NLPProcessor:
             entidades.append({"tipo": "TIEMPO", "unidad": "meses", "valor": round(1 / 30, 2)})
 
         # PESO
-        m = re.search(r"(\d+)\s*kg", texto_lower)
+        m = re.search(r"(\d+)\s*(kg|kilos?)", texto_lower)
         if m:
             entidades.append({"tipo": "PESO", "valor": int(m.group(1))})
 
         # EDAD
         m = re.search(
-            r"(?:tengo|tiene|soy\s+de|tengo\s+\w+\s+de)?\s*(\d+)\s*años?\s*(?:de\s+edad)?",
+            r"(?:tengo|tiene|soy\s+de|a los|tengo\s+\w+\s+de)?\s*(\d+)\s*años?\s*(?:de\s+edad)?",
             texto_lower,
         )
-        if m and re.search(r"tengo|soy|mi\s+edad|años\s+de\s+edad|tiene\s+\d+\s*años|cumpl", texto_lower):
+        if m and re.search(r"tengo|soy|mi\s+edad|a los|años\s+de\s+edad|tiene\s+\d+\s*años|cumpl", texto_lower):
             edad = int(m.group(1))
             if 10 <= edad <= 100:
                 entidades.append({"tipo": "EDAD", "valor": edad})
