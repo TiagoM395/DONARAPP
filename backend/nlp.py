@@ -1,4 +1,5 @@
 import re
+import spacy
 
 class NLPProcessor:
 
@@ -205,6 +206,12 @@ class NLPProcessor:
         "ni en pedo", "para nada", "ni loco", "ni loca",
     }
 
+    def __init__(self):
+        try:
+            self._nlp = spacy.load("es_core_news_sm")
+        except OSError:
+            self._nlp = None
+
     def normalizar_coloquialismos(self, texto: str) -> str:
         """Colapsa caracteres repetidos y mapea modismos rioplatenses."""
         texto_lower = texto.strip().lower()
@@ -241,9 +248,40 @@ class NLPProcessor:
         return texto_norm
 
     def tokenizar(self, texto: str) -> list[str]:
+        if self._nlp is not None:
+            doc = self._nlp(texto.lower())
+            return [t.text for t in doc if t.is_alpha]
         return re.findall(r"[a-záéíóúüñ]+", texto.lower())
 
+    _POS_MAP = {
+        "VERB": "VERB", "AUX": "VERB",
+        "NOUN": "NOUN", "PROPN": "NOUN",
+        "ADJ": "ADJ",
+        "NUM": "NUM",
+        "ADP": "STOP", "DET": "STOP", "CCONJ": "STOP",
+        "SCONJ": "STOP", "PRON": "STOP", "PART": "STOP",
+    }
+
     def pos_tag(self, tokens: list[str]) -> list[dict]:
+        if self._nlp is not None:
+            doc = self._nlp(" ".join(tokens))
+            resultado = []
+            for token in doc:
+                tl = token.text.lower()
+                if tl in self.VERBOS:
+                    pos = "VERB"
+                elif tl in self.SUSTANTIVOS:
+                    pos = "NOUN"
+                elif tl in self.ADJETIVOS:
+                    pos = "ADJ"
+                elif tl in self.STOPWORDS:
+                    pos = "STOP"
+                elif token.is_digit:
+                    pos = "NUM"
+                else:
+                    pos = self._POS_MAP.get(token.pos_, "OTHER")
+                resultado.append({"token": token.text, "pos": pos})
+            return resultado
         resultado = []
         for t in tokens:
             if t in self.VERBOS:

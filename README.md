@@ -4,6 +4,20 @@ Sistema inteligente de consultas para donación de sangre. El usuario describe s
 
 ---
 
+## Documentación por pestaña
+
+Cada pestaña del sistema tiene su propio README detallado con explicaciones conceptuales, ejemplos y fundamentos técnicos:
+
+| Pestaña | Descripción | README |
+|---|---|---|
+| 🩸 **Consulta** | Chatbot de pre-evaluación (texto y voz), flujo de entrevista, pipeline NLP | [README_CONSULTA.md](README_CONSULTA.md) |
+| 📊 **Dashboard** | Panel de monitoreo, gráficos, métricas IR/WER, exportación CSV | [README_DASHBOARD.md](README_DASHBOARD.md) |
+| 📈 **N-Gramas** | Modelo probabilístico de lenguaje, perplejidad, predicción y generación de texto | [README_NGRAMAS.md](README_NGRAMAS.md) |
+| 🔍 **IR / TF-IDF** | Motor de búsqueda semántica, similitud coseno, métricas P/R/F1 | [README_IR.md](README_IR.md) |
+| 📏 **WER / ASR** | Evaluación del reconocimiento de voz, distancia de Levenshtein, benchmark de frases | [README_WER.md](README_WER.md) |
+
+---
+
 ## Tecnologías
 
 | Capa | Stack |

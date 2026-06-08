@@ -190,7 +190,7 @@ export function BotBurbuja({ msg, onOpcion, onTTS, showTts = true }: {
           padding: "4px 4px 12px", background: t.bg,
           boxShadow: `0 4px 16px ${t.border}33`,
         }}>
-          <div style={{ fontSize: 10, color: t.border, fontWeight: 700, letterSpacing: 2,
+          <div style={{ fontSize: 10, color: "#475569", fontWeight: 700, letterSpacing: 2,
             textAlign: "center", padding: "8px 0 4px" }}>
             RESULTADO FINAL
           </div>
@@ -198,12 +198,12 @@ export function BotBurbuja({ msg, onOpcion, onTTS, showTts = true }: {
             <div style={{ fontSize: 10, color: "#64748b", letterSpacing: 1, fontWeight: 600, textAlign: "center" }}>
               {c && c.tipo === "pregunta_ciudad" ? "SIGUIENTE PASO" : "SEGÚN LOS PROTOCOLOS ACTUALES"}
             </div>
-            <div style={{ fontSize: 13, fontWeight: 800, color: t.border, textAlign: "center" }}>
+            <div style={{ fontSize: 13, fontWeight: 800, color: c && c.tipo === "pregunta_ciudad" ? "#16a34a" : t.border, textAlign: "center" }}>
               {t.emoji} {t.label}
             </div>
             {c && c.tipo === "pregunta_ciudad" && msg.texto.includes("\n\n") ? (
               <>
-                <p style={{ margin: 0, fontSize: 15, color: "#0f172a", lineHeight: 1.8, fontWeight: 500, textAlign: "center", whiteSpace: "pre-line" }}>
+                <p style={{ margin: 0, fontSize: 18, color: "#0f172a", lineHeight: 1.8, fontWeight: 700, textAlign: "center", whiteSpace: "pre-line", textTransform: "uppercase" }}>
                   {msg.texto.split("\n\n")[0]}
                 </p>
                 <div style={{
