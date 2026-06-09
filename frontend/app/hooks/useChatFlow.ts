@@ -286,10 +286,12 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         irAResultado();
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
-        const msg = esFD
-          ? "Ese malestar no es un impedimento para donar sangre. Podés continuar con la evaluación."
-          : (data.respuesta || "Ese malestar no parece ser un impedimento para donar. Te recomendamos comentarlo en el centro.");
-        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_medicacion!, esFD ? undefined : data);
+        if (esFD) {
+          bot("No pude identificar el malestar que describiste. ¿Podés describirlo con más detalle? Por ejemplo: dolor de cabeza, fiebre, tos, gripe...");
+          return;
+        }
+        const msg = data.respuesta || "Ese malestar no parece ser un impedimento directo para donar. Te recomendamos comentarlo en el centro.";
+        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_medicacion!, data);
         setFase("q_medicacion");
       }
     } catch { bot("Error conectando con el servidor. ¿Está activo el backend?"); }
@@ -426,13 +428,15 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         irAResultado();
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
-        const msg = esFD
-          ? "Esa condición no es un impedimento para donar sangre. Podés continuar con la evaluación."
-          : (data.respuesta || "Esa condición no parece ser un impedimento directo para donar.");
-        if (!esFD && data.tipo === "consultar") {
+        if (esFD) {
+          bot("No pude identificar la enfermedad que describiste. ¿Podés describirla con más detalle? Por ejemplo: diabetes, hepatitis, hipertensión...");
+          return;
+        }
+        const msg = data.respuesta || "Esa condición no parece ser un impedimento directo para donar.";
+        if (data.tipo === "consultar") {
           addRestriccion(`⚠️ Enfermedad: ${texto} — consultar en el banco de sangre.`);
         }
-        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_odontologo!, esFD ? undefined : data);
+        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_odontologo!, data);
         setFase("q_odontologo");
       }
     } catch { bot("Error conectando con el servidor. ¿Está activo el backend?"); }
