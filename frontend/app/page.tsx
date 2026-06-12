@@ -6,8 +6,10 @@ import { TabDashboard } from "./components/tabs/TabDashboard";
 import { TabNgramas }   from "./components/tabs/TabNgramas";
 import { TabIR }        from "./components/tabs/TabIR";
 import { TabWER }       from "./components/tabs/TabWER";
+import { TabInicio }    from "./components/tabs/TabInicio";
 
 const TABS = [
+  { id: "inicio"    as const, label: "🏠 Inicio" },
   { id: "consulta"  as const, label: "🩸 Consulta" },
   { id: "dashboard" as const, label: "📊 Dashboard" },
   { id: "ngramas"   as const, label: "📈 N-gramas" },
@@ -25,7 +27,7 @@ const TOOLS = [
 ];
 
 export default function Home() {
-  const [tab, setTab] = useState<"consulta" | "dashboard" | "ngramas" | "ir" | "wer">("consulta");
+  const [tab, setTab] = useState<"inicio" | "consulta" | "dashboard" | "ngramas" | "ir" | "wer">("inicio");
   const [toolsOpen, setToolsOpen] = useState(false);
   const [hoveredTool, setHoveredTool] = useState<number | null>(null);
   const isMobile = useIsMobile();
@@ -110,6 +112,7 @@ export default function Home() {
       {/* MAIN */}
       <main style={{ maxWidth: tab === "consulta" ? "none" : 1080, margin: "0 auto", flex: 1, width: "100%",
                      padding: tab === "consulta" ? (isMobile ? "8px" : "8px 4px") : (isMobile ? "20px 12px" : "28px 28px") }}>
+        {tab === "inicio"    && <TabInicio setTab={setTab} />}
         {tab === "consulta"  && <TabConsulta  isMobile={isMobile} />}
         {tab === "dashboard" && <TabDashboard isMobile={isMobile} />}
         {tab === "ngramas"   && <TabNgramas   isMobile={isMobile} />}
