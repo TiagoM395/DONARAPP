@@ -6,9 +6,11 @@ import { TabDashboard } from "./components/tabs/TabDashboard";
 import { TabNgramas }   from "./components/tabs/TabNgramas";
 import { TabIR }        from "./components/tabs/TabIR";
 import { TabWER }       from "./components/tabs/TabWER";
-import { API }          from "./lib/api";
+import { TabInicio }    from "./components/tabs/TabInicio";
+import { LoginForm }    from "./components/LoginForm";
 
 const TABS = [
+  { id: "inicio"    as const, label: "🏠 Inicio" },
   { id: "consulta"  as const, label: "🩸 Consulta" },
   { id: "dashboard" as const, label: "📊 Dashboard" },
   { id: "ngramas"   as const, label: "📈 N-gramas" },
@@ -25,47 +27,10 @@ const TOOLS = [
   { e: "📏", t: "WER", d: "Word Error Rate — evalúa la calidad de la transcripción ASR." },
 ];
 
-function LoginForm({ onLogin }: { onLogin: (s: any) => void }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`${API}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Error al iniciar sesión");
-      
-      const sessionData = { token: data.access_token, role: data.rol, username };
-      localStorage.setItem("session", JSON.stringify(sessionData));
-      onLogin(sessionData);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  };
-
-  return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#f1f5f9", fontFamily: "Inter, system-ui, sans-serif" }}>
-      <form onSubmit={handleSubmit} style={{ background: "white", padding: 32, borderRadius: 12, boxShadow: "0 4px 6px rgba(0,0,0,0.1)", width: "100%", maxWidth: 360, display: "flex", flexDirection: "column", gap: 16 }}>
-        <h2 style={{ margin: 0, textAlign: "center", color: "#0f172a" }}>Iniciar Sesión</h2>
-        {error && <div style={{ color: "#ef4444", fontSize: 14, textAlign: "center", background: "#fef2f2", padding: 8, borderRadius: 6 }}>{error}</div>}
-        <input placeholder="Usuario" value={username} onChange={e => setUsername(e.target.value)} style={{ padding: 12, border: "1px solid #cbd5e1", borderRadius: 6, fontSize: 15 }} />
-        <input type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} style={{ padding: 12, border: "1px solid #cbd5e1", borderRadius: 6, fontSize: 15 }} />
-        <button type="submit" style={{ background: "#3b82f6", color: "white", border: "none", padding: 12, borderRadius: 6, cursor: "pointer", fontWeight: "bold", fontSize: 15 }}>Ingresar</button>
-      </form>
-    </div>
-  );
-}
-
 export default function Home() {
   const [session, setSession] = useState<{ token: string, role: string, username: string } | null>(null);
   const [isClient, setIsClient] = useState(false);
-  const [tab, setTab] = useState<"consulta" | "dashboard" | "ngramas" | "ir" | "wer">("consulta");
+  const [tab, setTab] = useState<"inicio" | "consulta" | "dashboard" | "ngramas" | "ir" | "wer">("inicio");
   const [toolsOpen, setToolsOpen] = useState(false);
   const [hoveredTool, setHoveredTool] = useState<number | null>(null);
   const isMobile = useIsMobile();
@@ -159,7 +124,7 @@ export default function Home() {
             
             {/* Botón Cerrar Sesión */}
             <button
-              onClick={() => { localStorage.removeItem("session"); setSession(null); setTab("consulta"); }}
+              onClick={() => { localStorage.removeItem("session"); setSession(null); setTab("inicio"); }}
               style={{ background: "rgba(239,68,68,0.15)", color: "#fca5a5", border: "1px solid rgba(239,68,68,0.2)",
                        borderRadius: 8, cursor: "pointer", padding: "6px 12px",
                        fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
@@ -172,6 +137,7 @@ export default function Home() {
       {/* MAIN */}
       <main style={{ maxWidth: tab === "consulta" ? "none" : 1080, margin: "0 auto", flex: 1, width: "100%",
                      padding: tab === "consulta" ? (isMobile ? "8px" : "8px 4px") : (isMobile ? "20px 12px" : "28px 28px") }}>
+        {tab === "inicio"    && <TabInicio setTab={setTab} />}
         {tab === "consulta" && <TabConsulta isMobile={isMobile} />}
         {session.role === "admin" && tab === "dashboard" && <TabDashboard isMobile={isMobile} />}
         {session.role === "admin" && tab === "ngramas"   && <TabNgramas   isMobile={isMobile} />}
