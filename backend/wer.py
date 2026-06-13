@@ -1,5 +1,13 @@
 import re
 
+_DIGITOS_ES = {
+    "0": "cero", "1": "un", "2": "dos", "3": "tres", "4": "cuatro",
+    "5": "cinco", "6": "seis", "7": "siete", "8": "ocho", "9": "nueve",
+    "10": "diez", "11": "once", "12": "doce", "13": "trece", "14": "catorce",
+    "15": "quince", "16": "dieciséis", "17": "diecisiete", "18": "dieciocho",
+    "19": "diecinueve", "20": "veinte", "21": "veintiuno", "30": "treinta",
+}
+
 # Frases de referencia para evaluar el ASR
 FRASES_PRUEBA = [
     "me hice un tatuaje hace dos meses",
@@ -19,8 +27,9 @@ FRASES_PRUEBA = [
 
 def _normalizar(texto: str) -> list[str]:
     texto = texto.lower().strip()
-    texto = re.sub(r"[^a-záéíóúüñ\s]", "", texto)
-    return texto.split()
+    texto = re.sub(r"[^a-záéíóúüñ0-9\s]", "", texto)
+    palabras = texto.split()
+    return [_DIGITOS_ES.get(p, p) for p in palabras]
 
 
 def calcular_wer(referencia: str, hipotesis: str) -> dict:

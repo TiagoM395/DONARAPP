@@ -26,6 +26,70 @@ def _fuzzy(texto: str, keywords: list, umbral: int = 2) -> bool:
     return False
 
 
+def _fuzzy_match(texto: str, keywords: list, umbral: int = 2) -> str | None:
+    """Devuelve el keyword correcto si hay match fuzzy, o None."""
+    for token in texto.split():
+        if len(token) < 4:
+            continue
+        for kw in keywords:
+            if abs(len(token) - len(kw)) <= umbral and _levenshtein(token, kw) <= umbral:
+                return kw
+    return None
+
+
+# Todos los keywords de medicamentos conocidos (para fuzzy correction global)
+_MASTER_MED_KW = [
+    # antipsicóticos
+    "quetiapina", "risperidona", "olanzapina", "haloperidol", "clozapina", "aripiprazol",
+    "seroquel", "risperdal", "zyprexa", "haldol", "leponex", "abilify",
+    # anticoagulantes
+    "anticoagulante", "warfarina", "acenocumarol", "rivaroxaban", "apixaban", "dabigatran",
+    "sintrom", "coumadin", "aldocumar", "xarelto", "eliquis", "pradaxa",
+    # betabloqueantes
+    "betabloqueante", "atenolol", "propranolol", "metoprolol", "bisoprolol", "carvedilol",
+    "tenormin", "inderal", "lopressor", "seloken", "concor", "coreg",
+    # anticonvulsivantes
+    "anticonvulsivante", "carbamazepina", "lamotrigina", "gabapentina", "pregabalina", "valproato",
+    "tegretol", "lamictal", "neurontin", "lyrica", "depakote", "orfiril",
+    # anticonceptivos
+    "anticonceptivo", "anticonceptivos", "anticonseptivo", "anticonseptivos",
+    "diane", "yasmin", "nuvaring", "implanon", "nexplanon", "mirena",
+    # ansiolíticos / antidepresivos
+    "ansiolítico", "antidepresivo", "tranquilizante",
+    "clonazepam", "alprazolam", "sertralina", "fluoxetina", "paroxetina",
+    "escitalopram", "citalopram", "venlafaxina", "duloxetina", "mirtazapina",
+    "bromazepam", "lorazepam", "diazepam", "bupropion", "bupropión",
+    "rivotril", "ribotril", "alplax", "frontal", "xanax", "zoloft",
+    "altruline", "prozac", "paxil", "seroxat", "lexapro", "cipralex",
+    "efexor", "effexor", "lexotanil", "valium", "zyban", "wellbutrin",
+    # estatinas
+    "estatina", "atorvastatina", "rosuvastatina", "simvastatina", "pravastatina",
+    "lipitor", "crestor", "sortis", "zocor",
+    # tiroides
+    "levotiroxina", "eutirox", "hipotiroidismo", "hipertiroidismo",
+    # litio
+    "quilonium", "priadel",
+    # metotrexato
+    "metotrexato", "methotrexate",
+    # isotretinoína
+    "roacutan", "isotretinoina", "isotretinoína", "acnemin", "acnotin",
+    # acitretina
+    "acitretina", "neotigason", "tigason",
+    # finasteride / dutasteride
+    "finasteride", "proscar", "propecia", "finamed", "dutasteride", "avodart",
+    # antibióticos específicos
+    "tetraciclina", "doxiciclina", "eritromicina", "azitromicina", "claritromicina",
+    "ciprofloxacina", "levofloxacina", "metronidazol", "flagyl",
+    "penicilina", "amoxicilina", "augmentin", "ampicilina",
+    # AINEs / analgésicos
+    "ibuprofeno", "naproxeno", "diclofenac", "diclofenaco",
+    "paracetamol", "acetaminofen", "aspirina", "antiinflamatorio",
+    "advil", "naxen", "voltaren", "tylenol", "tafirol", "novalgina",
+    "ibupirac", "actron", "dalsy", "faspic", "buprex",
+    "buscapina", "migral", "tempra", "termalgin", "panadol",
+]
+
+
 def _meses_texto(meses: float) -> str:
     if meses >= 1:
         m = round(meses)
@@ -64,6 +128,25 @@ def evaluar(texto: str) -> dict:
     entidades = _nlp.extraer_entidades(texto)
     _, tiempo_meses, peso, edad = _nlp.interpretar(entidades)
     t = texto.lower()
+
+    # Evaluar primero con el texto original. Si hay resultado concreto, retornarlo
+    # directamente sin pasar por el fuzzy match (evita que "cancer"→"concor", etc.)
+    resultado_directo = _evaluar_interno(t, texto, tiempo_meses, peso, edad)
+    if resultado_directo["resultado"] != "info":
+        return resultado_directo
+
+    _kw_sug = None
+    if not any(kw in t for kw in _MASTER_MED_KW):
+        _kw_sug = _fuzzy_match(t, _MASTER_MED_KW)
+
+    if _kw_sug:
+        resultado = _evaluar_interno(t + " " + _kw_sug, texto, tiempo_meses, peso, edad)
+        resultado["mensaje"] = f"(Seguramente quisiste decir **{_kw_sug}**) " + resultado["mensaje"]
+        return resultado
+    return resultado_directo
+
+
+def _evaluar_interno(t: str, texto: str, tiempo_meses, peso, edad) -> dict:
 
     # ── RESPUESTA SIN CONTEXTO (solo sí / no / modismo) ──────────────────────
     if t.strip() in ("sí", "si", "no"):
@@ -702,12 +785,15 @@ def evaluar(texto: str) -> dict:
         "aine", "antiinflamatorio",
         # marcas comerciales comunes
         "advil", "naxen", "voltaren", "tylenol", "tafirol", "novalgina",
+        # marcas argentinas de ibuprofeno / paracetamol
+        "ibupirac", "actron", "dalsy", "faspic", "buprex",
+        "buscapina", "migral", "tempra", "termalgin", "panadol",
     ]
-    if any(k in t for k in _KW_AINE) or _fuzzy(t, _KW_AINE):
+    _aine_kw = next((k for k in _KW_AINE if k in t), None)
+    if _aine_kw:
         return _apto(
-            "El ibuprofeno, paracetamol, aspirina y otros antiinflamatorios (AINEs) "
-            "no generan diferimiento para donar sangre. "
-            "Si los tomás por una condición crónica (artritis, etc.), "
+            f"El {_aine_kw} (antiinflamatorio/analgésico) no genera diferimiento para donar sangre. "
+            "Si lo tomás por una condición crónica (artritis, etc.), "
             "esa condición puede tener sus propias restricciones — consultá en el centro."
         )
 

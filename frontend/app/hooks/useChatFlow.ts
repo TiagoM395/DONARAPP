@@ -50,11 +50,13 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const mediaRecRef    = useRef<MediaRecorder | null>(null);
   const chunksRef      = useRef<Blob[]>([]);
   const restriccionesRef = useRef<string[]>([]);
-  const ttsOnRef       = useRef(autoTts);
-  const manejarEnvioFn = useRef((_t: string, _o?: string) => {});
+  const ttsOnRef          = useRef(autoTts);
+  const manejarEnvioFn    = useRef((_t: string, _o?: string) => {});
+  const intentosFallidosRef = useRef(0);
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [mensajes]);
   useEffect(() => { ttsOnRef.current = ttsOn; }, [ttsOn]);
+  useEffect(() => { intentosFallidosRef.current = 0; }, [fase]);
 
   const bot = (texto: string, consulta?: Consulta, esResultado?: boolean) => {
     setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto, consulta, esResultado }]);
@@ -83,6 +85,21 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     setRestricciones([...restriccionesRef.current]);
   };
 
+  const registrarFallo = (msg: string) => {
+    intentosFallidosRef.current += 1;
+    if (intentosFallidosRef.current >= 10) {
+      intentosFallidosRef.current = 0;
+      setInputError("");
+      bot(
+        "Parece que tenés dificultades para responder esta pregunta.\n\n" +
+        "Cuando tengas la información necesaria, podés volver y completamos la evaluación juntos. ¡Hasta pronto!"
+      );
+      setFase("resultado");
+    } else {
+      setInputError(msg);
+    }
+  };
+
   // Salta q_embarazo cuando el sexo no es "Mujer"
   const siguientePregunta = (f: FaseChat, sexo?: string): FaseChat => {
     const idx = FASES_PREGUNTAS.indexOf(f);
@@ -109,7 +126,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
       bot("Por el momento no podés donar sangre.\n\nCuando se cumplan los tiempos de espera, acercate al banco de sangre más cercano.", mkConsultaResultado("no_apto_temporal"), true);
       setFase("resultado");
     } else {
-      bot("Tenés algunas observaciones. El personal médico del banco de sangre evaluará si podés donar.\n\nSi querés, podés decirme de qué ciudad sos y te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("apto"), true);
+      bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("pregunta_ciudad"), true);
       setFase("pedir_ciudad");
     }
   };
@@ -118,7 +135,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const detectarSiNo = (raw: string): "si" | "no" | null => {
     const t = raw.toLowerCase().trim();
     if (/^(no|nop|nel|nunca|jam[aá]s|negativo|para nada|tampoco)\b/i.test(t)) return "no";
-    if (/^(s[íi]|s|yes|dale|ok|claro|correcto|afirmativo|efectivamente|cierto|verdad|exacto|obvio|por supuesto)\b/i.test(t)) return "si";
+    if (/^(s[íi]|yes|dale|ok|claro|correcto|afirmativo|efectivamente|cierto|verdad|exacto|obvio|por supuesto)\b/i.test(t)) return "si";
     if (/\b(no tengo|no tuve|no soy|no fui|no tomo|no me|no estoy|no padezco|no recib[íi]|no me hice)\b/i.test(t)) return "no";
     if (/\b(tengo|tuve|padezco|fui|tomo|tom[eé]|recib[íi]|me hice|soy|estoy|me diagnosticaron|me apliqu[eé])\b/i.test(t)) return "si";
     return null;
@@ -130,7 +147,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const t = raw.toLowerCase().trim();
     const esSi = /\b(s[íi]|si|yes|claro|dale|ok|s)\b/i.test(t) || t === "s" || t === "si" || t === "sí";
     const esNo = /\b(no|nop|negativo|nel)\b/i.test(t) || t === "no";
-    if (!esSi && !esNo) { setInputError("Respondé Sí o No."); return; }
+    if (!esSi && !esNo) { registrarFallo("Respondé Sí o No."); return; }
     setInputError(""); setInput(""); usuario(esSi ? "Sí" : "No");
     if (!esSi) {
       bot("¡Gracias por visitarnos! Cuando quieras podés volver a consultar.");
@@ -192,7 +209,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarFrecuenciaDonacion = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       bot("¿Hace cuánto tiempo fue tu última donación? " + hint("(Ej: 2 meses, 6 semanas, 1 año)", "Decí cuánto tiempo pasó desde tu última donación."));
       setFase("q_ultima_donacion");
@@ -230,7 +247,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     if (semanas < minimoSemanas) {
       addRestriccion(`⏳ Donación reciente — esperá hasta cumplir ${minimoTexto} desde la última donación.`);
       bot(`El período mínimo entre donaciones es de ${minimoTexto}. Debés esperar antes de volver a donar.`, mkConsultaResultado("no_apto_temporal"), true);
-      irAResultado();
+      setFase("resultado");
     } else {
       bot(`Cumplís el período de espera entre donaciones. ✓\n\n${TEXTOS_PREGUNTAS[next]!}`);
       setFase(next);
@@ -240,11 +257,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarEmbarazo = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       addRestriccion("❌ Embarazo actual o en el último año — diferimiento permanente.");
       bot("El embarazo actual o reciente (último año) impide donar sangre.", mkConsultaResultado("no_apto_permanente"), true);
-      irAResultado();
+      setFase("resultado");
     } else {
       const next = siguientePregunta("q_embarazo", perfil.sexo);
       bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS[next]!);
@@ -255,7 +272,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarSaludGeneral = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       bot("¡Qué bueno! ✓\n\n" + TEXTOS_PREGUNTAS.q_medicacion!);
       setFase("q_medicacion");
@@ -267,6 +284,12 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
 
   const procesarSaludCual = async (texto: string) => {
     setInputError(""); setInput(""); usuario(texto);
+    // Si el usuario responde "no" o niega, volver a pedir el malestar
+    const siNo = detectarSiNo(texto);
+    if (siNo === "no") {
+      bot("Entiendo que no querés especificarlo, pero necesito saber qué sentís para poder ayudarte. Si no tenés ningún malestar, podés volver atrás y responder 'Sí' a la pregunta anterior. ¿Qué te duele o cuál es tu malestar?");
+      return;
+    }
     setLoading(true);
     try {
       const r = await fetch(`${API}/consulta`, {
@@ -278,20 +301,19 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         addRestriccion(`❌ Malestar de salud — diferimiento permanente.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else if (data.tipo === "no_apto_temporal") {
         addRestriccion(`⏳ Malestar de salud — esperá hasta recuperarte.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
-        if (esFD) {
-          bot("No pude identificar el malestar que describiste. ¿Podés describirlo con más detalle? Por ejemplo: dolor de cabeza, fiebre, tos, gripe...");
-          return;
-        }
-        const msg = data.respuesta || "Ese malestar no parece ser un impedimento directo para donar. Te recomendamos comentarlo en el centro.";
-        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_medicacion!, data);
+        const msg = esFD
+          ? "Lo que describiste no figura en nuestra base de datos como impedimento para donar sangre. Este sistema evalúa únicamente los malestares registrados como causas de diferimiento. ✓"
+          : (data.respuesta || "Ese malestar no parece ser un impedimento directo para donar. Te recomendamos comentarlo en el centro.");
+        bot(msg, esFD ? undefined : data);
+        bot(TEXTOS_PREGUNTAS.q_medicacion!);
         setFase("q_medicacion");
       }
     } catch { bot("Error conectando con el servidor. ¿Está activo el backend?"); }
@@ -301,7 +323,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarMedicacion = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       bot("¿Cuál medicamento estás tomando actualmente? " + hint("(Escribí el nombre del medicamento)", "Decí el nombre del medicamento."));
       setFase("q_medicacion_cual");
@@ -323,11 +345,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
       if (data.tipo === "no_apto_permanente") {
         addRestriccion(`❌ Medicamento: ${texto} — diferimiento permanente.`);
         bot(data.respuesta, mkConsultaResultado(data.tipo), true);
-        irAResultado();
+        setFase("resultado");
       } else if (data.tipo === "no_apto_temporal") {
         addRestriccion(`⏳ Medicamento: ${texto} — requiere período de espera.`);
         bot(data.respuesta, mkConsultaResultado(data.tipo), true);
-        irAResultado();
+        setFase("resultado");
       } else {
         bot(data.respuesta + " ✓\n\n" + TEXTOS_PREGUNTAS.q_vacunas!);
         setFase("q_vacunas");
@@ -339,7 +361,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarVacunas = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       bot("¿Cuál vacuna te aplicaste? " + hint("(Escribí el nombre de la vacuna)", "Decí el nombre de la vacuna."));
       setFase("q_vacuna_cual");
@@ -362,12 +384,12 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         addRestriccion(`❌ Vacuna: ${texto} — diferimiento permanente.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else if (data.tipo === "no_apto_temporal") {
         addRestriccion(`⏳ Vacuna: ${texto} — requiere período de espera.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
         const msg = esFD
@@ -376,7 +398,8 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         if (!esFD && data.tipo !== "apto" && data.tipo !== "corpus" && data.tipo !== "info") {
           addRestriccion(`⚠️ Vacuna: ${texto} — consultar en el banco de sangre.`);
         }
-        bot(msg + " ✓\n\n" + TEXTOS_PREGUNTAS.q_enfermedades!, esFD ? undefined : data);
+        bot(msg + " ✓", esFD ? undefined : data);
+        bot(TEXTOS_PREGUNTAS.q_enfermedades!);
         setFase("q_enfermedades");
       }
     } catch { bot("Error conectando con el servidor. ¿Está activo el backend?"); }
@@ -386,7 +409,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarEnfermedades = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       bot("¿Cuál enfermedad tenés? " + hint("(Escribí el nombre de la enfermedad)", "Decí el nombre de la enfermedad."));
       setFase("q_enfermedades_cual");
@@ -420,12 +443,12 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         addRestriccion(`❌ Enfermedad: ${texto} — diferimiento permanente.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else if (data.tipo === "no_apto_temporal") {
         addRestriccion(`⏳ Enfermedad: ${texto} — requiere período de espera.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
-        irAResultado();
+        setFase("resultado");
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
         if (esFD) {
@@ -436,7 +459,8 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         if (data.tipo === "consultar") {
           addRestriccion(`⚠️ Enfermedad: ${texto} — consultar en el banco de sangre.`);
         }
-        bot(msg + "\n\n" + TEXTOS_PREGUNTAS.q_odontologo!, data);
+        bot(msg, data);
+        bot(TEXTOS_PREGUNTAS.q_odontologo!);
         setFase("q_odontologo");
       }
     } catch { bot("Error conectando con el servidor. ¿Está activo el backend?"); }
@@ -452,7 +476,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     if (esTipo1) {
       addRestriccion("❌ Diabetes tipo 1 (insulinodependiente) — diferimiento permanente.");
       bot("La diabetes tipo 1 con insulina impide donar de forma permanente.", mkConsultaResultado("no_apto_permanente"), true);
-      irAResultado();
+      setFase("resultado");
     } else {
       bot("La diabetes tipo 2 controlada con pastillas o dieta generalmente no impide donar. ✓\n\n" + TEXTOS_PREGUNTAS.q_odontologo!);
       setFase("q_odontologo");
@@ -462,7 +486,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarOdontologo = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       addRestriccion("⚠️ Visita odontológica reciente — el banco de sangre evaluará.");
       bot("Registrado. El personal médico lo tendrá en cuenta. ✓\n\n" + TEXTOS_PREGUNTAS.q_tatuajes_procedimientos!);
@@ -475,7 +499,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const procesarTatuajesProcedimientos = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
     const r = detectarSiNo(raw);
-    if (!r) { setInputError("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
       addRestriccion("⏳ Tatuaje, piercing o procedimiento invasivo — espera de 6 meses.");
     }
