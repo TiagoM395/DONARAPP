@@ -23,7 +23,21 @@ export function TabWER({ isMobile }: { isMobile: boolean }) {
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SR) return alert("Usá Chrome o Edge para el reconocimiento de voz.");
     const rec = new SR(); rec.lang = "es-AR"; setEscuchando(true); rec.start();
-    rec.onresult = (e: any) => setHipotesis(e.results[0][0].transcript);
+    const fraseActual = frases[indice];
+    const indiceActual = indice;
+    rec.onresult = async (e: any) => {
+      const transcript = e.results[0][0].transcript;
+      setHipotesis(transcript);
+      if (!fraseActual) return;
+      const r = await fetch(`${API}/wer/evaluar`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ referencia: fraseActual.frase, hipotesis: transcript, frase_id: indiceActual }),
+      });
+      const data = await r.json();
+      setResultados(prev => [...prev.filter(x => x.frase_id !== indiceActual), data]);
+      setHipotesis("");
+      if (indiceActual < frases.length - 1) setIndice(indiceActual + 1);
+    };
     rec.onend = () => setEscuchando(false);
   };
 
@@ -175,9 +189,13 @@ export function TabWER({ isMobile }: { isMobile: boolean }) {
           <div style={{ overflowX: "auto" }}>
             <table style={tbl.table}>
               <thead><tr>
-                {["#", "Referencia", "Transcripción", "WER", "S", "D", "I"].map(h => (
-                  <th key={h} style={tbl.th}>{h}</th>
-                ))}
+                <th style={tbl.th}>#</th>
+                <th style={tbl.th}>Referencia</th>
+                <th style={tbl.th}>Transcripción</th>
+                <th style={{ ...tbl.th, whiteSpace: "normal", maxWidth: 90 }}>WER = % de palabras incorrectas</th>
+                <th style={{ ...tbl.th, whiteSpace: "normal", maxWidth: 90 }}>S = sustituciones (palabra reemplazada)</th>
+                <th style={{ ...tbl.th, whiteSpace: "normal", maxWidth: 90 }}>D = eliminaciones (palabra omitida)</th>
+                <th style={{ ...tbl.th, whiteSpace: "normal", maxWidth: 90 }}>I = inserciones (palabra inventada)</th>
               </tr></thead>
               <tbody>
                 {[...resultados].sort((a, b) => a.frase_id - b.frase_id).map((r, i) => (

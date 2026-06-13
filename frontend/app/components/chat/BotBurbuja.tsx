@@ -36,8 +36,7 @@ export function BotBurbuja({ msg, onOpcion, onTTS, showTts = true }: {
     const segmentos = msg.texto.split("\n\n").filter(s => s.trim());
     const renderSegmento = (seg: string, i: number) => {
       const tieneCheck = seg.includes("✓");
-      const esPregunta = !tieneCheck && (i === segmentos.length - 1) && segmentos.length > 1;
-      const color = tieneCheck ? "#166534" : esPregunta ? "#1e3a8a" : "#1e293b";
+      const color = tieneCheck ? "#166534" : "#1e3a8a";
       const partes = seg.split("✓");
       return (
         <div key={i} style={{ color, fontSize: 15, fontWeight: tieneCheck ? 600 : 500,
@@ -207,21 +206,34 @@ export function BotBurbuja({ msg, onOpcion, onTTS, showTts = true }: {
                   {msg.texto.split("\n\n")[0]}
                 </p>
                 <div style={{
-                  marginTop: 16,
-                  backgroundColor: "white",
-                  border: "2px solid #3b82f6",
-                  borderRadius: 16,
-                  padding: "16px 20px",
-                  width: "100%",
+                  marginTop: 16, backgroundColor: "white", border: "2px solid #3b82f6",
+                  borderRadius: 16, padding: "16px 20px", width: "100%",
                   boxShadow: "0 4px 6px -1px rgba(59, 130, 246, 0.15)",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: 8
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
                 }}>
                   <div style={{ fontSize: 28 }}>📍</div>
                   <div style={{ fontSize: 13, fontWeight: 800, color: "#1d4ed8", textAlign: "center", letterSpacing: 1 }}>
                     BUSCADOR DE CENTROS
+                  </div>
+                  <p style={{ margin: 0, fontSize: 14, color: "#334155", textAlign: "center", lineHeight: 1.6, fontWeight: 500 }}>
+                    {msg.texto.split("\n\n").slice(1).join("\n\n")}
+                  </p>
+                </div>
+              </>
+            ) : c && (c.tipo === "no_apto_permanente" || c.tipo === "no_apto_temporal") && msg.texto.includes("\n\n") ? (
+              <>
+                <p style={{ margin: 0, fontSize: 18, color: "#0f172a", lineHeight: 1.8, fontWeight: 700, textAlign: "center", whiteSpace: "pre-line" }}>
+                  {msg.texto.split("\n\n")[0]}
+                </p>
+                <div style={{
+                  marginTop: 16, backgroundColor: "white", border: `2px solid ${t.border}`,
+                  borderRadius: 16, padding: "16px 20px", width: "100%",
+                  boxShadow: `0 4px 6px -1px ${t.border}33`,
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                }}>
+                  <div style={{ fontSize: 28 }}>{c.tipo === "no_apto_permanente" ? "🏥" : "📅"}</div>
+                  <div style={{ fontSize: 13, fontWeight: 800, color: t.border, textAlign: "center", letterSpacing: 1 }}>
+                    PRÓXIMO PASO
                   </div>
                   <p style={{ margin: 0, fontSize: 14, color: "#334155", textAlign: "center", lineHeight: 1.6, fontWeight: 500 }}>
                     {msg.texto.split("\n\n").slice(1).join("\n\n")}

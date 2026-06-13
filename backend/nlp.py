@@ -34,7 +34,9 @@ class NLPProcessor:
             "antibiotico", "antibiótico", "antibioticos", "antibióticos",
             "penicilina", "amoxicilina", "ibuprofeno", "pastilla", "medicamento",
             "medicacion", "medicación",
-            "levotiroxina", "aspirina", "enalapril"
+            "levotiroxina", "aspirina", "enalapril",
+            "ibupirac", "actron", "dalsy", "faspic", "buprex",
+            "buscapina", "migral", "tempra", "termalgin", "panadol",
         ],
         "anticoagulante": [
             "anticoagulante", "anticoagulantes", "warfarina", "acenocumarol",

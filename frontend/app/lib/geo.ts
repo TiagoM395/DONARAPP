@@ -30,33 +30,38 @@ export function calcularDistanciaKm(lat1: number, lon1: number, lat2: number, lo
   const R = 6371; // Radio de la Tierra en km
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
-  const a = 
+  const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
+    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 }
 
+// Normaliza texto quitando tildes/acentos para búsqueda tolerante
+function normalizarTexto(texto: string): string {
+  return texto.toLowerCase().normalize("NFD").replace(/\p{Mn}/gu, "");
+}
+
 export function buscarCentro(ciudadIngresada: string): { tipo: 'exacto' | 'cercanos' | 'error', centros: CentroDonacion[], mensaje?: string } {
   const centros = centrosDatos as CentroDonacion[];
   const localidades = localidadesDatos as Localidad[];
-  const ciudadLimpia = ciudadIngresada.trim().toLowerCase();
+  const ciudadLimpia = normalizarTexto(ciudadIngresada.trim());
 
   // 1. Búsqueda por coincidencia exacta de texto en centros_donacion.json
-  const centrosEnCiudad = centros.filter(c => c.ciudad.toLowerCase() === ciudadLimpia);
+  const centrosEnCiudad = centros.filter(c => normalizarTexto(c.ciudad) === ciudadLimpia);
   if (centrosEnCiudad.length > 0) {
     return { tipo: 'exacto', centros: centrosEnCiudad };
   }
 
   // 2. Si no hay posta, buscamos la localidad en localidades_ba.json
-  const localidadEncontrada = localidades.find(l => l.nombre.toLowerCase() === ciudadLimpia);
-  
+  const localidadEncontrada = localidades.find(l => normalizarTexto(l.nombre) === ciudadLimpia);
+
   if (!localidadEncontrada) {
-    return { 
-      tipo: 'error', 
-      centros: [], 
-      mensaje: `No pudimos encontrar la localidad "${ciudadIngresada}". Verificá cómo está escrita.` 
+    return {
+      tipo: 'error',
+      centros: [],
+      mensaje: `No pudimos encontrar la localidad "${ciudadIngresada}". Verificá cómo está escrita.`
     };
   }
 
@@ -65,9 +70,9 @@ export function buscarCentro(ciudadIngresada: string): { tipo: 'exacto' | 'cerca
     .filter(c => c.latitud !== null && c.longitud !== null)
     .map(c => {
       const distancia = calcularDistanciaKm(
-        localidadEncontrada.latitud, 
-        localidadEncontrada.longitud, 
-        c.latitud!, 
+        localidadEncontrada.latitud,
+        localidadEncontrada.longitud,
+        c.latitud!,
         c.longitud!
       );
       return { ...c, distancia };
