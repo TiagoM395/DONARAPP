@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { API, playTTS } from "../lib/api";
+import { API, playTTS, stopTTS } from "../lib/api";
 import type { FaseChat, Consulta, MensajeChat } from "../types";
 import { buscarCentro } from "../lib/geo";
 
@@ -39,38 +39,87 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const [loading, setLoading]           = useState(false);
   const [escuchando, setEscuchando]     = useState(false);
   const [grabando, setGrabando]         = useState(false);
+  const [leyendo, setLeyendo]           = useState(false);
   const [ttsOn, setTtsOn]               = useState(autoTts);
   const [fase, setFase]                 = useState<FaseChat>("confirmar_inicio");
   const [perfil, setPerfil]             = useState<{ edad?: number; sexo?: string; peso?: number }>({});
   const [restricciones, setRestricciones] = useState<string[]>([]);
-  const [mensajes, setMensajes]         = useState<MensajeChat[]>([{ id: 0, rol: "bot", texto: BIENVENIDA }]);
 
-  const msgIdRef       = useRef(1);
-  const chatEndRef     = useRef<HTMLDivElement>(null);
-  const mediaRecRef    = useRef<MediaRecorder | null>(null);
-  const chunksRef      = useRef<Blob[]>([]);
-  const restriccionesRef = useRef<string[]>([]);
+  const mensajesInicio: MensajeChat[] = [{ id: 0, rol: "bot", texto: BIENVENIDA }];
+  const [mensajes, setMensajes]         = useState<MensajeChat[]>(mensajesInicio);
+
+  const msgIdRef          = useRef(1);
+  const leyendoRef        = useRef(false);
+  const lastReadMsgIdRef  = useRef(-1);
+  const recRef            = useRef<any>(null);
+  const chatEndRef        = useRef<HTMLDivElement>(null);
+  const mediaRecRef       = useRef<MediaRecorder | null>(null);
+  const chunksRef         = useRef<Blob[]>([]);
+  const restriccionesRef  = useRef<string[]>([]);
   const ttsOnRef          = useRef(autoTts);
   const manejarEnvioFn    = useRef((_t: string, _o?: string) => {});
   const intentosFallidosRef = useRef(0);
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [mensajes]);
   useEffect(() => { ttsOnRef.current = ttsOn; }, [ttsOn]);
+  const marcarLeyendo = (v: boolean) => { leyendoRef.current = v; setLeyendo(v); };
   useEffect(() => { intentosFallidosRef.current = 0; }, [fase]);
 
   const bot = (texto: string, consulta?: Consulta, esResultado?: boolean) => {
-    setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto, consulta, esResultado }]);
-    if (ttsOnRef.current) playTTS(texto);
+    const id = msgIdRef.current++;
+    setMensajes(prev => [...prev, { id, rol: "bot", texto, consulta, esResultado }]);
+    if (ttsOnRef.current) {
+      lastReadMsgIdRef.current = id;
+      marcarLeyendo(true);
+      playTTS(texto, () => marcarLeyendo(false));
+    }
   };
-  const usuario = (texto: string) =>
-    setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "usuario", texto }]);
+  const usuario = (texto: string) => {
+    const id = msgIdRef.current++;
+    setMensajes(prev => [...prev, { id, rol: "usuario", texto }]);
+  };
 
   const reiniciar = () => {
+    stopTTS();
     msgIdRef.current = 1;
+    lastReadMsgIdRef.current = -1;
     setFase("confirmar_inicio"); setPerfil({}); setRestricciones([]);
     restriccionesRef.current = [];
     setInput(""); setInputError("");
-    setMensajes([{ id: 0, rol: "bot", texto: BIENVENIDA }]);
+    marcarLeyendo(false);
+    setMensajes(mensajesInicio);
+    if (autoTts) {
+      setTimeout(() => {
+        marcarLeyendo(true);
+        playTTS(BIENVENIDA, () => marcarLeyendo(false));
+      }, 50);
+    }
+  };
+
+  const leerActual = () => {
+    if (!ttsOnRef.current) return;
+    const lastBot = [...mensajes].filter(m => m.rol === "bot").pop();
+    if (lastBot) { marcarLeyendo(true); playTTS(lastBot.texto, () => marcarLeyendo(false)); }
+  };
+
+  const leerTexto = (texto: string) => {
+    if (!ttsOnRef.current) return;
+    marcarLeyendo(true);
+    playTTS(texto, () => marcarLeyendo(false));
+  };
+
+  const detenerLectura = () => { stopTTS(); marcarLeyendo(false); };
+
+  const comenzar = () => {
+    const msg = mensajes[0];
+    if (!msg) return;
+    lastReadMsgIdRef.current = msg.id;
+    if (ttsOnRef.current) {
+      marcarLeyendo(true);
+      playTTS(msg.texto, () => { bot("¿Querés comenzar con el cuestionario?"); });
+    } else {
+      bot("¿Querés comenzar con el cuestionario?");
+    }
   };
 
   const mkConsultaResultado = (tipo: string): Consulta => ({
@@ -95,6 +144,8 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         "Cuando tengas la información necesaria, podés volver y completamos la evaluación juntos. ¡Hasta pronto!"
       );
       setFase("resultado");
+    } else if (modo === "voz") {
+      bot(msg);
     } else {
       setInputError(msg);
     }
@@ -133,27 +184,33 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
 
   // Detección de Sí / No en dos niveles (regex directa + semántica)
   const detectarSiNo = (raw: string): "si" | "no" | null => {
-    const t = raw.toLowerCase().trim();
-    if (/^(no|nop|nel|nunca|jam[aá]s|negativo|para nada|tampoco)\b/i.test(t)) return "no";
-    if (/^(s[íi]|yes|dale|ok|claro|correcto|afirmativo|efectivamente|cierto|verdad|exacto|obvio|por supuesto)\b/i.test(t)) return "si";
-    if (/\b(no tengo|no tuve|no soy|no fui|no tomo|no me|no estoy|no padezco|no recib[íi]|no me hice)\b/i.test(t)) return "no";
-    if (/\b(tengo|tuve|padezco|fui|tomo|tom[eé]|recib[íi]|me hice|soy|estoy|me diagnosticaron|me apliqu[eé])\b/i.test(t)) return "si";
+    const t = raw.normalize("NFC").toLowerCase().trim().replace(/[.,!?¡¿]/g, "");
+    if (t === "sí" || t === "si" || t === "s") return "si";
+    if (t === "no") return "no";
+    if (/^(no|nop|nel|nunca|jam[aá]s|negativo|para nada|tampoco)(\s|$)/i.test(t)) return "no";
+    if (/^(s[íi]|yes|dale|ok|claro|correcto|afirmativo|efectivamente|cierto|verdad|exacto|obvio|por supuesto)(\s|$)/i.test(t)) return "si";
+    if (/\b(no tengo|no tuve|no soy|no fui|no tomo|no me|no estoy|no padezco|no recib[íi]|no me hice|nunca don[eé]|nunca he donado)\b/i.test(t)) return "no";
+    if (/\b(tengo|tuve|padezco|fui|tomo|tom[eé]|recib[íi]|me hice|soy|estoy|me diagnosticaron|me apliqu[eé]|don[eé]|donar|he donado|varias veces|una vez|muchas veces|alguna vez)\b/i.test(t)) return "si";
     return null;
   };
 
   // ── Procesadores de cada fase ─────────────────────────────────────────────
 
   const procesarConfirmacion = (raw: string) => {
-    const t = raw.toLowerCase().trim();
-    const esSi = /\b(s[íi]|si|yes|claro|dale|ok|s)\b/i.test(t) || t === "s" || t === "si" || t === "sí";
-    const esNo = /\b(no|nop|negativo|nel)\b/i.test(t) || t === "no";
+    const t = raw.toLowerCase().trim().replace(/[.,!?¡¿]/g, "");
+    const esSi = /^(s[íi]|yes|claro|dale|ok|s)(\s|$)/i.test(t) || t === "sí" || t === "si" || t === "s";
+    const esNo = /^(no|nop|negativo|nel)(\s|$)/i.test(t) || t === "no";
     if (!esSi && !esNo) { registrarFallo("Respondé Sí o No."); return; }
-    setInputError(""); setInput(""); usuario(esSi ? "Sí" : "No");
+    setInputError(""); setInput(""); usuario(raw);
     if (!esSi) {
       bot("¡Gracias por visitarnos! Cuando quieras podés volver a consultar.");
       setFase("resultado");
     } else {
-      bot("¡Hola! Soy el asistente para evaluar si podés donar sangre del Instituto de Hemoterapia PBA.\n\n¿Cuánto pesás? " + hint("(ingresá el número en kg)", "Decí el número en kg."));
+      if (modo === "voz") {
+        bot("¿Cuánto pesás? Decí el número en kg.");
+      } else {
+        bot("¡Hola! Soy el asistente para evaluar si podés donar sangre del Instituto de Hemoterapia PBA.\n\n¿Cuánto pesás? (ingresá el número en kg)");
+      }
       setFase("pedir_peso");
     }
   };
@@ -192,18 +249,17 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     }
   };
 
-  const procesarSexo = (sexo: string) => {
-    usuario(sexo); setPerfil(p => ({ ...p, sexo }));
+  const procesarSexo = (sexo: string, displayText?: string) => {
+    usuario(displayText ?? sexo); setPerfil(p => ({ ...p, sexo }));
     bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_frecuencia_donacion!);
     setFase("q_frecuencia_donacion");
   };
 
   const procesarSexoPorVoz = (raw: string) => {
     const t = raw.toLowerCase();
-    if (/\b(masc|hombre|varon|var[oó]n|masculino|male)\b/i.test(t)) { procesarSexo("Hombre"); return; }
-    if (/\b(fem|mujer|femenino|female)\b/i.test(t)) { procesarSexo("Mujer"); return; }
-    if (/\b(otro|other)\b/i.test(t)) { procesarSexo("Otro"); return; }
-    setInputError("Decí Masculino, Femenino u Otro.");
+    if (/\b(masc|hombre|varon|var[oó]n|masculino|male)\b/i.test(t)) { procesarSexo("Hombre", raw); return; }
+    if (/\b(fem|mujer|femenino|female)\b/i.test(t)) { procesarSexo("Mujer", raw); return; }
+    setInputError("Decí Masculino o Femenino.");
   };
 
   const procesarFrecuenciaDonacion = (raw: string) => {
@@ -220,9 +276,14 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     }
   };
 
+  const normalizarNumerosEsp = (s: string) => s.replace(
+    /\b(un(?:a)?|dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|once|doce|quince|veinte|treinta)\b/gi,
+    m => ({ un:1,una:1,dos:2,tres:3,cuatro:4,cinco:5,seis:6,siete:7,ocho:8,nueve:9,diez:10,once:11,doce:12,quince:15,veinte:20,treinta:30 } as Record<string,number>)[m.toLowerCase()]?.toString() ?? m
+  );
+
   const procesarUltimaDonacion = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
-    const txt = raw.toLowerCase();
+    const txt = normalizarNumerosEsp(raw.toLowerCase());
     let semanas: number | null = null;
 
     const mA = txt.match(/(\d+(?:[.,]\d+)?)\s*a[ñn]os?/);
@@ -525,7 +586,8 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
       ).join("\n\n");
       bot(`No tenemos postas registradas exactamente en "${raw.trim()}", pero estos son los centros más cercanos:\n\n${lista}\n\n¡Gracias por querer donar sangre!`, mkConsultaResultado("apto"), true);
     } else {
-      bot(`${res.mensaje}\n\nPodés buscar los lugares habilitados en la página oficial del Instituto de Hemoterapia o intentar con una ciudad cercana.`, mkConsultaResultado("apto"), true);
+      bot(`${res.mensaje}\n\nIntentá con otra localidad, o decí "no" para saltearlo.`);
+      return;
     }
     setFase("resultado");
   };
@@ -560,17 +622,61 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   // ── Voz ────────────────────────────────────────────────────────────────────
 
   const iniciarVoz = () => {
+    if (escuchando) { recRef.current?.stop(); return; }
     if (fase === "resultado") return;
+
+    const wasPlaying = leyendoRef.current;
+    if (wasPlaying) stopTTS();
+    marcarLeyendo(false);
+
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SR) { alert("Usá Chrome o Edge para el reconocimiento de voz."); return; }
-    const rec = new SR(); rec.lang = "es-AR"; rec.continuous = false;
-    setEscuchando(true); rec.start();
-    rec.onresult = (e: any) => {
-      if (!e.results[0].isFinal) return;
-      manejarEnvioFn.current(e.results[0][0].transcript, "voz");
+
+    const startRec = () => {
+      const rec = new SR();
+      rec.lang = "es-AR";
+      rec.continuous = true;
+      rec.interimResults = true;
+
+      let procesado = false;
+      const terminar = (transcript: string) => {
+        if (procesado) return;
+        procesado = true;
+        rec.stop();
+        manejarEnvioFn.current(transcript, "voz");
+      };
+
+      const timeoutId = setTimeout(() => { if (!procesado) rec.stop(); }, 7000);
+
+      rec.onresult = (e: any) => {
+        if (procesado) return;
+        const result = e.results[e.results.length - 1];
+        const transcript = result[0].transcript.trim();
+        const tNorm = transcript.normalize("NFC").toLowerCase().replace(/[.,!?¡¿]/g, "");
+        const isPalabraCorta = /^(sí|si|no|s)$/.test(tNorm);
+        if ((result.isFinal || isPalabraCorta) && transcript) {
+          clearTimeout(timeoutId);
+          terminar(transcript);
+        }
+      };
+      rec.onerror = (e: any) => {
+        clearTimeout(timeoutId);
+        if (e?.error === "not-allowed") {
+          bot("No tengo acceso al micrófono. Habilitalo en la configuración del navegador y recargá la página.");
+        }
+      };
+      rec.onend = () => { clearTimeout(timeoutId); setEscuchando(false); };
+
+      recRef.current = rec;
+      setEscuchando(true);
+      rec.start();
     };
-    rec.onerror = () => setEscuchando(false);
-    rec.onend   = () => setEscuchando(false);
+
+    if (wasPlaying) {
+      setTimeout(startRec, 150);
+    } else {
+      startRec();
+    }
   };
 
   const iniciarWhisper = async () => {
@@ -605,12 +711,13 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     : fase === "q_enfermedades_cual"                     ? "Ej: diabetes, hipertensión, hepatitis..."
     : fase === "q_diabetes_tipo"                         ? "Tipo 1 / Tipo 2 (o escribí 1 o 2)"
     : fase === "pedir_ciudad"                            ? "Ej: La Plata, Mar del Plata..."
-    : "Sí / No";
+    : modo === "voz" ? "Respondé sí o no." : "Sí / No";
 
   return {
     input, setInput, inputError, setInputError, loading,
-    escuchando, grabando, ttsOn, setTtsOn,
+    escuchando, grabando, leyendo, ttsOn, setTtsOn,
     fase, perfil, restricciones, mensajes, chatEndRef,
-    placeholder, reiniciar, procesarSexo, manejarEnvio, iniciarVoz, iniciarWhisper,
+    placeholder, reiniciar, comenzar, procesarSexo, manejarEnvio, iniciarVoz, iniciarWhisper,
+    leerActual, leerTexto, detenerLectura,
   };
 }
