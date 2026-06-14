@@ -30,7 +30,7 @@ const TOOLS = [
 export default function Home() {
   const [session, setSession] = useState<{ token: string, role: string, username: string } | null>(null);
   const [isClient, setIsClient] = useState(false);
-  const [tab, setTab] = useState<"inicio" | "consulta" | "dashboard" | "ngramas" | "ir" | "wer">("inicio");
+  const [tab, setTab] = useState<"inicio" | "consulta" | "dashboard" | "ngramas" | "ir" | "wer" | "login">("inicio");
   const [toolsOpen, setToolsOpen] = useState(false);
   const [hoveredTool, setHoveredTool] = useState<number | null>(null);
   const isMobile = useIsMobile();
@@ -42,7 +42,6 @@ export default function Home() {
   }, []);
 
   if (!isClient) return null; // Evita el problema de "hydration mismatch" en Next.js
-  if (!session) return <LoginForm onLogin={setSession} />;
 
   return (
     <div style={{ fontFamily: "Inter, system-ui, sans-serif", minHeight: "100vh", background: "#f1f5f9", display: "flex", flexDirection: "column" }}>
@@ -54,14 +53,15 @@ export default function Home() {
           flexDirection: isMobile ? "column" : "row", gap: isMobile ? 8 : 0 }}>
 
           {/* Brand */}
-          <div style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, letterSpacing: 0.3, flexShrink: 0,
-                        padding: isMobile ? 0 : "14px 0" }}>
+          <div 
+            onClick={() => setTab("inicio")}
+            style={{ fontWeight: 800, fontSize: isMobile ? 14 : 16, letterSpacing: 0.3, flexShrink: 0,
+                        padding: isMobile ? 0 : "14px 0", cursor: "pointer" }}>
             🩸 DONAR-APP
           </div>
 
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            {/* Tabs + Herramientas (Solo Admin) */}
-            {session.role === "admin" && (
+            {session?.role === "admin" && (
               <nav style={{ display: "flex", gap: 2, flexWrap: "wrap",
                 justifyContent: isMobile ? "center" : "flex-end", alignItems: "center" }}>
                 {TABS.map(t => (
@@ -121,15 +121,36 @@ export default function Home() {
                 </div>
               </nav>
             )}
+
+            {/* Botón Volver al inicio para usuarios (visible fuera del home) */}
+            {!session && tab !== "inicio" && (
+              <button
+                onClick={() => setTab("inicio")}
+                style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.2)",
+                         borderRadius: 8, cursor: "pointer", padding: "6px 12px",
+                         fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
+                🏠 Volver al inicio
+              </button>
+            )}
             
-            {/* Botón Cerrar Sesión */}
-            <button
-              onClick={() => { localStorage.removeItem("session"); setSession(null); setTab("inicio"); }}
-              style={{ background: "rgba(239,68,68,0.15)", color: "#fca5a5", border: "1px solid rgba(239,68,68,0.2)",
-                       borderRadius: 8, cursor: "pointer", padding: "6px 12px",
-                       fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
-              Cerrar sesión
-            </button>
+            {/* Botón Cerrar / Iniciar Sesión */}
+            {session ? (
+              <button
+                onClick={() => { localStorage.removeItem("session"); setSession(null); setTab("inicio"); }}
+                style={{ background: "rgba(239,68,68,0.15)", color: "#fca5a5", border: "1px solid rgba(239,68,68,0.2)",
+                         borderRadius: 8, cursor: "pointer", padding: "6px 12px",
+                         fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
+                Cerrar sesión
+              </button>
+            ) : (
+              <button
+                onClick={() => setTab("login")}
+                style={{ background: tab === "login" ? "#2563eb" : "#3b82f6", color: "white", border: "none",
+                         borderRadius: 8, cursor: "pointer", padding: "6px 12px",
+                         fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
+                Administrador
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -139,10 +160,11 @@ export default function Home() {
                      padding: tab === "consulta" ? (isMobile ? "8px" : "8px 4px") : (isMobile ? "20px 12px" : "28px 28px") }}>
         {tab === "inicio"    && <TabInicio setTab={setTab} />}
         {tab === "consulta" && <TabConsulta isMobile={isMobile} />}
-        {session.role === "admin" && tab === "dashboard" && <TabDashboard isMobile={isMobile} />}
-        {session.role === "admin" && tab === "ngramas"   && <TabNgramas   isMobile={isMobile} />}
-        {session.role === "admin" && tab === "ir"        && <TabIR        isMobile={isMobile} />}
-        {session.role === "admin" && tab === "wer"       && <TabWER       isMobile={isMobile} />}
+        {session?.role === "admin" && tab === "dashboard" && <TabDashboard isMobile={isMobile} />}
+        {session?.role === "admin" && tab === "ngramas"   && <TabNgramas   isMobile={isMobile} />}
+        {session?.role === "admin" && tab === "ir"        && <TabIR        isMobile={isMobile} />}
+        {session?.role === "admin" && tab === "wer"       && <TabWER       isMobile={isMobile} />}
+        {tab === "login" && !session && <LoginForm onLogin={(s) => { setSession(s); setTab("inicio"); }} />}
       </main>
 
       <footer style={{ background: "#0f172a", color: "#94a3b8", textAlign: "center",
