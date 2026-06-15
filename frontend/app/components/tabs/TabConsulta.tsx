@@ -35,9 +35,9 @@ function InputArea({ chat }: { chat: ReturnType<typeof useChatFlow> }) {
 
   if (fase === "pedir_sexo") return (
     <div style={{ display: "flex", gap: 8, padding: "12px 16px", borderTop: "1px solid #cbd5e1" }}>
-      {(["Masculino", "Femenino", "Otro"] as const).map(s => (
+      {(["Masculino", "Femenino"] as const).map(s => (
         <button key={s}
-          onClick={() => chat.procesarSexo(s === "Masculino" ? "Hombre" : s === "Femenino" ? "Mujer" : "Otro")}
+          onClick={() => chat.procesarSexo(s === "Masculino" ? "Hombre" : "Mujer")}
           style={{ flex: 1, padding: "12px 4px", borderRadius: 8,
                    border: "2px solid #3b82f6", background: "#eff6ff",
                    cursor: "pointer", fontSize: 14, fontWeight: 700, color: "#1e40af" }}>
@@ -96,10 +96,61 @@ function InputArea({ chat }: { chat: ReturnType<typeof useChatFlow> }) {
   );
 }
 
+function InputAreaVoz({ chat, activePanel }: { chat: ReturnType<typeof useChatFlow>; activePanel: string }) {
+  const { fase, escuchando, leyendo, ttsOn, setTtsOn, iniciarVoz, reiniciar } = chat;
+
+  if (fase === "resultado") return (
+    <div style={{ display: "flex", justifyContent: "center", padding: "12px 16px", borderTop: "1px solid #e2e8f0" }}>
+      <button type="button" onClick={e => { e.stopPropagation(); reiniciar(); }}
+        style={{ padding: "10px 24px", borderRadius: 8, border: "none",
+                 background: "#0f172a", color: "white", cursor: "pointer",
+                 fontSize: 14, fontWeight: 600 }}>
+        Nueva evaluación
+      </button>
+    </div>
+  );
+
+  const micColor = escuchando ? "#dc2626" : leyendo ? "#f59e0b" : "#7c3aed";
+  const micLabel = escuchando ? "Escuchando..." : leyendo ? "Leyendo..." : "Tocá para hablar";
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", padding: "12px 16px",
+                  borderTop: "1px solid #e2e8f0", gap: 6 }}>
+      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <button type="button"
+          onClick={e => { if (activePanel !== "voz") return; e.stopPropagation(); iniciarVoz(); }}
+          style={{ width: 38, height: 38, borderRadius: "50%", border: "none",
+                   cursor: "pointer", background: micColor, color: "white",
+                   fontSize: 16, display: "flex", alignItems: "center", justifyContent: "center",
+                   flexShrink: 0 }}>
+          {leyendo ? "🔊" : "🎙️"}
+        </button>
+        <span style={{ fontSize: 13, color: "#64748b", flex: 1 }}>{micLabel}</span>
+        <button type="button" onClick={e => { e.stopPropagation(); setTtsOn(!ttsOn); }}
+          style={{ background: ttsOn ? "#0f172a" : "#f1f5f9",
+                   color: ttsOn ? "white" : "#64748b",
+                   border: "1px solid #cbd5e1", borderRadius: 20, padding: "4px 10px",
+                   cursor: "pointer", fontSize: 11, fontWeight: 600, flexShrink: 0 }}>
+          {ttsOn ? "🔊" : "🔇"}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
   const texto = useChatFlow({ autoTts: false, bienvenida: "Este es el asistente para evaluaciones de posibles donantes.\n\n¿Querés comenzar con el asistente de texto para la evaluación de posibles donantes?" });
   const voz   = useChatFlow({ autoTts: true,  bienvenida: "Este es el asistente para evaluaciones de posibles donantes.\n\n¿Querés comenzar con el asistente de voz para la evaluación de posibles donantes? Podés responder todas las preguntas hablando.", modo: "voz" });
   const [activePanel, setActivePanel] = useState<"texto" | "voz">("texto");
+
+  useEffect(() => {
+    if (activePanel === "voz") {
+      voz.reiniciar();
+    } else {
+      voz.detenerLectura();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activePanel]);
 
   const GAP = 16;
 
@@ -303,22 +354,15 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
               </span>
             </>
           )}
-          {voz.fase === "resultado" && (
-            <button onClick={e => { e.stopPropagation(); voz.reiniciar(); }}
-              style={{ padding: "10px 24px", borderRadius: 8, border: "none",
-                       background: "#0f172a", color: "white", cursor: "pointer",
-                       fontSize: 14, fontWeight: 600 }}>
-              Nueva evaluación
-            </button>
+          {voz.loading && (
+            <div style={{ display: "flex", justifyContent: "flex-start", marginTop: 8 }}>
+              <div style={{ background: "#f1f5f9", borderRadius: 12, padding: "10px 14px",
+                            fontSize: 13, color: "#64748b" }}>Procesando...</div>
+            </div>
           )}
-          <button onClick={e => { e.stopPropagation(); voz.setTtsOn(!voz.ttsOn); }}
-            style={{ background: voz.ttsOn ? "#0f172a" : "#f1f5f9",
-                     color: voz.ttsOn ? "white" : "#64748b",
-                     border: "1px solid #cbd5e1", borderRadius: 20, padding: "5px 14px",
-                     cursor: "pointer", fontSize: 12, fontWeight: 600 }}>
-            {voz.ttsOn ? "🔊 Voz activada" : "🔇 Voz silenciada"}
-          </button>
+          <div ref={voz.chatEndRef} />
         </div>
+        <InputAreaVoz chat={voz} activePanel={activePanel} />
       </div>
     </div>
   );

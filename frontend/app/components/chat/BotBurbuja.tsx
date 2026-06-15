@@ -39,8 +39,8 @@ export function BotBurbuja({ msg, onOpcion, onTTS, showTts = true }: {
       const color = tieneCheck ? "#166534" : "#1e3a8a";
       const partes = seg.split("✓");
       return (
-        <div key={i} style={{ color, fontSize: 15, fontWeight: tieneCheck ? 600 : 500,
-          lineHeight: 1.6, whiteSpace: "pre-line",
+        <div key={i} style={{ color, fontSize: 14, fontWeight: tieneCheck ? 600 : 500,
+          lineHeight: 1.5, whiteSpace: "pre-line",
           marginBottom: i < segmentos.length - 1 ? 4 : 0 }}>
           {partes.length > 1
             ? partes.map((p, k) => (
