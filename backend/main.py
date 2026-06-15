@@ -4,11 +4,14 @@ import os
 import sqlite3
 import tempfile
 import unicodedata
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from fastapi import FastAPI, Query, UploadFile, File
+import jwt
+from fastapi import FastAPI, Query, UploadFile, File, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+import bcrypt
 
 from gtts import gTTS
 
@@ -18,15 +21,65 @@ from wer import calcular_wer, resumen_wer, FRASES_PRUEBA
 from rules import evaluar
 from search import MotorBusqueda
 
+# --- Configuraciones JWT y Hash ---
+SECRET_KEY = "tu_clave_secreta_super_segura" # IMPORTANTE: En producción usar variables de entorno
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 1440 # 24 horas de validez para el JWT
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+DB_PATH = os.path.join(os.path.dirname(__file__), "donar.db")
+
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# --- Añadir el Endpoint de Login ---
+@app.post("/login")
+def login(request: LoginRequest):
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, username, password_hash, rol FROM usuarios WHERE username = ?", (request.username,))
+        user = cursor.fetchone()
+        conn.close()
+
+        # Verificar existencia y contraseña
+        if not user or not bcrypt.checkpw(request.password.encode('utf-8'), user[2].encode('utf-8')):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Usuario o contraseña incorrectos",
+            )
+        
+        # Generar Token JWT
+        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        payload = {"sub": user[1], "rol": user[3], "exp": expire}
+        token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+        # Compatibilidad por si PyJWT devuelve bytes (en versiones antiguas)
+        if isinstance(token, bytes):
+            token = token.decode("utf-8")
+
+        return {"access_token": token, "token_type": "bearer", "rol": user[3]}
+
+    except HTTPException:
+        raise
+    except sqlite3.OperationalError as e:
+        if "no such table: usuarios" in str(e).lower():
+            raise HTTPException(status_code=500, detail="La tabla 'usuarios' no existe. Por favor, ejecuta crear_usuarios.py primero.")
+        raise
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Error interno: {type(e).__name__} - {str(e)}")
 
 # ── CORPUS ───────────────────────────────────────────────────────────────────
 _CORPUS_PATH = os.path.join(os.path.dirname(__file__), "corpus.json")
@@ -71,7 +124,7 @@ nlp = NLPProcessor()
 
 # ── DB ────────────────────────────────────────────────────────────────────────
 def get_db():
-    conn = sqlite3.connect("donar.db")
+    conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
 
