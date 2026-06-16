@@ -169,6 +169,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const hayTemporal   = rs.some(r => r.startsWith("⏳"));
     if (rs.length === 0) {
       bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("pregunta_ciudad"), true);
+      bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("apto"), true);
       setFase("pedir_ciudad");
     } else if (hayPermanente) {
       bot("No podés donar sangre.\n\nTe recomendamos hablar con el médico del banco de sangre para que evalúe tu caso.", mkConsultaResultado("no_apto_permanente"), true);
@@ -178,6 +179,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
       setFase("resultado");
     } else {
       bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("pregunta_ciudad"), true);
+      bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("apto"), true);
       setFase("pedir_ciudad");
     }
   };
@@ -569,22 +571,31 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
 
   const procesarCiudad = (raw: string) => {
     setInputError(""); setInput(""); usuario(raw);
-    if (/^(no|nop|nada|ninguna|no quiero|paso)\b/i.test(raw.toLowerCase().trim())) {
+
+    // Limpiamos los signos de puntuación que pueda inyectar el reconocimiento de voz
+    let ciudadStr = raw.replace(/[.,!?¡¿]/g, "").trim();
+    
+    if (/^(no|nop|nada|ninguna|no quiero|paso)\b/i.test(ciudadStr.toLowerCase())) {
       bot("No hay problema. Acercate al banco de sangre más cercano a tu domicilio. ¡Gracias por querer donar!", mkConsultaResultado("apto"), true);
       setFase("resultado");
       return;
     }
-    const res = buscarCentro(raw);
+    
+    // Removemos prefijos comunes para dejar sólo el nombre de la ciudad
+    ciudadStr = ciudadStr.replace(/^(soy de|vivo en|en|de|mi ciudad es|de la ciudad de)\s+/i, "").trim();
+    
+    const res = buscarCentro(ciudadStr);
+    
     if (res.tipo === "exacto") {
       const lista = res.centros.map(c =>
         `• ${c.centro_donacion}\n   📍 ${c.direccion}${c.telefono ? `\n   📞 ${c.telefono}` : ""}${c.horarios ? `\n   🕒 ${c.horarios}` : ""}`
       ).join("\n\n");
-      bot(`Podés acercarte a cualquiera de estos centros en la zona de ${raw.trim()}:\n\n${lista}\n\n¡Gracias por querer donar sangre!`, mkConsultaResultado("apto"), true);
+      bot(`Podés acercarte a cualquiera de estos centros en la zona de ${ciudadStr}:\n\n${lista}\n\n¡Gracias por querer donar sangre!`, mkConsultaResultado("apto"), true);
     } else if (res.tipo === "cercanos") {
       const lista = res.centros.map(c =>
         `• ${c.centro_donacion} (${c.ciudad} - a ${Math.round(c.distancia || 0)} km)\n   📍 ${c.direccion}${c.telefono ? `\n   📞 ${c.telefono}` : ""}${c.horarios ? `\n   🕒 ${c.horarios}` : ""}`
       ).join("\n\n");
-      bot(`No tenemos postas registradas exactamente en "${raw.trim()}", pero estos son los centros más cercanos:\n\n${lista}\n\n¡Gracias por querer donar sangre!`, mkConsultaResultado("apto"), true);
+      bot(`No tenemos postas registradas exactamente en "${ciudadStr}", pero estos son los centros más cercanos:\n\n${lista}\n\n¡Gracias por querer donar sangre!`, mkConsultaResultado("apto"), true);
     } else {
       bot(`${res.mensaje}\n\nIntentá con otra localidad, o decí "no" para saltearlo.`);
       return;

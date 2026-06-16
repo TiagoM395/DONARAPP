@@ -6,7 +6,6 @@ import { UsuarioBurbuja } from "../chat/UsuarioBurbuja";
 import { playTTS } from "../../lib/api";
 import type { FaseChat } from "../../types";
 
-// Definimos qué fases permiten entrada de texto y cuáles son dicotómicas (Sí/No)
 const FASES_CON_TEXTO = new Set<FaseChat>([
   "pedir_peso", "pedir_edad",
   "q_ultima_donacion", "q_salud_cual",
@@ -64,7 +63,7 @@ function InputArea({ chat }: { chat: ReturnType<typeof useChatFlow> }) {
         <button key={op} onClick={() => manejarEnvio(op)}
           style={{ flex: 1, padding: "12px 4px", borderRadius: 8,
                    border: op === "Sí" ? "2px solid #16a34a" : "2px solid #94a3b8",
-                   background: op === "Sí" ? "#f0fdf4" : "white",
+                   background: op === "Sí" ? "#f0fdf4" : "#f8fafc",
                    cursor: "pointer", fontSize: 15, fontWeight: 700,
                    color: op === "Sí" ? "#14532d" : "#334155" }}>
           {op}
@@ -258,101 +257,11 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
             </button>
           )}
         </div>
-        <div style={{ flex: 1, overflowY: activePanel !== "voz" ? "hidden" : "auto", padding: "16px" }}>
-          {activePanel !== "voz" ? (
-            <div style={{ height: "100%", display: "flex", alignItems: "center", justifyContent: "center",
-                          textAlign: "center", color: "#5b21b6", fontWeight: 600, lineHeight: 1.6, fontSize: 13, fontStyle: "italic" }}>
-              Este es el asistente para evaluaciones de posibles donantes por medio de tu voz
-            </div>
-          ) : (
-            <>
-              {voz.mensajes.map(m =>
-                m.rol === "bot"
-                  ? <BotBurbuja key={m.id} msg={m} onOpcion={op => voz.manejarEnvio(op)} onTTS={() => playTTS(m.texto)} showTts={true} />
-                  : <UsuarioBurbuja key={m.id} texto={m.texto} />
-              )}
-              {voz.loading && (
-                <div style={{ display: "flex", justifyContent: "flex-start", marginTop: 8 }}>
-                  <div style={{ background: "#f1f5f9", borderRadius: 12, padding: "10px 14px",
-                                fontSize: 13, color: "#64748b" }}>Procesando...</div>
-                </div>
-              )}
-              <div ref={voz.chatEndRef} />
-            </>
-          )}
-        </div>
-        <div style={{ padding: "16px", borderTop: "2px solid #e2e8f0",
-                      display: "flex", flexDirection: "column", gap: 10, alignItems: "center",
-                      flexShrink: 0 }}>
-          
-          {/* Guía visual para el usuario de voz: muestra qué puede decir según la fase */}
-          {activePanel === "voz" && voz.fase !== "resultado" && !voz.loading && (
-            <div style={{ width: "100%", marginBottom: 10, display: "flex", justifyContent: "center", gap: 8 }}>
-               {FASES_SI_NO.has(voz.fase) && (
-                 <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                   <span style={{ fontSize: 12, color: "#6d28d9", fontWeight: 600 }}>Podés decir:</span>
-                   <div style={{ padding: "4px 12px", borderRadius: 12, background: "#f0fdf4", border: "1px solid #16a34a", color: "#14532d", fontSize: 11, fontWeight: 700 }}>"Sí"</div>
-                   <div style={{ padding: "4px 12px", borderRadius: 12, background: "#fff1f2", border: "1px solid #dc2626", color: "#991b1b", fontSize: 11, fontWeight: 700 }}>"No"</div>
-                 </div>
-               )}
-               {voz.fase === "pedir_sexo" && (
-                 <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-                   <span style={{ fontSize: 11, color: "#6d28d9", fontWeight: 600 }}>Decí:</span>
-                   {["Masculino", "Femenino", "Otro"].map(s => (
-                     <div key={s} style={{ padding: "3px 10px", borderRadius: 10, background: "#f5f3ff", border: "1px solid #ddd6fe", color: "#5b21b6", fontSize: 10, fontWeight: 700 }}>"{s}"</div>
-                   ))}
-                 </div>
-               )}
-               {voz.fase === "pedir_peso" && (
-                  <div style={{ fontSize: 12, color: "#6d28d9", fontWeight: 600, fontStyle: "italic" }}>
-                    Decí tu peso, por ejemplo: "Setenta y dos kilos"
-                  </div>
-               )}
-               {voz.fase === "pedir_edad" && (
-                  <div style={{ fontSize: 12, color: "#6d28d9", fontWeight: 600, fontStyle: "italic" }}>
-                    Decí tu edad, por ejemplo: "Veintiocho años"
-                  </div>
-               )}
-               {voz.fase === "q_medicacion_cual" && (
-                  <div style={{ fontSize: 12, color: "#6d28d9", fontWeight: 600, fontStyle: "italic" }}>
-                    Decí el nombre del medicamento claramente
-                  </div>
-               )}
-            </div>
-          )}
-
-          {/* Transcripción parcial o error de entrada */}
-          {voz.inputError && activePanel === "voz" && (
-            <div style={{ fontSize: 12, color: "#dc2626", background: "#fef2f2", padding: "4px 12px", borderRadius: 6, marginBottom: 5 }}>
-              {voz.inputError}
-            </div>
-          )}
-
-          {voz.fase !== "resultado" && (
-            <>
-              <button onClick={e => { 
-                if (activePanel !== "voz") return; 
-                e.stopPropagation(); 
-                // "Desbloqueo" de audio para navegadores móviles
-                const silentAudio = new Audio();
-                silentAudio.play().catch(() => {}); 
-                
-                voz.iniciarVoz(); 
-              }}
-                style={{ width: 68, height: 68, borderRadius: "50%", border: "none",
-                         cursor: "pointer",
-                         background: voz.escuchando ? "#dc2626" : "#0f172a",
-                         color: "white", fontSize: 28,
-                         display: "flex", alignItems: "center", justifyContent: "center",
-                         boxShadow: voz.escuchando
-                           ? "0 0 0 10px #fecaca, 0 2px 8px rgba(0,0,0,0.2)"
-                           : "0 4px 12px rgba(0,0,0,0.25)" }}>
-                🎙️
-              </button>
-              <span style={{ fontSize: 12, color: "#64748b", textAlign: "center" }}>
-                {voz.escuchando ? "Escuchando... tocá para detener" : "Tocá para hablar"}
-              </span>
-            </>
+        <div style={{ flex: 1, overflowY: "auto", padding: "16px" }}>
+          {voz.mensajes.map(m =>
+            m.rol === "bot"
+              ? <BotBurbuja key={m.id} msg={m} onOpcion={op => voz.manejarEnvio(op)} onTTS={() => playTTS(m.texto)} />
+              : <UsuarioBurbuja key={m.id} texto={m.texto} />
           )}
           {voz.loading && (
             <div style={{ display: "flex", justifyContent: "flex-start", marginTop: 8 }}>
@@ -367,3 +276,6 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
     </div>
   );
 }
+
+
+
