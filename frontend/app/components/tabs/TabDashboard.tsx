@@ -144,7 +144,7 @@ export function TabDashboard({ isMobile }: { isMobile: boolean }) {
             <div style={{ fontSize: 12, fontWeight: 700, color: "#94a3b8", letterSpacing: 1, marginBottom: 12 }}>
               MOTOR DE BÚSQUEDA (IR / TF-IDF)
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 12 }}>
               <StatCard title="Precisión" value={stats.ir.precision} color="#2563eb" />
               <StatCard title="Recall"    value={stats.ir.recall}    color="#16a34a" />
               <StatCard title="F1"        value={stats.ir.f1}        color="#d97706" />

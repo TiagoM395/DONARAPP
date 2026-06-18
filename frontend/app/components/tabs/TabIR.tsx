@@ -73,7 +73,7 @@ export function TabIR({ isMobile }: { isMobile: boolean }) {
 
         {metricas && (
           <>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
               <StatCard title="Precisión promedio" value={metricas.promedio.precision} color="#2563eb" />
               <StatCard title="Recall promedio"    value={metricas.promedio.recall}    color="#16a34a" />
               <StatCard title="F1 promedio"        value={metricas.promedio.f1}        color="#d97706" />
