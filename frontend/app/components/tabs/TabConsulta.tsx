@@ -137,7 +137,7 @@ function InputAreaVoz({ chat, activePanel }: { chat: ReturnType<typeof useChatFl
   );
 }
 
-export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
+export function TabConsulta({ isMobile }: { isMobile: boolean }) {
   const texto = useChatFlow({ autoTts: false, bienvenida: "Este es el asistente para evaluaciones de posibles donantes.\n\n¿Querés comenzar con el asistente de texto para la evaluación de posibles donantes?" });
   const voz   = useChatFlow({ autoTts: true,  bienvenida: "Este es el asistente para evaluaciones de posibles donantes.\n\n¿Querés comenzar con el asistente de voz para la evaluación de posibles donantes? Podés responder todas las preguntas hablando.", modo: "voz" });
   const [activePanel, setActivePanel] = useState<"texto" | "voz">("texto");
@@ -156,10 +156,10 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
   return (
     <div style={{
       display: "flex",
-      flexDirection: "row",
+      flexDirection: isMobile ? "column" : "row",
       gap: GAP,
-      height: "calc(100vh - 120px)",
-      width: "70vw",
+      height: isMobile ? "calc(100vh - 160px)" : "calc(100vh - 120px)",
+      width: isMobile ? "95vw" : "70vw",
       margin: "0 auto",
     }}>
 
@@ -167,7 +167,7 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
       <div
         onClick={() => activePanel !== "texto" && setActivePanel("texto")}
         style={{
-          flex: activePanel === "texto" ? 7 : 3,
+          flex: activePanel === "texto" ? (isMobile ? 1 : 7) : (isMobile ? 0.15 : 3),
           transition: "all 0.5s ease-in-out",
           minWidth: 0,
           display: "flex", flexDirection: "column",
@@ -227,7 +227,7 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
       <div
         onClick={() => activePanel !== "voz" && setActivePanel("voz")}
         style={{
-          flex: activePanel === "voz" ? 7 : 3,
+          flex: activePanel === "voz" ? (isMobile ? 1 : 7) : (isMobile ? 0.15 : 3),
           transition: "all 0.5s ease-in-out",
           minWidth: 0,
           display: "flex", flexDirection: "column",
@@ -276,6 +276,3 @@ export function TabConsulta({ isMobile: _isMobile }: { isMobile: boolean }) {
     </div>
   );
 }
-
-
-
