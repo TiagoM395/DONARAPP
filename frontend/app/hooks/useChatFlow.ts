@@ -48,17 +48,18 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const mensajesInicio: MensajeChat[] = [{ id: 0, rol: "bot", texto: BIENVENIDA }];
   const [mensajes, setMensajes]         = useState<MensajeChat[]>(mensajesInicio);
 
-  const msgIdRef          = useRef(1);
-  const leyendoRef        = useRef(false);
-  const lastReadMsgIdRef  = useRef(-1);
-  const recRef            = useRef<any>(null);
-  const chatEndRef        = useRef<HTMLDivElement>(null);
-  const mediaRecRef       = useRef<MediaRecorder | null>(null);
-  const chunksRef         = useRef<Blob[]>([]);
-  const restriccionesRef  = useRef<string[]>([]);
-  const ttsOnRef          = useRef(autoTts);
-  const manejarEnvioFn    = useRef((_t: string, _o?: string) => {});
-  const intentosFallidosRef = useRef(0);
+  const msgIdRef             = useRef(1);
+  const leyendoRef           = useRef(false);
+  const lastReadMsgIdRef     = useRef(-1);
+  const recRef               = useRef<any>(null);
+  const chatEndRef           = useRef<HTMLDivElement>(null);
+  const mediaRecRef          = useRef<MediaRecorder | null>(null);
+  const chunksRef            = useRef<Blob[]>([]);
+  const restriccionesRef     = useRef<string[]>([]);
+  const ttsOnRef             = useRef(autoTts);
+  const manejarEnvioFn       = useRef((_t: string, _o?: string) => {});
+  const intentosFallidosRef  = useRef(0);
+  const enfermedadContextoRef = useRef<string>(""); // ← contexto para preguntas de seguimiento
 
   useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: "smooth" }); }, [mensajes]);
   useEffect(() => { ttsOnRef.current = ttsOn; }, [ttsOn]);
@@ -85,6 +86,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     lastReadMsgIdRef.current = -1;
     setFase("confirmar_inicio"); setPerfil({}); setRestricciones([]);
     restriccionesRef.current = [];
+    enfermedadContextoRef.current = "";
     setInput(""); setInputError("");
     marcarLeyendo(false);
     setMensajes(mensajesInicio);
@@ -169,7 +171,6 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const hayTemporal   = rs.some(r => r.startsWith("⏳"));
     if (rs.length === 0) {
       bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("pregunta_ciudad"), true);
-      bot("¡Excelente! Según la evaluación, podés donar sangre. ✓\n\nSi querés, podés decirme de qué ciudad sos y con gusto te digo cuáles son los centros de donación más cercanos.", mkConsultaResultado("apto"), true);
       setFase("pedir_ciudad");
     } else if (hayPermanente) {
       bot("No podés donar sangre.\n\nTe recomendamos hablar con el médico del banco de sangre para que evalúe tu caso.", mkConsultaResultado("no_apto_permanente"), true);
@@ -372,10 +373,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
         setFase("resultado");
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
-        const msg = esFD
+        const tieneResultado = ["apto", "no_apto_permanente", "no_apto_temporal", "consultar"].includes(data.tipo);
+        const msg = (esFD && !tieneResultado)
           ? "Lo que describiste no figura en nuestra base de datos como impedimento para donar sangre. Este sistema evalúa únicamente los malestares registrados como causas de diferimiento. ✓"
           : (data.respuesta || "Ese malestar no parece ser un impedimento directo para donar. Te recomendamos comentarlo en el centro.");
-        bot(msg, esFD ? undefined : data);
+        bot(msg, (esFD && !tieneResultado) ? undefined : data);
         bot(TEXTOS_PREGUNTAS.q_medicacion!);
         setFase("q_medicacion");
       }
@@ -484,7 +486,18 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
 
   const procesarEnfermedadCual = async (texto: string) => {
     setInputError(""); setInput(""); usuario(texto);
-    const txtLower = texto.toLowerCase();
+
+    // Si hay contexto pendiente (ej: "hipertension"), combinar con la aclaración del usuario
+ // POR esto:
+const contexto = enfermedadContextoRef.current;
+enfermedadContextoRef.current = "";
+const palabrasContexto = contexto.toLowerCase().split(" ");
+const textoYaContieneContexto = palabrasContexto.some(p => p.length > 3 && texto.toLowerCase().includes(p));
+const textoFinal = contexto && !textoYaContieneContexto
+  ? `${contexto} ${texto}`
+  : texto;
+
+    const txtLower = textoFinal.toLowerCase();
 
     // Caso especial: diabetes sin especificar tipo
     const esDiabetes = /\bdiabet(?:es|ico|ica)\b/i.test(txtLower);
@@ -499,28 +512,33 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     try {
       const r = await fetch(`${API}/consulta`, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texto, origen: "texto" }),
+        body: JSON.stringify({ texto: textoFinal, origen: "texto" }),
       });
       const data: Consulta = await r.json();
       if (data.tipo === "no_apto_permanente") {
-        addRestriccion(`❌ Enfermedad: ${texto} — diferimiento permanente.`);
+        addRestriccion(`❌ Enfermedad: ${textoFinal} — diferimiento permanente.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
         setFase("resultado");
       } else if (data.tipo === "no_apto_temporal") {
-        addRestriccion(`⏳ Enfermedad: ${texto} — requiere período de espera.`);
+        addRestriccion(`⏳ Enfermedad: ${textoFinal} — requiere período de espera.`);
         setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: data.respuesta, consulta: data, esResultado: true }]);
         if (ttsOnRef.current) playTTS(data.respuesta);
         setFase("resultado");
       } else {
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
-        if (esFD) {
+        const tieneResultado = ["apto", "no_apto_permanente", "no_apto_temporal", "consultar"].includes(data.tipo);
+        if (esFD && !tieneResultado) {
           bot("No pude identificar la enfermedad que describiste. ¿Podés describirla con más detalle? Por ejemplo: diabetes, hepatitis, hipertensión...");
           return;
         }
         const msg = data.respuesta || "Esa condición no parece ser un impedimento directo para donar.";
         if (data.tipo === "consultar") {
-          addRestriccion(`⚠️ Enfermedad: ${texto} — consultar en el banco de sangre.`);
+          // Guardar el texto como contexto y esperar aclaración del usuario
+          enfermedadContextoRef.current = textoFinal;
+          bot(msg, data);
+          // La fase se queda en q_enfermedades_cual, el próximo mensaje combinará
+          return;
         }
         bot(msg, data);
         bot(TEXTOS_PREGUNTAS.q_odontologo!);
@@ -719,6 +737,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     : fase === "q_salud_cual"                            ? "Ej: dolor de cabeza, tos, fiebre..."
     : fase === "q_medicacion_cual"                       ? "Ej: ibuprofeno, insulina, anticoagulante..."
     : fase === "q_vacuna_cual"                           ? "Ej: gripe, varicela, fiebre amarilla..."
+    : fase === "q_enfermedades_cual" && enfermedadContextoRef.current ? "Ej: está controlada, está elevada..."
     : fase === "q_enfermedades_cual"                     ? "Ej: diabetes, hipertensión, hepatitis..."
     : fase === "q_diabetes_tipo"                         ? "Tipo 1 / Tipo 2 (o escribí 1 o 2)"
     : fase === "pedir_ciudad"                            ? "Ej: La Plata, Mar del Plata..."
