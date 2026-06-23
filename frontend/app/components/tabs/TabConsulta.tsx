@@ -36,7 +36,7 @@ function InputArea({ chat }: { chat: ReturnType<typeof useChatFlow> }) {
     <div style={{ display: "flex", gap: 8, padding: "12px 16px", borderTop: "1px solid #cbd5e1" }}>
       {(["Masculino", "Femenino"] as const).map(s => (
         <button key={s}
-          onClick={() => chat.procesarSexo(s === "Masculino" ? "Hombre" : "Mujer")}
+          onClick={() => chat.procesarSexo(s === "Masculino" ? "Hombre" : "Mujer", s)}
           style={{ flex: 1, padding: "12px 4px", borderRadius: 8,
                    border: "2px solid #3b82f6", background: "#eff6ff",
                    cursor: "pointer", fontSize: 14, fontWeight: 700, color: "#1e40af" }}>

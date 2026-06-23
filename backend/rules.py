@@ -32,7 +32,7 @@ def _fuzzy_match(texto: str, keywords: list, umbral: int = 2) -> str | None:
         if len(token) < 4:
             continue
         for kw in keywords:
-            if abs(len(token) - len(kw)) <= umbral and _levenshtein(token, kw) <= umbral:
+            if token[0] == kw[0] and abs(len(token) - len(kw)) <= umbral and _levenshtein(token, kw) <= umbral:
                 return kw
     return None
 
@@ -376,7 +376,6 @@ def _evaluar_interno(t: str, texto: str, tiempo_meses, peso, edad) -> dict:
             "¿Es hepatitis A, B o C? "
             "Hepatitis B o C confirmada: NO PODÉS DONAR (permanente). "
             "Hepatitis A resuelta: no genera diferimiento permanente.",
-            opciones=["hepatitis a", "hepatitis b", "hepatitis c"],
         )
 
     # ═════════════════════════════════════════════════════════════════════════
@@ -910,7 +909,11 @@ def _evaluar_interno(t: str, texto: str, tiempo_meses, peso, edad) -> dict:
         return _consul(
             "Si la presión está elevada el día de la donación: diferir 1 mes. "
             "Si está controlada y los valores son normales: podés donar.",
-            opciones=["hipertensión controlada"],
+        )
+
+    if any(k in t for k in ["dolor de cabeza", "cefalea", "migraña"]):
+        return _apto(
+            "El dolor de cabeza o migraña no impiden donar, siempre que te sientas bien al momento de la donación."
         )
 
     # ═════════════════════════════════════════════════════════════════════════
