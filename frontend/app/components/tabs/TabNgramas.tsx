@@ -15,6 +15,7 @@ export function TabNgramas({ isMobile }: { isMobile: boolean }) {
   const [siguientes, setSiguientes]   = useState<any | null>(null);
   const [inicioGen, setInicioGen]     = useState("");
   const [generado, setGenerado]       = useState("");
+  const [comparacion, setComparacion] = useState<any | null>(null);
 
   const cargar = async () => {
     const [b, t] = await Promise.all([
@@ -34,6 +35,11 @@ export function TabNgramas({ isMobile }: { isMobile: boolean }) {
     if (!palabraSig.trim()) return;
     const d = await fetchJSON(`${API}/ngramas/siguiente?palabra=${encodeURIComponent(palabraSig.trim())}&k=${k}`);
     setSiguientes(d);
+  };
+
+  const cargarComparacion = async () => {
+    const d = await fetchJSON(`${API}/ngramas/comparacion`);
+    setComparacion(d);
   };
 
   const generar = async () => {
@@ -96,6 +102,47 @@ export function TabNgramas({ isMobile }: { isMobile: boolean }) {
                   : `Por debajo del umbral (${PP_UMBRAL}) — consulta dentro del dominio`}
               </div>
             </div>
+          </div>
+        )}
+      </Card>
+
+      {/* Comparación MLE vs Add-k */}
+      <Card>
+        <SectionTitle>
+          Comparación MLE vs Add-k
+          <InfoTag titulo="MLE vs Add-k" texto="MLE (k≈0) asigna probabilidad casi nula a n-gramas no vistos, disparando la perplejidad. Add-k suma k a todos los conteos para evitarlo. Se evalúa sobre el 20% de test (no visto en entrenamiento)." />
+        </SectionTitle>
+        <p style={{ fontSize: 13, color: "#64748b", margin: "0 0 14px" }}>
+          {comparacion
+            ? `Evaluado sobre ${comparacion.test_size} frases de test (entrenado con ${comparacion.train_size}).`
+            : "Calcula la perplejidad para 4 valores de k sobre el conjunto de test separado."}
+        </p>
+        <button type="button" style={btn.primary} onClick={cargarComparacion}>Calcular comparación</button>
+        {comparacion && (
+          <div style={{ overflowX: "auto", marginTop: 16 }}>
+            <table style={tbl.table}>
+              <thead><tr>
+                <th style={tbl.th}>Método</th>
+                <th style={tbl.th}>k</th>
+                <th style={tbl.th}>PP promedio</th>
+                <th style={tbl.th}>PP mín</th>
+                <th style={tbl.th}>PP máx</th>
+              </tr></thead>
+              <tbody>
+                {comparacion.filas.map((r: any, i: number) => (
+                  <tr key={i} style={{ background: i === 0 ? "#fef9c3" : i % 2 === 0 ? "#f8fafc" : "transparent" }}>
+                    <td style={{ ...tbl.td, fontWeight: i === 0 ? 700 : 400 }}>{r.etiqueta}</td>
+                    <td style={tbl.td}>{r.k}</td>
+                    <td style={{ ...tbl.td, fontWeight: 700, color: i === 0 ? "#b45309" : "#15803d" }}>{r.pp_promedio}</td>
+                    <td style={tbl.td}>{r.pp_min}</td>
+                    <td style={tbl.td}>{r.pp_max}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p style={{ fontSize: 12, color: "#64748b", marginTop: 8 }}>
+              MLE destacado en amarillo — mayor PP indica peor generalización sobre datos no vistos.
+            </p>
           </div>
         )}
       </Card>

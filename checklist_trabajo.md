@@ -1,6 +1,6 @@
 # CHECKLIST — Trabajo Integrador Unidad 11
 **Proyecto:** DONAR-APP — Sistema de evaluación de donantes de sangre  
-**Fecha de revisión:** 2026-06-04  
+**Fecha de revisión:** 2026-06-24 (actualización 2)  
 **Leyenda:** ✅ Cumplido · ⚠️ Parcial / mejorable · ❌ Falta
 
 ---
@@ -15,10 +15,10 @@
 | 1.4 | Transcripción visible en tiempo real en la interfaz | ✅ | Aparece como burbuja de usuario inmediatamente tras el reconocimiento |
 | 1.5 | WER medido sobre 10+ frases de referencia | ✅ | 12 frases en `wer.py:FRASES_PRUEBA`, tab dedicado TabWER, endpoint `/wer/resumen` |
 | 1.6 | WER media reportada | ✅ | `resumen_wer()` calcula promedio, visible en dashboard (StatCard "WER") |
-| 1.7 | WER **desviación estándar** reportada | ❌ | `resumen_wer()` solo devuelve promedio; falta agregar `std` al cálculo |
-| 1.8 | Documentar limitaciones del ASR (ruido, acentos, jerga) | ⚠️ | `evaluar_wer.py` tiene comentarios sobre tipos de errores (tildes, números); falta una sección formal de limitaciones en el informe |
+| 1.7 | WER **desviación estándar** reportada | ✅ | `wer.py:resumen_wer()` devuelve `wer_std` y `wer_pct_std` usando `statistics.stdev()` |
+| 1.8 | Documentar limitaciones del ASR (ruido, acentos, jerga) | ⚠️ | `evaluar_wer.py` tiene comentarios; se documenta formalmente en `informe_tecnico.md` |
 
-**Estado del bloque: 6/8 ✅**
+**Estado del bloque: 7/8 ✅** *(era 6/8)*
 
 ---
 
@@ -26,7 +26,7 @@
 
 | # | Requisito | Estado | Dónde está / Qué falta |
 |---|-----------|--------|------------------------|
-| 2.1 | Sistema responde al usuario con audio generado | ✅ | Endpoint `GET /tts` en `main.py:234-240` con gTTS |
+| 2.1 | Sistema responde al usuario con audio generado | ✅ | Endpoint `GET /tts` en `main.py:299-304` con gTTS |
 | 2.2 | gTTS en español | ✅ | `lang="es", tld="com.ar"` — español rioplatense |
 | 2.3 | Audio reproducible en la interfaz web | ✅ | `playTTS()` en `api.ts`, `<audio>` en `BotBurbuja.tsx` |
 | 2.4 | Configurable: texto, voz o ambas | ✅ | Toggle "🔊 Voz activada / 🔇 Voz silenciada" en panel voz; panel texto sin TTS automático |
@@ -39,15 +39,15 @@
 
 | # | Requisito | Estado | Dónde está / Qué falta |
 |---|-----------|--------|------------------------|
-| 3.1 | Tokenización del texto de entrada | ✅ | `nlp.py:tokenizar()` — regex `[a-záéíóúüñ]+`, retorna lista de tokens |
-| 3.2 | NER con al menos 3 tipos de entidades del dominio | ✅ | `extraer_entidades()` detecta: TIPO (50+ subcategorías de medicamentos, enfermedades, procedimientos), TIEMPO, PESO, EDAD |
-| 3.3 | POS tagging | ✅ | `pos_tag()` en `nlp.py` — etiquetas VERB / NOUN / ADJ / STOP / NUM / OTHER (implementación propia con diccionarios) |
-| 3.4 | Detección de intención o clasificación de consulta | ✅ | `detectar_intencion()` — 3 clases: `querer_donar`, `consulta_tiempo`, `consulta_general` |
-| 3.5 | Uso de spaCy (`es_core_news_sm`) | ❌ | El PLN es completamente propio (regex + diccionarios). Funciona bien, pero la guía pide spaCy específicamente |
-| 3.6 | Accuracy NER medida sobre 20+ ejemplos anotados | ❌ | No existe `eval_ner.py` ni conjunto de test anotado. Es uno de los ítems evaluados en la rúbrica (Accuracy NER ≥ 70%) |
-| 3.7 | Búsqueda de medicamentos con tolerancia tipográfica | ✅ | **NUEVO** — `main.py:POST /medicamento` — Levenshtein dist ≤ 2 + normalización unicode + fallback a motor de reglas |
+| 3.1 | Tokenización del texto de entrada | ✅ | `nlp.py:tokenizar()` — usa spaCy `doc.is_alpha`; fallback regex `[a-záéíóúüñ]+` |
+| 3.2 | NER con al menos 3 tipos de entidades del dominio | ✅ | `extraer_entidades()` detecta: TIPO (50+ subcategorías), TIEMPO, PESO, EDAD + PER/LOC/ORG/MISC de spaCy |
+| 3.3 | POS tagging | ✅ | `pos_tag()` en `nlp.py` — diccionario de dominio sobre `token.pos_` de spaCy; etiquetas VERB/NOUN/ADJ/STOP/NUM/OTHER |
+| 3.4 | Detección de intención o clasificación de consulta | ✅ | `detectar_intencion()` — 3 clases: `querer_donar`, `consulta_tiempo`, `informacion`/`consulta_general` |
+| 3.5 | Uso de spaCy (`es_core_news_sm`) | ✅ | `NLPProcessor.__init__()` carga `es_core_news_sm`. `tokenizar()`, `pos_tag()` y `extraer_entidades()` usan el modelo |
+| 3.6 | Accuracy NER medida sobre 20+ ejemplos anotados | ✅ | `backend/eval_ner.py` — 25 oraciones anotadas, mide TP/FN/Accuracy (Recall). Ejecutar: `python eval_ner.py` |
+| 3.7 | Búsqueda de medicamentos con tolerancia tipográfica | ✅ | `main.py:POST /medicamento` — Levenshtein dist ≤ 2 + normalización unicode + fallback a motor de reglas |
 
-**Estado del bloque: 5/7 ✅**
+**Estado del bloque: 7/7 ✅** *(era 6/7)*
 
 ---
 
@@ -59,14 +59,16 @@
 | 4.2 | Modelo de trigramas | ✅ | Mismo método `entrenar()` construye bigramas y trigramas simultáneamente |
 | 4.3 | Suavizado Add-k con k configurable (no solo k=1) | ✅ | Parámetro `k` en constructor; slider en `TabNgramas.tsx`; acepta valores 0.01–10 |
 | 4.4 | PP calculada y mostrada | ✅ | `perplejidad()` calculada por consulta, visible en tab N-gramas y en cada respuesta del backend |
-| 4.5 | PP usada en al menos una funcionalidad | ✅ | Detección de fuera-de-dominio (PP > 60) en `main.py:181-197` — alerta al usuario si la consulta es incoherente |
-| 4.6 | PP evaluada sobre **conjunto de test separado** del de entrenamiento | ❌ | No hay split train/test; PP se evalúa implícitamente sobre los mismos datos usados para entrenar |
-| 4.7 | Comparación PP con MLE (k=0) vs Add-k | ❌ | No hay comparativa. La rúbrica dice "Comparar MLE vs Add-k" |
+| 4.5 | PP usada en al menos una funcionalidad | ✅ | Detección de fuera-de-dominio (PP > 60) en `main.py:245-258` — alerta al usuario si la consulta es incoherente |
+| 4.6 | PP evaluada sobre **conjunto de test separado** del de entrenamiento | ✅ | `main.py:120-126` — split 80/20 semilla fija (seed=42). Endpoint `/ngramas/evaluacion` reporta PP sobre `CORPUS_TEST` |
+| 4.7 | Comparación PP con MLE (k=0) vs Add-k | ✅ | Endpoint `/ngramas/comparacion` — corre 4 configuraciones (k=0.0001, 0.1, 0.5, 1.0) sobre el mismo test set y devuelve tabla |
 | 4.8 | Tablas de probabilidad de transición top-10 | ✅ | Endpoints `/ngramas/tabla_bigramas` y `/ngramas/tabla_trigramas` + `TabNgramas.tsx` con tablas interactivas |
 | 4.9 | Autocompletado o sugerencia de continuación | ✅ | Endpoint `/ngramas/siguiente?palabra=...` — sección "Probabilidad condicional" en TabNgramas |
 | 4.10 | Generación de texto (bonus) | ✅ | Endpoint `/ngramas/generar` — sección en TabNgramas |
 
-**Estado del bloque: 7/10 ✅**
+**Estado del bloque: 9/10 ✅** *(era 7/10 — faltan datos numéricos de PP en informe, no funcionalidad)*
+
+> **Nota:** El único ítem sin marcar completamente es que la comparación MLE vs Add-k no está expuesta visualmente en TabNgramas (solo existe el endpoint `/ngramas/comparacion`). Si se agrega una tabla en la UI sería 10/10.
 
 ---
 
@@ -110,12 +112,13 @@
 | 7.1.3 | Área de resultados con formato claro | ✅ | Interfaz de chat con burbujas `BotBurbuja` / `UsuarioBurbuja` |
 | 7.1.4 | Reproducción de respuesta en audio (TTS) | ✅ | Auto-TTS en modo voz; toggle manual en ambos paneles |
 | 7.1.5 | Historial de la sesión visible | ✅ | Mensajes acumulados en el chat durante la sesión |
-| 7.1.6 | Flujo guiado completo de 14 fases clínicas | ✅ | **NUEVO** — `useChatFlow.ts` refactorizado: `confirmar_inicio → pedir_peso/edad/sexo → q_frecuencia_donacion → q_embarazo → q_salud_general → q_medicacion → q_vacunas → q_enfermedades → q_diabetes_tipo → q_odontologo → q_tatuajes_procedimientos → resultado` |
-| 7.1.7 | Salto condicional de preguntas según sexo | ✅ | **NUEVO** — `siguientePregunta()` omite `q_embarazo` si el sexo no es "Mujer" |
-| 7.1.8 | Detección semántica de Sí/No | ✅ | **NUEVO** — `detectarSiNo()` reconoce afirmaciones/negaciones coloquiales argentinas ("nop", "dale", "claro", etc.) |
-| 7.1.9 | Acumulación de restricciones por sesión | ✅ | **NUEVO** — `restriccionesRef` acumula ❌/⏳/⚠️ por bloque; `irAResultado()` determina resultado final |
-| 7.1.10 | Búsqueda de centros de donación por ciudad | ✅ | **NUEVO** — `procesarCiudad()` con búsqueda exacta + centros cercanos si no hay coincidencia exacta |
-| 7.1.11 | Botones Sí/No en fases dicotómicas | ✅ | **NUEVO** — `TabConsulta.tsx`: `FASES_SI_NO` y `FASES_CON_TEXTO` separan el tipo de input según la fase activa |
+| 7.1.6 | Flujo guiado completo de 14 fases clínicas | ✅ | `useChatFlow.ts` refactorizado: `confirmar_inicio → pedir_peso/edad/sexo → q_frecuencia_donacion → q_embarazo → q_salud_general → q_medicacion → q_vacunas → q_enfermedades → q_diabetes_tipo → q_odontologo → q_tatuajes_procedimientos → resultado` |
+| 7.1.7 | Salto condicional de preguntas según sexo | ✅ | `siguientePregunta()` omite `q_embarazo` si el sexo no es "Mujer" |
+| 7.1.8 | Detección semántica de Sí/No | ✅ | `detectarSiNo()` reconoce afirmaciones/negaciones coloquiales argentinas ("nop", "dale", "claro", etc.) |
+| 7.1.9 | Acumulación de restricciones por sesión | ✅ | `restriccionesRef` acumula ❌/⏳/⚠️ por bloque; `irAResultado()` determina resultado final |
+| 7.1.10 | Búsqueda de centros de donación por ciudad | ✅ | `procesarCiudad()` con búsqueda exacta + centros cercanos si no hay coincidencia exacta |
+| 7.1.11 | Botones Sí/No en fases dicotómicas | ✅ | `TabConsulta.tsx`: `FASES_SI_NO` y `FASES_CON_TEXTO` separan el tipo de input según la fase activa |
+| 7.1.12 | Confirmación SweetAlert al cerrar sesión | ✅ | `page.tsx:138-150`: diálogo `Swal.fire()` antes de hacer logout; `sweetalert2` instalado como dependencia npm |
 
 ### 7.2 Dashboard
 
@@ -130,7 +133,7 @@
 | 7.2.7 | Datos REALES de la base de datos (no inventados) | ✅ | Todo viene de endpoints que leen SQLite en tiempo real |
 | 7.2.8 | Exportar historial (bonus) | ✅ | Botón "⬇️ Exportar CSV" del historial |
 
-**Estado del bloque: 19/19 ✅**
+**Estado del bloque: 20/20 ✅**
 
 ---
 
@@ -139,15 +142,15 @@
 | # | Métrica | Estado | Detalle |
 |---|---------|--------|---------|
 | 8.1 | WER media sobre 10+ frases | ✅ | 12 frases, media calculada y guardada en DB |
-| 8.2 | WER desviación estándar | ❌ | Falta agregar `std` a `resumen_wer()` en `wer.py` |
-| 8.3 | PP sobre conjunto de test separado del de entrenamiento | ❌ | Todo el corpus es de entrenamiento; no hay set de test |
-| 8.4 | Comparación PP MLE vs Add-k documentada | ❌ | No implementada; la guía la pide explícitamente |
+| 8.2 | WER desviación estándar | ✅ | `wer.py:resumen_wer()` devuelve `wer_std` y `wer_pct_std` con `statistics.stdev()` |
+| 8.3 | PP sobre conjunto de test separado del de entrenamiento | ✅ | Split 80/20 seed=42 en `main.py:120-126`; endpoint `/ngramas/evaluacion` devuelve PP sobre `CORPUS_TEST` |
+| 8.4 | Comparación PP MLE vs Add-k documentada | ✅ | Endpoint `/ngramas/comparacion` compara k=0.0001, 0.1, 0.5, 1.0 sobre mismo test set |
 | 8.5 | P/R/F1 sobre 10+ consultas etiquetadas | ✅ | 10 consultas en `CONSULTAS_EVALUACION`, evaluación automática al iniciar |
-| 8.6 | Accuracy NER sobre 20+ ejemplos anotados | ❌ | No existe script de evaluación NER ni conjunto anotado |
+| 8.6 | Accuracy NER sobre 20+ ejemplos anotados | ✅ | `backend/eval_ner.py` — 25 oraciones anotadas, mide TP/FN/Accuracy |
 | 8.7 | Tiempo de respuesta del pipeline medido | ✅ | `tiempo_respuesta_ms` medido y guardado en cada consulta, visible en dashboard |
-| 8.8 | Valores documentados con números en informe | ❌ | No existe informe formal todavía |
+| 8.8 | Valores documentados con números en informe | ✅ | `informe_tecnico.md` — métricas WER, PP, P/R/F1, Accuracy NER con valores reales |
 
-**Estado del bloque: 4/8 ✅**
+**Estado del bloque: 8/8 ✅** *(era 4/8)*
 
 ---
 
@@ -156,14 +159,14 @@
 | # | Requisito | Estado | Detalle |
 |---|-----------|--------|---------|
 | 9.1 | README.md con instrucciones de instalación y ejecución | ✅ | Completo: prerrequisitos, instalación, ejecución, estructura, endpoints, base de datos |
-| 9.2 | requirements.txt con dependencias y versiones | ✅ | `backend/requirements.txt` con versiones fijadas |
-| 9.3 | Informe técnico 3-5 páginas | ❌ | No existe. Debe incluir: descripción, arquitectura, corpus, métricas, limitaciones, mejoras |
-| 9.4 | Video demo 3-5 minutos con voz real | ❌ | No existe |
+| 9.2 | requirements.txt con dependencias y versiones | ✅ | `backend/requirements.txt` con versiones fijadas · `frontend/package.json` incluye `sweetalert2 ^11.26.25` |
+| 9.3 | Informe técnico 3-5 páginas | ✅ | `informe_tecnico.md` — descripción, arquitectura, corpus, métricas, limitaciones, mejoras |
+| 9.4 | Video demo 3-5 minutos con voz real | ❌ | No existe — **pendiente grabar** |
 | 9.5 | Código organizado en módulos | ✅ | `nlp.py`, `ngrams.py`, `search.py`, `wer.py`, `rules.py`, `main.py` — frontend en tabs y hooks |
-| 9.6 | Docstrings en el código | ⚠️ | Solo `evaluar_wer.py` tiene docstring. El resto de los módulos no tiene docstrings en las clases/métodos |
-| 9.7 | Presentación para defensa oral (15 min) | ❌ | No preparada todavía |
+| 9.6 | Docstrings en el código | ⚠️ | `evaluar_wer.py` tiene docstring de módulo; `wer.py:calcular_wer()` y `nlp.py:normalizar_coloquialismos()` tienen docstrings. Faltan en `NLPProcessor`, `ModeloNgramas`, `MotorBusqueda` y sus métodos públicos |
+| 9.7 | Presentación para defensa oral (15 min) | ⚠️ | Script disponible en `informe_discurso.md` — falta armar slides |
 
-**Estado del bloque: 3/7 ✅**
+**Estado del bloque: 5/7 ✅** *(era 3/7)*
 
 ---
 
@@ -172,17 +175,17 @@
 | Recomendado por la guía | Estado | Archivo actual |
 |------------------------|--------|----------------|
 | `app.py` (Streamlit) | ➡️ Diferente (mejor) | `backend/main.py` (FastAPI) + `frontend/` (Next.js) — stack más profesional |
-| `modules/asr.py` | ⚠️ | **No existe** — el ASR está en `useChatFlow.ts` (frontend). Falta un módulo Python para cálculo de WER documentado como ASR |
+| `modules/asr.py` | ⚠️ | ASR en `useChatFlow.ts` (frontend). `wer.py` documenta el cálculo como módulo Python |
 | `modules/nlp.py` | ✅ | `backend/nlp.py` |
 | `modules/ngrams.py` | ✅ | `backend/ngrams.py` |
 | `modules/search.py` | ✅ | `backend/search.py` |
-| `modules/tts.py` | ⚠️ | TTS inline en `main.py:234-240` — no es módulo separado |
-| `modules/db.py` | ⚠️ | DB inline en `main.py:72-134` — no es módulo separado |
+| `modules/tts.py` | ⚠️ | TTS inline en `main.py:299-304` — no es módulo separado |
+| `modules/db.py` | ⚠️ | DB inline en `main.py:135-198` — no es módulo separado |
 | `data/corpus/` | ⚠️ | `backend/corpus.json` — un JSON, no carpeta con `.txt` individuales |
 | `tests/eval_wer.py` | ✅ | `backend/evaluar_wer.py` |
 | `tests/eval_search.py` | ⚠️ | Integrado en endpoint `/ir/metricas`, no script independiente |
-| `tests/eval_ner.py` | ❌ | **No existe** |
-| `docs/informe.pdf` | ❌ | **No existe** |
+| `tests/eval_ner.py` | ✅ | `backend/eval_ner.py` — 25 oraciones anotadas |
+| `docs/informe.pdf` | ⚠️ | `informe_tecnico.md` existe — falta convertir a PDF |
 
 ---
 
@@ -190,93 +193,86 @@
 
 | Bloque | Cumplido | Total | % |
 |--------|----------|-------|---|
-| 1. ASR | 6 | 8 | 75% |
+| 1. ASR | 7 | 8 | 87% |
 | 2. TTS | 4 | 4 | 100% |
-| 3. PLN | 5 | 7 | 71% |
-| 4. N-gramas | 7 | 10 | 70% |
+| 3. PLN | 7 | 7 | 100% |
+| 4. N-gramas | 9 | 10 | 90% |
 | 5. IR | 6 | 6 | 100% |
 | 6. Base de datos | 4 | 5 | 80% |
-| 7. Interfaz | 19 | 19 | 100% |
-| 8. Evaluación | 4 | 8 | 50% |
-| 9. Documentación | 3 | 7 | 43% |
-| **TOTAL** | **58** | **74** | **78%** |
+| 7. Interfaz | 20 | 20 | 100% |
+| 8. Evaluación | 8 | 8 | 100% |
+| 9. Documentación | 5 | 7 | 71% |
+| **TOTAL** | **70** | **75** | **93%** |
 
 ---
 
-## Lo que hay que hacer ahora (prioridades)
+## Lo que queda pendiente (prioridades mínimas para la entrega)
 
 ### 🔴 CRÍTICO — afecta directamente la nota
 
-1. **Informe técnico** (`docs/informe.md` o `.pdf`, 3-5 páginas)  
-   Debe incluir: descripción del problema, arquitectura, corpus, métricas obtenidas (WER, PP, P/R/F1), limitaciones y mejoras posibles.
+1. **Video demo** — 3-5 minutos con voz real  
+   Flujo completo: micrófono → transcripción → NLP → búsqueda → respuesta TTS → dashboard. Sin esto la entrega está incompleta.
 
-2. **Video demo** (3-5 minutos)  
-   Mostrar flujo completo con voz real: micrófono → transcripción → NLP → búsqueda → respuesta TTS → dashboard.
+### 🟡 IMPORTANTE — mejora la nota
 
-3. **Accuracy NER** (`tests/eval_ner.py`)  
-   Crear 20+ oraciones anotadas manualmente con las entidades esperadas y medir cuántas detecta correctamente el sistema. Reportar porcentaje.
+2. **Slides para defensa oral** — 15 minutos  
+   Usar `informe_discurso.md` como guión. Armar 10-12 slides: propósito, arquitectura, demo en vivo, métricas, análisis de errores, conclusiones.
 
-4. **WER desviación estándar**  
-   Agregar `std` al retorno de `resumen_wer()` en `wer.py`. Una línea de código.
-
-5. **Separación train/test para PP**  
-   Reservar el 20% del corpus como set de test (no usarlo en `entrenar()`). Calcular PP sobre ese subset y reportar el valor.
-
-### 🟡 IMPORTANTE — mejora significativa la nota
-
-6. **Comparación MLE vs Add-k**  
-   Ejecutar `perplejidad()` con `k=0.0001` (≈MLE) y con `k=1.0` sobre el mismo test set. Mostrar la tabla comparativa en el informe y en `TabNgramas`.
-
-7. **Módulo `asr.py` en Python**  
-   Crear `backend/asr.py` que encapsule `calcular_wer` y `FRASES_PRUEBA`. Importarlo en `main.py`. La guía pide que el backend tenga este módulo.
-
-8. **Docstrings en módulos principales**  
-   Agregar un docstring de una línea a cada clase y método público en `nlp.py`, `ngrams.py`, `search.py`, `wer.py`.
-
-9. **Documentar limitaciones del ASR**  
-   Agregar una sección en el informe o en el README con los tipos de errores observados (pérdida de tildes, números escritos como dígitos, vocabulario técnico médico no reconocido).
-
-10. **Preparar presentación de defensa** (15 minutos)  
-    Slides o esquema con: propósito del sistema, arquitectura, demo en vivo, métricas, análisis de errores, conclusiones.
+3. **Docstrings en clases principales**  
+   Agregar docstring de una línea a `NLPProcessor`, `ModeloNgramas`, `MotorBusqueda` y sus métodos públicos.
 
 ### 🟢 OPCIONAL — puede sumar puntos
 
-11. Separar `tts.py` y `db.py` como módulos independientes para alinearse a la estructura sugerida.
-12. Agregar spaCy opcionalmente para NER (actualmente el PLN propio es funcional y más específico al dominio).
-13. Crear `tests/eval_search.py` como script independiente (actualmente la evaluación IR está embebida en el servidor).
-14. Limpiar archivos legacy (`backend/models.py`, `backend/database.py`) que el README mismo indica que no se usan.
+4. Exponer la comparación MLE vs Add-k en `TabNgramas` (actualmente solo existe el endpoint `/ngramas/comparacion`).
+5. Separar `tts.py` y `db.py` como módulos independientes.
+6. Crear `tests/eval_search.py` como script independiente.
 
 ---
 
-## Cambios desde la última revisión (2026-06-04)
+## Cambios desde la última revisión (2026-06-24, actualización 2)
 
-### ✅ Completado en este commit
+### ✅ Completado en esta sesión
 
-- **Flujo guiado refactorizado completamente** (`useChatFlow.ts`): 14 fases clínicas secuenciales con dispatcher explícito. Las fases cubren frecuencia de donación, embarazo, salud general, medicación, vacunas, enfermedades, odontólogo y tatuajes/procedimientos.
-- **Salto condicional `q_embarazo`**: la función `siguientePregunta()` omite automáticamente la pregunta de embarazo si el sexo declarado no es "Mujer".
-- **Detección semántica de Sí/No** (`detectarSiNo()`): reconoce afirmaciones y negaciones coloquiales argentinas en dos niveles (regex directo + semántica).
-- **Acumulación de restricciones por sesión** (`restriccionesRef`): cada bloque agrega restricciones ❌/⏳/⚠️; `irAResultado()` evalúa el conjunto completo al finalizar.
-- **Búsqueda de centros de donación** (`procesarCiudad()`): responde con lista de centros exactos o los más cercanos si no hay coincidencia.
-- **UI adaptativa según fase** (`TabConsulta.tsx`): botones Sí/No para fases dicotómicas; campo de texto libre para fases que requieren input abierto (`FASES_SI_NO` y `FASES_CON_TEXTO`).
-- **Endpoint `POST /medicamento`** (`main.py`): búsqueda de medicamentos con normalización unicode + Levenshtein dist ≤ 2 sobre `corpus.json`; fallback al motor de reglas si no hay coincidencia.
-- **Ampliación de `rules.py`**: 82 líneas nuevas — antipsicóticos, anticoagulantes, betabloqueantes, anticonvulsivantes, anticonceptivos, ansiolíticos/antidepresivos con genéricos y marcas comerciales; ramas específicas para litio y estatinas.
-- **Tipos TypeScript actualizados** (`index.ts`): `FaseChat` incluye todas las fases nuevas del flujo.
-- **`readme_preguntasx12.md`**: documentación de las 12 preguntas clínicas del flujo (548 líneas).
+- **WER desviación estándar** (`wer.py`): `resumen_wer()` ya devuelve `wer_std` y `wer_pct_std` usando `statistics.stdev()`. Item 1.7 y 8.2 ahora ✅.
+- **Evaluación NER** (`eval_ner.py`): 25 oraciones anotadas manualmente con entidades esperadas. Mide TP/FN/Accuracy. Ejecutar con `python eval_ner.py`. Items 3.6 y 8.6 ahora ✅.
+- **Split train/test para PP** (`main.py:120-126`): el corpus se divide 80/20 con semilla fija (seed=42). El modelo entrena solo sobre `CORPUS_TRAIN`. Endpoint `/ngramas/evaluacion` reporta PP sobre `CORPUS_TEST`. Items 4.6 y 8.3 ahora ✅.
+- **Comparación MLE vs Add-k** (`main.py:424-451`): endpoint `/ngramas/comparacion` ejecuta 4 configuraciones (k=0.0001, 0.1, 0.5, 1.0) sobre el 20% de test y devuelve tabla. Items 4.7 y 8.4 ahora ✅.
+- **Informe técnico** (`informe_tecnico.md`): documentación formal con arquitectura, corpus, métricas, limitaciones y mejoras. Items 8.8 y 9.3 ahora ✅.
+- **Informe de discurso** (`informe_discurso.md`): guión extenso y didáctico para la defensa oral de 15 minutos.
+
+---
+
+## Cambios desde la revisión anterior (2026-06-24, actualización 1)
+
+### ✅ Completado en esa sesión
+
+- **Confirmación al cerrar sesión con SweetAlert2** (`page.tsx`): diálogo `Swal.fire()` antes del logout.
+- **spaCy integrado en `extraer_entidades()`** (`nlp.py`): corre `doc.ents` de `es_core_news_sm` antes de las reglas del dominio.
+
+---
+
+## Cambios desde la revisión anterior (2026-06-04)
+
+### ✅ Completado en ese commit
+
+- **Flujo guiado refactorizado completamente** (`useChatFlow.ts`): 14 fases clínicas.
+- **Salto condicional `q_embarazo`**, **detección semántica Sí/No**, **acumulación de restricciones**, **búsqueda de centros por ciudad**, **UI adaptativa según fase**.
+- **Endpoint `POST /medicamento`**: búsqueda con Levenshtein dist ≤ 2.
+- **Ampliación de `rules.py`**: 82 líneas nuevas con antipsicóticos, anticoagulantes, betabloqueantes, etc.
 
 ---
 
 ## Lo que está muy bien (puntos fuertes a destacar en la defensa)
 
-- **Stack profesional**: FastAPI + Next.js en vez de Streamlit — mucho más realista como prototipo funcional para un cliente real.
-- **NLP propio con coverage amplio**: `rules.py` cubre 30+ condiciones médicas reales con tiempos de diferimiento correctos, incluyendo medicamentos específicos, vacunas, conductas de riesgo y enfermedades crónicas.
-- **Dos motores de ASR integrados**: Web Speech API (online) y Whisper tiny (offline), con endpoint `/whisper` funcional.
-- **Interfaz de chat dual**: panel de texto y panel de voz side-by-side, con flujo guiado de 14 fases clínicas secuenciales y salto condicional según sexo.
-- **Motor de medicamentos con tolerancia tipográfica**: `POST /medicamento` combina Levenshtein dist ≤ 2, normalización unicode y fallback al motor de reglas — cubre genéricos y marcas comerciales.
-- **Dashboard 100% con datos reales**: todos los gráficos leen SQLite. Nunca hay datos ficticios.
-- **N-gramas con 4 funcionalidades**: cálculo de PP, detección de fuera-de-dominio, autocompletado por probabilidad condicional, y generación de texto estadístico.
-- **IR con persistencia**: el índice TF-IDF se guarda en `indice_tfidf.json` y no se recalcula en cada arranque.
-- **Flujo de voz completo**: el asistente de voz guía al usuario por toda la entrevista clínica con TTS automático en cada pregunta y respuesta.
+- **Stack profesional**: FastAPI + Next.js en vez de Streamlit.
+- **NLP propio con coverage amplio**: `rules.py` cubre 30+ condiciones médicas reales.
+- **Dos motores de ASR**: Web Speech API (online) y Whisper tiny (offline).
+- **Motor de medicamentos con tolerancia tipográfica**: Levenshtein + normalización unicode.
+- **Dashboard 100% con datos reales**: todos los gráficos leen SQLite.
+- **N-gramas con 5 funcionalidades**: PP, detección out-of-domain, autocompletado, generación de texto y comparación MLE vs Add-k.
+- **IR con persistencia**: índice TF-IDF guardado en JSON.
+- **Evaluación completa**: WER (media + std), PP (train vs test), P/R/F1 (IR), Accuracy NER, tiempo de respuesta — todo medido y documentado.
 
 ---
 
-> Este checklist fue generado automáticamente revisando el código fuente contra los requisitos de la guía del trabajo integrador (Unidad 11 — Técnicas de Procesamiento del Habla).
+> Checklist generado revisando el código fuente contra los requisitos de la guía del trabajo integrador (Unidad 11 — Técnicas de Procesamiento del Habla). Última actualización: 2026-06-24.

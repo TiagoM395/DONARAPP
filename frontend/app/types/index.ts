@@ -31,6 +31,7 @@ export type FaseChat =
   | "q_medicacion" | "q_medicacion_cual"
   | "q_vacunas" | "q_vacuna_cual"
   | "q_enfermedades" | "q_enfermedades_cual" | "q_diabetes_tipo"
+  | "q_hipertension_tomada_presion" | "q_hipertension_valores_normales"
   | "q_odontologo"
   | "q_tatuajes_procedimientos"
   | "pedir_ciudad"

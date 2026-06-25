@@ -180,8 +180,9 @@ export function TabWER({ isMobile }: { isMobile: boolean }) {
           </div>
 
           {resumen && (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 12, marginBottom: 20 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
               <StatCard title="WER promedio" value={`${resumen.wer_pct_promedio}%`} color={wc(resumen.wer_promedio)} />
+              <StatCard title="Desv. estándar" value={`${resumen.wer_pct_std}%`} color="#7c3aed" />
               <StatCard title="Frases evaluadas" value={`${resumen.total_evaluadas} / 12`} color="#2563eb" />
             </div>
           )}

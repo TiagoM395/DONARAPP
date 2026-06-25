@@ -1,6 +1,7 @@
 import io
 import json
 import os
+import random
 import sqlite3
 import tempfile
 import unicodedata
@@ -116,9 +117,17 @@ CORPUS_ENTRENAMIENTO = CORPUS + [
     "cuánto tiempo después de un piercing puedo donar",
 ]
 
+# ── SPLIT TRAIN / TEST (80/20, semilla fija para reproducibilidad) ────────────
+_rng = random.Random(42)
+_shuffled = CORPUS_ENTRENAMIENTO[:]
+_rng.shuffle(_shuffled)
+_split = int(len(_shuffled) * 0.8)
+CORPUS_TRAIN = _shuffled[:_split]
+CORPUS_TEST  = _shuffled[_split:]
+
 # ── MODELOS ───────────────────────────────────────────────────────────────────
 modelo = ModeloNgramas(k=1.0)
-modelo.entrenar(CORPUS_ENTRENAMIENTO)
+modelo.entrenar(CORPUS_TRAIN)
 
 nlp = NLPProcessor()
 
@@ -389,9 +398,61 @@ def ngramas_siguiente(palabra: str = Query(..., min_length=1), top_n: int = 6, k
     resultados.sort(key=lambda x: x["prob"], reverse=True)
     return {"contexto": palabra, "siguientes": resultados[:top_n]}
 
+@app.get("/ngramas/evaluacion")
+def ngramas_evaluacion():
+    """PP promedio sobre el 20 % de test (no incluido en entrenamiento)."""
+    def _stats(textos: list[str]) -> dict:
+        pps = [modelo.perplejidad(t) for t in textos]
+        return {
+            "promedio": round(sum(pps) / len(pps), 2),
+            "minimo":   round(min(pps), 2),
+            "maximo":   round(max(pps), 2),
+        }
+
+    return {
+        "train_size": len(CORPUS_TRAIN),
+        "test_size":  len(CORPUS_TEST),
+        "pp_test":    _stats(CORPUS_TEST),
+        "pp_train":   _stats(CORPUS_TRAIN),
+        "detalle_test": [
+            {"texto": t, "pp": round(modelo.perplejidad(t), 2)}
+            for t in CORPUS_TEST
+        ],
+    }
+
+
+@app.get("/ngramas/comparacion")
+def ngramas_comparacion():
+    """Compara PP de MLE (k~0) vs distintos Add-k sobre el 20% de test."""
+    configuraciones = [
+        (0.0001, "MLE (k≈0)"),
+        (0.1,    "Add-k  k=0.1"),
+        (0.5,    "Add-k  k=0.5"),
+        (1.0,    "Add-k  k=1 (Laplace)"),
+    ]
+    filas = []
+    for k_val, etiqueta in configuraciones:
+        m = ModeloNgramas(k=k_val)
+        m.entrenar(CORPUS_TRAIN)
+        pps = []
+        for t in CORPUS_TEST:
+            try:
+                pp = m.perplejidad(t)
+                pps.append(pp if pp != float("inf") and pp == pp else 9999.0)
+            except (OverflowError, ValueError):
+                pps.append(9999.0)
+        filas.append({
+            "k": k_val,
+            "etiqueta": etiqueta,
+            "pp_promedio": round(sum(pps) / len(pps), 2),
+            "pp_min": round(min(pps), 2),
+            "pp_max": round(max(pps), 2),
+        })
+    return {"test_size": len(CORPUS_TEST), "train_size": len(CORPUS_TRAIN), "filas": filas}
+
+
 @app.get("/ngramas/generar")
 def ngramas_generar(inicio: str = Query(..., min_length=1), max_palabras: int = 12, k: float = 1.0):
-    import random
     modelo.k = k
     palabras = inicio.lower().strip().split()
     for _ in range(max_palabras):

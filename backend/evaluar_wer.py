@@ -99,6 +99,7 @@ print("-" * 80)
 rg_sum = resumen_wer(resultados_google)
 rw_sum = resumen_wer(resultados_whisper)
 print(f"{'PROMEDIO':<46} {rg_sum['wer_pct_promedio']:>5.1f}%   {rw_sum['wer_pct_promedio']:>5.1f}%")
+print(f"{'DESV. ESTÁNDAR':<46} {rg_sum['wer_pct_std']:>5.1f}%   {rw_sum['wer_pct_std']:>5.1f}%")
 print("=" * 80)
 
 # Detalle S/D/I por frase

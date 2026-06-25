@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 import { useIsMobile } from "./hooks/useIsMobile";
 import { TabConsulta }  from "./components/tabs/TabConsulta";
 import { TabDashboard } from "./components/tabs/TabDashboard";
@@ -136,7 +137,23 @@ export default function Home() {
             {/* Botón Cerrar / Iniciar Sesión */}
             {session ? (
               <button
-                onClick={() => { localStorage.removeItem("session"); setSession(null); setTab("inicio"); }}
+                onClick={async () => {
+                  const result = await Swal.fire({
+                    title: "¿Cerrar sesión?",
+                    text: "¿Realmente querés cerrar sesión?",
+                    icon: "question",
+                    showCancelButton: true,
+                    confirmButtonColor: "#ef4444",
+                    cancelButtonColor: "#6b7280",
+                    confirmButtonText: "Sí, cerrar",
+                    cancelButtonText: "Cancelar",
+                  });
+                  if (result.isConfirmed) {
+                    localStorage.removeItem("session");
+                    setSession(null);
+                    setTab("inicio");
+                  }
+                }}
                 style={{ background: "rgba(239,68,68,0.15)", color: "#fca5a5", border: "1px solid rgba(239,68,68,0.2)",
                          borderRadius: 8, cursor: "pointer", padding: "6px 12px",
                          fontSize: 12, fontWeight: 600, transition: "all 0.15s" }}>
