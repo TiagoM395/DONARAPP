@@ -308,6 +308,12 @@ class NLPProcessor:
         texto_lower = texto.lower()
         entidades = []
 
+        # NER de spaCy: detecta PER, LOC, ORG, MISC
+        if self._nlp is not None:
+            doc = self._nlp(texto)
+            for ent in doc.ents:
+                entidades.append({"tipo": ent.label_, "valor": ent.text})
+
         for tipo, palabras_clave in self.TIPOS.items():
             for kw in palabras_clave:
                 if kw in texto_lower:

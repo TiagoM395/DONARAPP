@@ -1,4 +1,5 @@
 import re
+import statistics
 
 _DIGITOS_ES = {
     "0": "cero", "1": "un", "2": "dos", "3": "tres", "4": "cuatro",
@@ -84,10 +85,14 @@ def calcular_wer(referencia: str, hipotesis: str) -> dict:
 
 def resumen_wer(resultados: list[dict]) -> dict:
     if not resultados:
-        return {"wer_promedio": 0.0, "wer_pct_promedio": 0.0}
-    avg = sum(r["wer"] for r in resultados) / len(resultados)
+        return {"wer_promedio": 0.0, "wer_pct_promedio": 0.0, "wer_std": 0.0, "wer_pct_std": 0.0}
+    valores = [r["wer"] for r in resultados]
+    avg = sum(valores) / len(valores)
+    std = statistics.stdev(valores) if len(valores) > 1 else 0.0
     return {
         "wer_promedio": round(avg, 4),
         "wer_pct_promedio": round(avg * 100, 2),
+        "wer_std": round(std, 4),
+        "wer_pct_std": round(std * 100, 2),
         "total_evaluadas": len(resultados),
     }

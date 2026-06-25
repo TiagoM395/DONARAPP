@@ -66,6 +66,15 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
   const marcarLeyendo = (v: boolean) => { leyendoRef.current = v; setLeyendo(v); };
   useEffect(() => { intentosFallidosRef.current = 0; }, [fase]);
 
+  const lastConfirmIdx = useRef(-1);
+  const confirmacion = () => {
+    const opciones = ["¡Muy bien! ✓", "¡Perfecto! ✓", "¡Está bien! ✓", "¡Bueno! ✓", "¡Entendido! ✓", "¡Anotado! ✓"];
+    let idx;
+    do { idx = Math.floor(Math.random() * opciones.length); } while (idx === lastConfirmIdx.current);
+    lastConfirmIdx.current = idx;
+    return opciones[idx];
+  };
+
   const bot = (texto: string, consulta?: Consulta, esResultado?: boolean) => {
     const id = msgIdRef.current++;
     setMensajes(prev => [...prev, { id, rol: "bot", texto, consulta, esResultado }]);
@@ -254,7 +263,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
 
   const procesarSexo = (sexo: string, displayText?: string) => {
     usuario(displayText ?? sexo); setPerfil(p => ({ ...p, sexo }));
-    bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_frecuencia_donacion!);
+    bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS.q_frecuencia_donacion!);
     setFase("q_frecuencia_donacion");
   };
 
@@ -270,11 +279,12 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const r = detectarSiNo(raw);
     if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
+      bot(confirmacion());
       bot("¿Hace cuánto tiempo fue tu última donación? " + hint("(Ej: 2 meses, 6 semanas, 1 año)", "Decí cuánto tiempo pasó desde tu última donación."));
       setFase("q_ultima_donacion");
     } else {
       const next = siguientePregunta("q_frecuencia_donacion", perfil.sexo);
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS[next]!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS[next]!);
       setFase(next);
     }
   };
@@ -328,7 +338,7 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
       setFase("resultado");
     } else {
       const next = siguientePregunta("q_embarazo", perfil.sexo);
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS[next]!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS[next]!);
       setFase(next);
     }
   };
@@ -390,10 +400,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const r = detectarSiNo(raw);
     if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
+      bot(confirmacion());
       bot("¿Cuál medicamento estás tomando actualmente? " + hint("(Escribí el nombre del medicamento)", "Decí el nombre del medicamento."));
       setFase("q_medicacion_cual");
     } else {
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_vacunas!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS.q_vacunas!);
       setFase("q_vacunas");
     }
   };
@@ -428,10 +439,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const r = detectarSiNo(raw);
     if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
+      bot(confirmacion());
       bot("¿Cuál vacuna te aplicaste? " + hint("(Escribí el nombre de la vacuna)", "Decí el nombre de la vacuna."));
       setFase("q_vacuna_cual");
     } else {
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_enfermedades!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS.q_enfermedades!);
       setFase("q_enfermedades");
     }
   };
@@ -476,10 +488,11 @@ export function useChatFlow({ autoTts = false, bienvenida, modo = "texto" }: { a
     const r = detectarSiNo(raw);
     if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
     if (r === "si") {
+      bot("Bueno. ✓");
       bot("¿Cuál enfermedad tenés? " + hint("(Escribí el nombre de la enfermedad)", "Decí el nombre de la enfermedad."));
       setFase("q_enfermedades_cual");
     } else {
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_odontologo!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS.q_odontologo!);
       setFase("q_odontologo");
     }
   };
@@ -529,11 +542,23 @@ const textoFinal = contexto && !textoYaContieneContexto
         const esFD = data.fuera_de_dominio || data.tipo === "fuera_de_dominio";
         const tieneResultado = ["apto", "no_apto_permanente", "no_apto_temporal", "consultar"].includes(data.tipo);
         if (esFD && !tieneResultado) {
-          bot("No pude identificar la enfermedad que describiste. ¿Podés describirla con más detalle? Por ejemplo: diabetes, hepatitis, hipertensión...");
+          bot("La enfermedad que mencionaste no figura en nuestra base de datos como impedimento para donar sangre. ✓");
+          bot(TEXTOS_PREGUNTAS.q_odontologo!);
+          setFase("q_odontologo");
           return;
         }
         const msg = data.respuesta || "Esa condición no parece ser un impedimento directo para donar.";
         if (data.tipo === "consultar") {
+          const esHipertension = /hipertens|presi[oó]n alta/i.test(textoFinal);
+          if (esHipertension) {
+            const infoText = "Una persona con hipertensión controlada puede donar sangre. La hipertensión no constituye un impedimento para la donación siempre que los valores de presión arterial se encuentren dentro de los rangos normales al momento de la evaluación previa a la donación.";
+            const dataHipertension = { ...data, respuesta: infoText, fuera_de_dominio: false };
+            setMensajes(prev => [...prev, { id: msgIdRef.current++, rol: "bot", texto: infoText, consulta: dataHipertension }]);
+            if (ttsOnRef.current) playTTS(infoText);
+            bot("¿Te tomaste la presión arterial el día de hoy?");
+            setFase("q_hipertension_tomada_presion");
+            return;
+          }
           // Guardar el texto como contexto y esperar aclaración del usuario
           enfermedadContextoRef.current = textoFinal;
           bot(msg, data);
@@ -572,7 +597,7 @@ const textoFinal = contexto && !textoYaContieneContexto
       addRestriccion("⚠️ Visita odontológica reciente — el banco de sangre evaluará.");
       bot("Registrado. El personal médico lo tendrá en cuenta. ✓\n\n" + TEXTOS_PREGUNTAS.q_tatuajes_procedimientos!);
     } else {
-      bot("Perfecto. ✓\n\n" + TEXTOS_PREGUNTAS.q_tatuajes_procedimientos!);
+      bot(confirmacion() + "\n\n" + TEXTOS_PREGUNTAS.q_tatuajes_procedimientos!);
     }
     setFase("q_tatuajes_procedimientos");
   };
@@ -585,6 +610,34 @@ const textoFinal = contexto && !textoYaContieneContexto
       addRestriccion("⏳ Tatuaje, piercing o procedimiento invasivo — espera de 6 meses.");
     }
     irAResultado();
+  };
+
+  const procesarHipertensionTomadaPresion = (raw: string) => {
+    setInputError(""); setInput(""); usuario(raw);
+    const r = detectarSiNo(raw);
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (r === "si") {
+      bot(confirmacion());
+      bot("¿La medición se encontró dentro de los valores normales?");
+      setFase("q_hipertension_valores_normales");
+    } else {
+      bot("Para determinar si podés continuar con el proceso de donación, es necesario conocer tus valores actuales de presión arterial. Te recomendamos realizar una medición antes de continuar.", mkConsultaResultado("no_apto_temporal"), true);
+      setFase("resultado");
+    }
+  };
+
+  const procesarHipertensionValoresNormales = (raw: string) => {
+    setInputError(""); setInput(""); usuario(raw);
+    const r = detectarSiNo(raw);
+    if (!r) { registrarFallo("No entendí tu respuesta. Por favor respondé Sí o No."); return; }
+    if (r === "si") {
+      bot(confirmacion());
+      bot("Según la información proporcionada, la hipertensión controlada no representa un impedimento para continuar con el proceso de donación. De todos modos, la evaluación final será realizada por el personal médico. ✓\n\n" + TEXTOS_PREGUNTAS.q_odontologo!);
+      setFase("q_odontologo");
+    } else {
+      bot("No sería recomendable continuar con el proceso de donación hasta que los valores de presión arterial se encuentren dentro de los rangos normales.", mkConsultaResultado("no_apto_temporal"), true);
+      setFase("resultado");
+    }
   };
 
   const procesarCiudad = (raw: string) => {
@@ -640,8 +693,10 @@ const textoFinal = contexto && !textoYaContieneContexto
     if (fase === "q_vacunas")                 { procesarVacunas(t); return; }
     if (fase === "q_vacuna_cual")             { procesarVacunaCual(t); return; }
     if (fase === "q_enfermedades")            { procesarEnfermedades(t); return; }
-    if (fase === "q_enfermedades_cual")       { procesarEnfermedadCual(t); return; }
-    if (fase === "q_diabetes_tipo")           { procesarDiabetesTipo(t); return; }
+    if (fase === "q_enfermedades_cual")            { procesarEnfermedadCual(t); return; }
+    if (fase === "q_diabetes_tipo")                { procesarDiabetesTipo(t); return; }
+    if (fase === "q_hipertension_tomada_presion")  { procesarHipertensionTomadaPresion(t); return; }
+    if (fase === "q_hipertension_valores_normales"){ procesarHipertensionValoresNormales(t); return; }
     if (fase === "q_odontologo")              { procesarOdontologo(t); return; }
     if (fase === "q_tatuajes_procedimientos") { procesarTatuajesProcedimientos(t); return; }
     if (fase === "pedir_ciudad")              { procesarCiudad(t); return; }
@@ -664,7 +719,7 @@ const textoFinal = contexto && !textoYaContieneContexto
     const startRec = () => {
       const rec = new SR();
       rec.lang = "es-AR";
-      rec.continuous = true;
+      rec.continuous = false;
       rec.interimResults = true;
 
       let procesado = false;
@@ -675,7 +730,7 @@ const textoFinal = contexto && !textoYaContieneContexto
         manejarEnvioFn.current(transcript, "voz");
       };
 
-      const timeoutId = setTimeout(() => { if (!procesado) rec.stop(); }, 7000);
+      const timeoutId = setTimeout(() => { if (!procesado) rec.stop(); }, 3500);
 
       rec.onresult = (e: any) => {
         if (procesado) return;

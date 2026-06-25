@@ -16,6 +16,7 @@ const FASES_CON_TEXTO = new Set<FaseChat>([
   "q_salud_general", "q_medicacion",
   "q_vacunas", "q_enfermedades",
   "q_odontologo", "q_tatuajes_procedimientos",
+  "q_hipertension_tomada_presion", "q_hipertension_valores_normales",
 ]);
 
 const FASES_SI_NO = new Set<FaseChat>([
@@ -23,14 +24,14 @@ const FASES_SI_NO = new Set<FaseChat>([
 ]);
 
 function InputArea({ chat }: { chat: ReturnType<typeof useChatFlow> }) {
-  const { fase, input, setInput, inputError, setInputError, loading, manejarEnvio } = chat;
+  const { fase, input, setInput, inputError, setInputError, loading, manejarEnvio, mensajes } = chat;
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!loading && FASES_CON_TEXTO.has(fase)) {
       inputRef.current?.focus();
     }
-  }, [loading, fase]);
+  }, [loading, fase, mensajes]);
 
   if (fase === "pedir_sexo") return (
     <div style={{ display: "flex", gap: 8, padding: "12px 16px", borderTop: "1px solid #cbd5e1" }}>
