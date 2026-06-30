@@ -95,7 +95,7 @@ export function TabInicio({ setTab }: TabInicioProps) {
           {[
             { m: "Donar sangre engorda o debilita.", v: "Falso. No altera el peso y el volumen se recupera en pocas horas." },
             { m: "Tengo que estar en ayunas.", v: "Falso. Debés desayunar liviano (sin lácteos ni grasas) antes de ir." },
-            { m: "Si tengo tatuajes no puedo donar.", v: "Realidad: Podés donar una vez pasados los 6 meses desde que te lo hiciste." },
+            { m: "Si tengo tatuajes no puedo donar.", v: "Realidad: Podés donar una vez pasado 1 año desde que te lo hiciste." },
             { m: "Donar sangre duele mucho.", v: "Realidad: Es solo un pinchazo momentáneo, igual que un análisis de rutina." }
           ].map((item, idx) => (
             <div key={idx} style={{ padding: "16px", borderRadius: "10px", background: "#f8fafc", border: "1px solid #e2e8f0" }}>
